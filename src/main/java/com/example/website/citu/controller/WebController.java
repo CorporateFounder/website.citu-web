@@ -7,6 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.net.NoRouteToHostException;
@@ -16,12 +19,15 @@ import java.util.List;
 
 @Controller
 public class WebController {
+
+    boolean IS_TEST = false;
+    String address = IS_TEST?"http://localhost:8083" : "http://194.87.236.238:80";
     @GetMapping("/")
     public String mainPage(Model model){
         //first api size blockchain
         String sizeStr = "-1";
         try {
-            sizeStr = UtilUrl.readJsonFromUrl("http://194.87.236.238:80" + "/size");
+            sizeStr = UtilUrl.readJsonFromUrl(address + "/size");
         }catch (NoRouteToHostException e){
             System.out.println("home page you cannot connect to global server," +
                     "you can't give size global server");
@@ -40,7 +46,7 @@ public class WebController {
         String difficultOneBlock =  ":";
         String difficultAllBlockchain = ":";
         try {
-            String json = UtilUrl.readJsonFromUrl("http://194.87.236.238:80" + "/difficultyBlockchain");
+            String json = UtilUrl.readJsonFromUrl(address+ "/difficultyBlockchain");
             infoDificultyBlockchain = UtilsJson.jsonToInfoDifficulty(json);
 
         }catch (NoRouteToHostException e){
@@ -431,5 +437,62 @@ public class WebController {
         model.addAttribute("list", list);
 
         return "solving_common_problems";
+    }
+
+    @GetMapping("/conductor")
+    public String conductors(Model model){
+
+
+        return "conductor";
+    }
+
+    @PostMapping("/conductor")
+    public String conductor(
+            @RequestParam String info,
+            RedirectAttributes redirectAttrs) throws IOException {
+
+        if(isNumeric(info)){
+            String url = address +"/conductorBlock?index=" + info;
+//            String url = address +"/conductorBlock";
+            Integer integer = Integer.valueOf(info);
+            String json = UtilsJson.objToStringJson(integer);
+            // Используем GET-запрос для получения данных по индексу
+            String text = UtilUrl.getObject( url );
+            System.out.println("text: " + text);
+            if(integer == 0){
+                String information = "The peculiarity of this blockchain is " +
+                        "that the genesis block also has an index of 1, " +
+                        "as does the block following it. This is normal," +
+                        " the entire block chain is correct and each block is unique, " +
+                        "with unique content. Thus, in the blockchain, " +
+                        "two blocks have identical indices, but different contents. " +
+                        "This is simply a feature of this blockchain.\n";
+                redirectAttrs.addFlashAttribute("text", information + text);
+            }else {
+                redirectAttrs.addFlashAttribute("text", text);
+            }
+
+        }else {
+            String url = address +"/conductorHashTran?hash="+info;
+//            String url = address +"/conductorHashTran";
+
+            String json = info;
+            // Используем GET-запрос для получения данных по хешу
+            String text = UtilUrl.getObject( url );
+            System.out.println("text: " + text);
+            redirectAttrs.addFlashAttribute("text", text);
+        }
+
+        return "redirect:/conductor";
+    }
+    public static boolean isNumeric(String str) {
+        // Проверяем, не пустая ли строка
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        // Создаем регулярное выражение для целых или дробных чисел
+        String regex = "[-+]?\\d+(\\.\\d+)?";
+        // Проверяем, соответствует ли строка регулярному выражению
+        return str.matches(regex);
     }
 }

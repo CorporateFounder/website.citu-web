@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" href="type/css" th:href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt 5">
+    <h1 th:text="${title}"></h1>
+</div>
+
+
+
+<form action="/conductor" method="post">
+    <input type="text" name="info" placeholder="enter index block or " class="form-control"><br>
+    <button type="submit" class="btn btn-success" name="action" value="/send">Submit Law</button><br>
+</form>
+
+<h4 th:text="'text: '+${text}"></h4>
+</div>
+
+
+<footer th:insert="blocks/footer :: footer"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
