@@ -77,63 +77,174 @@ public class WebController {
 
 
         model.addAttribute("text",
-"A completely unique project that has no analogues. A unique algorithm that made it possible to get rid of halving and at the same time maintain a limit on the number of coins by burning 0.2% of digital dollars from all accounts every six months and 0.4% of digital shares every six months. Two unique types of coins (digital dollars and digital stocks). For each extraction, a reward of 400 digital dollars and shares is given. Possibility to vote directly with the help of shares for the implementation of innovations in the project. The total number of digital dollars will never exceed 20 billion and the total number of shares will never exceed 10 billion.\n" +
-        "The unique algorithm allows you to make a steady course, now you will not be afraid of sharp drops in prices. Also, if you are a miner, now you do not need to be afraid that after halving, your production will be reduced. Guaranteed income for all miners.\n" +
-        "The ability to immediately start mining without buying a white IP.\n" +
-        "There are 576 blocks in a day, which is 4 times more likely to find a block than in bitcoin. Now you don’t need to be afraid of halving and look at the price with fear, if it doesn’t grow, now every miner has a guaranteed income and inflation is not created, and the money supply is also limited. The value of the coin will grow faster, since all settings were made on the basis of the Austrian school and monetarism, as well as on the book of Silvio Gesel. You are also contributing to the development of libertarianism.\n" +
-        "You get a guaranteed income when mining, but at the same time, the money supply is guaranteed not to grow above the limit, and there will be no inflation. A completely unique system that has never existed before and all the code was created from scratch.\n" +
-        "Your savings are now safe. A very rare resource that is becoming more expensive every day, the cost has increased five times in a week. Completely decentralized system.\n" +
-        "Transactions in 2 and a half minutes fall into the block.\n" +
-        "Reliable blockchain system.");
+"Preamble\n" +
+        "Hi all.\n" +
+        "Before downloading, I would like you to read the text below.\n" +
+        "My cryptocurrency was inspired by the US Constitution and the parliamentary system of government.\n" +
+        "My system implements a system that allows all participants to create laws and approve laws through democratic procedures.\n" +
+        "Imagine a world where residents of the USA, Mexico, Canada or other regions elect their representatives and approve laws,\n" +
+        "and also through direct democracy, but I need you to participate, I am a developer and can modify\n" +
+        "code so that the legal system becomes better. We will all be like the founding fathers of digital democracy.\n" +
+        "\n" +
+        "What are its advantages.\n" +
+        "1. There are 576 blocks in a day, for each block it is given if the block index is even (difficulty * 30) coins, if not even\n" +
+        "   (difficulty * 30) + 1 coin. where difficulty is equal to the number of zeros in the hash.\n" +
+        "2. Two unique digital dollar and digital stock coins.\n" +
+        "3. There is no halving; instead, the limitation occurs by burning coins from all accounts in the amount\n" +
+        "   0.2% every six months for digital dollars and 0.4% for digital stocks.\n" +
+        "4. A unique electoral system inspired by the principles of libertarianism, the English and New Zealand parliaments and\n" +
+        "   US Constitution.\n" +
+        "5. It has a unique mining system built on the basis of SHA-256 (A valid block must have the number\n" +
+        "   zeros in the hash string equal to the amount of complexity and the number of zeros in the hash bits must be 2).\n" +
+        "\n" +
+        "6. Difficulty adapts every 288 blocks.\n" +
+        "7. An election system that allows you to elect your representatives to different branches of government and directly vote for them.\n" +
+        "8. A unique system of government consisting of elements of the English parliament and a charter inspired by the constitution\n" +
+        "   USA and libertarian principles, including NAP.\n" +
+        "9. The ability to mine blocks directly on a local server, which automatically connects to the global server, which only stores,\n" +
+        "   updates and returns the current blockchain.\n" +
+        "10. All settings are made taking into account knowledge in the field of Macroeconomics and such schools as Milton Friedman’s Monetarism were taken into account,\n" +
+        "    Austrian School of Economics (Mises, Hayek), Silvio Gesel - money with demurrage and other books.\n" +
+        "11. The algorithm is designed in such a way that over time the economy will grow more steadily and have a more stable rate,\n" +
+        "    which will prevent future crises such as Deflationary Spiral and Stagflation, and allow for the optimal development of all humanity.\n" +
+        "    the total number of coins never exceeds 10 billion dollars and 5 billion shares unless the difficulty is higher than 10.\n" +
+        "12. Ultimately this system will be able to function as a Confederation or Federation for humanity\n" +
+        "    and eliminate problems such as financial crises (Deflationary Spiral, Stagflation, Galloping Inflation, etc.)\n" +
+        "    Pandemics, Space Threats, Environmental problems and will reduce the occurrence of military conflicts.\n" +
+        "\n" +
+        "\n" +
+        "Mission.\n" +
+        "Using a new economic model that is resistant to deflationary and inflationary crises,\n" +
+        "unite humanity into a single democratic trading network. Our digital democracy is resilient to stuffing\n" +
+        "and parliament represents all sections of society. First of all, we are creating a democratic platform,\n" +
+        "where the views of all participants must be heard. The goal is to unite people of different views, different religions,\n" +
+        "regions and social groups to solve social and economic problems, as well as reduce conflicts between\n" +
+        "countries and the economic growth of mankind.\n");
         return "main";
     }
-
     @GetMapping("/summary_and_benefits")
     public String summaryAndBenefits(Model model){
         List<String> strings = new ArrayList<>();
-        strings.add("Why is the voting system implemented in this system.\n" +
+        strings.add("Brief description of cryptocurrency\n" +
+                "A unique cryptocurrency that has a number of features, such as:\n" +
                 "\n" +
-                "We have seen a lot of cryptocurrencies that split due to small problems.\n" +
-                "and instead of one coin, we get hundreds, which reduced the value of the coin, as well as\n" +
-                "to capital losses.\n" +
-                "Each of you knows what is in one of the best coins, and the founder of all cryptocurrency,\n" +
-                "such as bitcoin, the reason for the split was simply the size of the block and from this was created\n" +
-                "many coins. In this system, shareholders, and everyone who has shares are shareholders,\n" +
-                "can solve such problems through voting and each decision will be valid only\n" +
-                "4 years, and if this decision is still relevant in four years, then the participants\n" +
-                "can easily support this decision again.\n" +
-                "1. Direct Democracy allows you to vote for Laws and members directly. This\n" +
-                "   a measure is needed when people have their own opinion on some specific issues.\n" +
-                "2. Factions are your delegates and represent the share that shareholders support.\n" +
-                "   Factions vote on the rules of the network");
+                "Two unique coins, a digital dollar and digital shares.\n" +
+                "A unique mechanism for limiting coins by burning co of all coin accounts in the amount of, 0.2% digital dollars and 0.4% digital shares every six months.\n" +
+                "On average, 576 blocks are mined per day.\n" +
+                "A unique mining algorithm, where the block is considered valid if the number of zeros in the hash string matches the current difficulty, and the number of zeros in the hash bits is equal to or greater than two.\n" +
+                "Difficulty adapts every 288 blocks.\n" +
+                "A unique electoral system that allows you to elect your representatives.\n" +
+                "Three branches of government Legislative, Judicial and Executive.\n" +
+                "Parliamentary Form of Government.\n" +
+                "Unique Mining System the number of coins is equal to the difficulty multiplied by 30 (if the block index is even, if not even then we add +1 to this). Example: difficulty 9 a) even index 930=270, odd block index (930)+1= 271.\n" +
+                "All laws and elected positions are valid for exactly 4 years and every four years you need re-vote.\n" +
+                "A unique sanctions system where participants can donate their coins to another participant lost the same number of coins, but this mechanism only works for shares.\n" +
+                "Detailed description of each part\n" +
+                "1. Two unique coins\n" +
+                "For each block two types of coins are given, one coin is a dollar, the second is a share, Shares are used in voting to elect officers, and in voting for laws.\n" +
+                "\n" +
+                "2. Every six months, coins are burned from all accounts\n" +
+                "Every six months, coins are burned from all accounts in the amount 0.2% digital dollars and 0.4% digital stocks, which holds back inflation and allows miners to mine coins in the same quantity.\n" +
+                "\n" +
+                "3. Approximately 576 are mined per day\n" +
+                "Approximately 576 blocks are mined per day, which allows a large number of participants engage in mining for many participants. But the quantity is not strict fixed, and each block is mined in approximately 150 seconds, and the difficulty may rise or fall if production rose 2.7 times or fell 1.6 times\n" +
+                "\n" +
+                "4. Unique mining algorithm\n" +
+                "Unlike other cryptocurrencies, where they often use the number of zeros in bits hash, double check is used here. 1. Number of zeros, in the string, the hash of the block must match the complexity. 2. Also Each block hash must contain 2 or more zeros in the bits. This measure is made for more accurate protection against ASIC attacks.\n" +
+                "\n" +
+                "5. Difficulty adapts dynamically.\n" +
+                "Difficulty adjustment occurs every 288 blocks, If a block is mined more than 2.7 times faster, then the difficulty increases +1, if production drops by 1.6 times, then difficulty drops to -1 if none of the conditions are met, then the difficulty remains the same\n" +
+                "\n" +
+                "public static int v2getAdjustedDifficultyMedian(Block latestBlock, List<Block> blocks, long BLOCK_GENERATION_INTERVAL, int DIFFICULTY_ADJUSTMENT_INTERVAL){\n" +
+                "         Block prevAdjustmentBlock = blocks.get(blocks.size() - DIFFICULTY_ADJUSTMENT_INTERVAL);\n" +
+                "         // Median time from index 0 to 10 of blocks\n" +
+                "         List<Long> adjustmentBlockTimes = new ArrayList<>();\n" +
+                "         for (int i = 0; i < Math.min(DIFFICULTY_ADJUSTMENT_INTERVAL, blocks.size()); i++) {\n" +
+                "             adjustmentBlockTimes.add(blocks.get(i).getTimestamp().getTime());\n" +
+                "         }\n" +
+                "         Collections.sort(adjustmentBlockTimes);\n" +
+                "         long prevTime = adjustmentBlockTimes.get(adjustmentBlockTimes.size() / 2);\n" +
+                "\n" +
+                "         // Includes the latestBlock time and the last 10 indices from blocks\n" +
+                "         List<Long> latestBlockTimes = new ArrayList<>();\n" +
+                "         latestBlockTimes.add(latestBlock.getTimestamp().getTime());\n" +
+                "         for (int i = Math.max(blocks.size() - 30, 0); i < blocks.size(); i++) {\n" +
+                "             latestBlockTimes.add(blocks.get(i).getTimestamp().getTime());\n" +
+                "         }\n" +
+                "         Collections.sort(latestBlockTimes);\n" +
+                "         long latestTime = latestBlockTimes.get(latestBlockTimes.size() / 2);\n" +
+                "\n" +
+                "\n" +
+                "         double percentGrow = 2.7;\n" +
+                "         double percentDown = 1.6;\n" +
+                "\n" +
+                "\n" +
+                "         long timeExpected = BLOCK_GENERATION_INTERVAL * DIFFICULTY_ADJUSTMENT_INTERVAL;\n" +
+                "         long timeTaken = latestTime - prevTime;\n" +
+                "\n" +
+                "         if(timeTaken < timeExpected / percentGrow){\n" +
+                "             return prevAdjustmentBlock.getHashCompexity() + 1;\n" +
+                "         }else if(timeTaken > timeExpected * percentDown){\n" +
+                "             return prevAdjustmentBlock.getHashCompexity() - 1;\n" +
+                "         }else {\n" +
+                "             return prevAdjustmentBlock.getHashCompexity();\n" +
+                "         }\n" +
+                "     }\n" +
+                "6, 7, 8. Electoral system and branches of government.\n" +
+                "For the electoral system of its representatives, shares are used. One share gives the right to vote one FOR and one AGAINST. Each participant can give your votes both FOR and AGAINST a candidate or law. You can also split your votes equally among several participants. For each candidate, a rating is calculated, rating this is the sum of all votes FOR minus all votes AGAINST, equals RATING. All Government consists of three branches of government .\n" +
+                "\n" +
+                "The legislative branch consists of the Parliament of the Council of Directors. their number is 201 accounts. One count equals one vote. For each law it is calculated as the rating received from the shares, and the rating received from a member of the board of directors. The law comes into force as soon as its rating from a stock is above 1, so his rating is above a certain level.\n" +
+                "The executive branch is the General Executive Director, and other leadership positions. The entire executive branch is appointed Board of Directors.\n" +
+                "The judiciary consists of 50 judges also elected by the community.\n" +
+                "To elect the Board of Directors, 201 accounts with the largest rating, but each account can only submit itself for this position.\n" +
+                "\n" +
+                "At any time, any participant can change their voice to the opposite one. Any voice is only valid for 4 years and needs to be renewed again, so that he continues to act.\n" +
+                "\n" +
+                "9. Unique mining system.\n" +
+                "There are currently only two types of coin mining in the world,\n" +
+                "\n" +
+                "Bitcoin and its successors, which reduce production every four year or other period.\n" +
+                "dogecoin and its successors, which have a fixed number of coins.\n" +
+                "This system has a unique production system, where production is determined from complexity, which makes it possible to regulate emissions and attract more investment. The number of coins for even blocks is equal to the difficulty multiplied by 30, for odd numbers (difficulty multiplied by 30) + 1. Thus, in even blocks, for example, if the difficulty is 9, it will be equal to 930=270, when the block index is not even (930)+1 = 271. Why is such a measure needed? To understand why it is needed, you first need to understand the disadvantages other coins.\n" +
+                "\n" +
+                "What disadvantages do type 1 coins have?\n" +
+                "First of all, this reduces the incentive to invest in the coin, since if mining profitability falls, then in order to remain profitable the cost should increase in proportion to the reduction. Now I’ll explain in more detail: the current price of Bitcoin (10/23/2023) is equal to 30571.90, while the production per block is 6.25. Now let's imagine that Every four years production decreases,\n" +
+                "\n" +
+                "award 2024 3.125, cost-effective value 61143.8\n" +
+                "award 2028 1.5625 cost effective 122287.6\n" +
+                "award 2032 0.78125 cost effective 244575.2\n" +
+                "award 2036 0.390625 cost effective 489150.4\n" +
+                "award 2040 0.1953125 cost effective 978300.8\n" +
+                "Thus, it is clear that after each extraction, to remain cost-effective the cost must double or they will need cut costs in half after every change. This coin will contribute to the monopolization of the system and degradation due to reduced investment. Since in some moment, production will become absolutely unprofitable, and it will be engage only large coin holders. Due to the reduction in production, the incentive to invest is reduced both for large holders, as well as new players.\n" +
+                "\n" +
+                "What disadvantages do type 2 coins have?\n" +
+                "There are advantages to having a fixed amount of loot, but there are some disadvantages. Both excess inflation and oligopoly and stagnation. Since the number of coins is fixed, then at some point investing in equipment becomes not profitable. Due to increasing complexity, the cost increases costs, which will often lead to unspoken collusion when large participants will not invest and as a result society will not develop. But this also has a problem with inflation, because when demand falls, so does complexity falls more often, but the number of mined coins remains the same. But in fairness it must be said that the second coin more stable than the first and less subject to volatility.\n" +
+                "\n" +
+                "Our coin.\n" +
+                "In this coin we give an additional reward for increasing difficulties, which in turn gives an incentive to participants to finance into the equipment. We also determine demand depending on complexity, the higher the complexity, the higher the demand, but if demand falls, so does the complexity also falls, which leads to a decrease in production and reduces inflation. And the difference between the income of even and odd blocks stimulates further violate the conspiracy. Since no one wants to give to others players have more advantage. This mechanism also allows you to better regulate the exchange rate of the coin.\n" +
+                "\n" +
+                "10. Laws and Positions\n" +
+                "All participants can vote for both several participants and for individuals. Each vote is counted only for the last four years. For example, you have one hundred shares, which means you have one hundred votes FOR and one hundred votes against. Example: You have 100 shares. There are 6 Candidates board positions A) B) C) D) E) F) you want to support A) and C) then by voting for them they receive 50 votes each, votes divided by the number of candidates FOR. Similar you want to vote against the remaining 4 at the same time, and each of them will receive minus 25 votes, votes divided by the number candidates AGAINST, so you voted for 6 candidates, 2 of them received +50, four of them -25. Every law, like every position, has its own oh hash, for which the participants can cast votes and thus take part in the vote.\n" +
+                "\n" +
+                "11. Sanctions\n" +
+                "This system implements a sanctions mechanism, imagine that there are participants who violate the rules of the network and they are trying to use laws of a fairly radical type. Let's imagine there are six participants with such views,\n" +
+                "\n" +
+                "one centrist.\n" +
+                "two left\n" +
+                "two right\n" +
+                "one radical.\n" +
+                "Each participant has one hundred shares, thus a radical may try to make a decision that everyone else participants are not supportive. And then they decide that each of them they are ready to lose twenty coins, but the radical also loses this number of coins. Now imagine that each of them imposes sanctions, against the radical, and all participants lose their coins, but the radical thus the radical loses all his hundred shares. But others too participants also lose their shares, 20 each.\n" +
+                "\n" +
+                "What does this mean for the whole society.\n" +
+                "This coin stimulates investment by burning coins, which in turn reduces unemployment, as well as poverty, as well as the exchange rate becomes stable to fluctuations. Also index indicators ginnies will provide a more equitable distribution of income, and help reduce the stratification of society.");
 
-        strings.add("Brief description of the cryptocurrency\n" +
-                "This cryptocurrency is unique, since the total money supply does not grow, but at the same time, the production of miners does not decrease.\n" +
-                "How did we achieve this?! All cryptocurrencies in the world now use only two strategies and\n" +
-                "I will give on the most successful currencies Bitcoin and Dogecoin.\n" +
-                "1. Bitcoin, in order to limit the number of coins, reduces production by half every four years.\n" +
-                "   But if the value does not double after each reduction, then many small players will go bankrupt,\n" +
-                "   as the cost of production is maintained, and profits are reduced. transaction costs can't either\n" +
-                "   grow, because if the cost is excessively high, then it makes no sense to acquire these coins.\n" +
-                "2. Dogecoin removed production cuts, but this creates inflation as the money supply continues to grow,\n" +
-                "   which causes problems.\n" +
-                "3. My coin burns 0.1% of digital dollars and 0.2% of digital shares from all accounts every half a year,\n" +
-                "   which allows miners to always mine 400 digital dollars and 400 digital shares for each block,\n" +
-                "   nor does the money supply grow as extraction and destruction come into equilibrium.\n" +
-                "4. You do not need to create a server with a white ip for mining. Since all local servers send\n" +
-                "   their blocks to a global server that stores, updates and transmits the actual blockchain.\n" +
-                "5. All your transactions automatically go to the global server and all miners automatically\n" +
-                "   they take transactions and add them to the block, so the chances that your transfer will be added to the block,\n" +
-                "   significantly higher.\n" +
-                "6. Uses unique SHA-256 algorithm. In this system, the complexity is determined by the number\n" +
-                "   zeros in the hash string when finding a block, but the actual blockchain is not only the longest blockchain,\n" +
-                "   but also one where the sum of all zeros is greater than that of an alternative blockchain.\n" +
-                "7. About 576 blocks are mined per day, which allows more to be mined.\n" +
-                "8. Difficulty is adjusted every half a year.");
+
         model.addAttribute("title", "Summary and benefits");
         model.addAttribute("texts", strings);
         return "summary_and_benefits";
     }
+
+
     @GetMapping("/how_to_install")
     public String installPage(Model model){
         model.addAttribute("title", "INSTALLATION:  how to install");
@@ -281,27 +392,49 @@ public class WebController {
     @GetMapping("/how_to_apply_for_a_job")
     public String howToApplyForAJob(Model model){
         model.addAttribute("title", "how to apply for a job");
-        model.addAttribute("text1", "In this system, you can be elected as an independent judge, chief executive officer, chief justice, or a faction delegate representing a certain percentage of the shareholders. All positions are elected.\n" +
-                "1. All positions are elected.\n" +
-                "2. ordinary judges and factions are elected by any member of the network,\n" +
-                "who has shares.\n" +
-                "3. The chief judge is elected by the judges.\n" +
-                "4. the general executive judge is elected by the faction\n" +
-                "5. but it is important for the chief justice and the CEO that the shareholders also vote positively.\n" +
-                "6. at any time, network members can change their vote and remove from office.\n" +
-                "7. It is the rating that is taken into account everywhere, the rating is calculated as all votes YES-NO and this result is the rating.\n" +
-                "8. Only votes cast in the last four years count.");
-        model.addAttribute("text2", "1. all places are limited.\n" +
-                "2. Judges can only be 55 accounts with the highest number of ratings received from rating shares.\n" +
-                "3. fractions can be only two hundred with the highest number of ratings received from the rating of shares.\n" +
-                "4. Only one account with the highest number of ratings received from shares and from factions can be the CEO.\n" +
-                "5. Only one account with the highest number of ratings received from shares and from judges can be the chief judge." +
-                "all positions thus elected are legitimate.");
-        model.addAttribute("text3", "1. for the election of judges and factions, it is necessary that the rating with the help of shares be more than one,\n" +
-                "2. further all participants are sorted and participants with the highest number of ratings are selected.\n" +
-                "3. In order to elect a Chief Justice, apart from the fact that his rating received from shares must be high, he must also receive at least a rating from judges of 2 or more.\n" +
-                "4. For the CEO, also the rating received from the shares must be the highest and the rating from the factions must be 15% or more.\n" +
-                "Judges vote according to the ONE_VOTE type, participants who have just shares vote according to the STOCK_VOTE type and fractions vote according to the FRACTION_VOTE type");
+        model.addAttribute("text1", "In this system there are three branches of government, " +
+                "1. Legislative 2. Judicial 3. Executive. The legislative branch consists of 201 Board of Directors accounts." +
+                " 2. The judiciary consists of 50 accounts of judges. " +
+                "3. The executive branch consists of 1 account of the General Executive Director. " +
+                "The Board of Directors and Judges are elected equally. " +
+                "To do this, you must enter the “apply for a positon” tab, wait until the calculations " +
+                "finish (calculate voting: index: ...) and the tab opens, then: " +
+                "1. enter the first field, your public key. 2. reward for the miner to install 5 or more coins. " +
+                "3. select the position you want from the tab. In the \"input address sender\" " +
+                "field enter your pub key again. 4. enter your contact information in the last field. " +
+                "(if you have already applied for a position once, you do not have to do it again with the same address). " +
+                "5. After you must enter the “All created law packages” tab, find your position in the name of the package, " +
+                "example: BOARD_OF_DIRECTORS, 6. Go to “details” and find your public key, in index 0. further, " +
+                "if you find it. 7. copy \"address package law\", 8. give this address to other participants so that " +
+                "they vote for you and you are elected. to do this, they must enter the \"Vote\" " +
+                "tab, where in the first field they must enter their public key, and in the second " +
+                "they must enter the address of the law that you copied in point 7 (in the same way, " +
+                "you yourself can vote for other laws). 9. Select YES or NO from the tab. " +
+                "10. Fill in the remaining data and click send. How Positions Are Elected The Board of Directors and " +
+                "Judges are elected in the same manner. To elect the Board of Directors, " +
+                "201 addresses from point 7 with the highest rating are selected. The rating is calculated this way. " +
+                "The number of your shares is equal to the number of votes that you can give either YES or NO, " +
+                "let’s say you have 100 shares, which means you can give 100 YES and 100 NO votes. For each candidate, " +
+                "the counting takes place in this way, all votes are YES - NO, and thus the result is the RATING. " +
+                "201 bills filed for the position of the Board of Directors and 50 bills filed for the position of a " +
+                "judge are elected judges. The CEO is elected in a similar way, but his rating must also be received from " +
+                "the Board of Directors, when the board of directors and judges vote, they also have their " +
+                "own chambers both within their chambers and within the chambers, one score equals one vote, " +
+                "so to be elected by the board of directors, your rating must be 10 or more from the chamber. " +
+                "All current positions are in the Fea tured Guid. All your votes are taken into account " +
+                "only for the last four years, and you can change your vote at any time. If, for example, " +
+                "you vote for several participants, then your votes will be divided between them. Example: you gave YES " +
+                "for 2 candidates and NO for 4 candidates. You have one hundred shares (100), so two participants will " +
+                "receive 50 votes according to the formula 100 / YES, and four against whom you voted will receive minus " +
+                "twenty-five (-25) according to the same formula 100 / NO. All created laws have an expiration date of " +
+                "up to 4 years, and you must vote for them. You also need to take into account that all your " +
+                "representatives are, in fact, delegates, since if your number of shares decreases or increases, " +
+                "the number of votes also changes. More details are currently described in the GitHub readme. to " +
+                "create laws Create a package law . All laws are created by the package, you also need to pay 5 or more " +
+                "digital dollars to the miner and fill out the fields, then send. all current laws fall into the Current " +
+                "tab and packages of laws. In order for your law to also be voted for, you need the same as for the " +
+                "position in paragraph 7. You need to find the name of your package and copy the address of this law.");
+
 
         return "how_to_apply_for_a_job";
 
