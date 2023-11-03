@@ -1,6 +1,8 @@
 package com.example.website.citu.controller;
 
 import com.example.website.citu.entity.InfoDificultyBlockchain;
+import com.example.website.citu.model.Block;
+import com.example.website.citu.model.DtoTransaction;
 import com.example.website.citu.utils.UtilUrl;
 import com.example.website.citu.utils.UtilsJson;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -588,10 +590,10 @@ public class WebController {
             String url = address +"/conductorBlock?index=" + info;
 //            String url = address +"/conductorBlock";
             Integer integer = Integer.valueOf(info);
-            String json = UtilsJson.objToStringJson(integer);
+
             // Используем GET-запрос для получения данных по индексу
             String text = UtilUrl.getObject( url );
-            System.out.println("text: " + text);
+
             if(integer == 0){
                 String information = "The peculiarity of this blockchain is " +
                         "that the genesis block also has an index of 1, " +
@@ -600,10 +602,12 @@ public class WebController {
                         "with unique content. Thus, in the blockchain, " +
                         "two blocks have identical indices, but different contents. " +
                         "This is simply a feature of this blockchain.\n";
-                redirectAttrs.addFlashAttribute("text", information + text);
-            }else {
-                redirectAttrs.addFlashAttribute("text", text);
+
+
+                redirectAttrs.addFlashAttribute("text", information );
             }
+            Block block = (Block) UtilsJson.jsonToListBLock(text, Block.class);
+            redirectAttrs.addFlashAttribute("block", block);
 
         }else {
             String url = address +"/conductorHashTran?hash="+info;
@@ -612,8 +616,10 @@ public class WebController {
             String json = info;
             // Используем GET-запрос для получения данных по хешу
             String text = UtilUrl.getObject( url );
-            System.out.println("text: " + text);
-            redirectAttrs.addFlashAttribute("text", text);
+
+            redirectAttrs.addFlashAttribute("text", null);
+            DtoTransaction dtoTransaction = (DtoTransaction) UtilsJson.jsonToListBLock(text, DtoTransaction.class);
+            redirectAttrs.addFlashAttribute("dto", dtoTransaction);
         }
 
         return "redirect:/conductor";

@@ -20,7 +20,47 @@
     <button type="submit" class="btn btn-success" name="action" value="/send">Submit Law</button><br>
 </form>
 
-<h4 th:text="'text: '+${text}"></h4>
+<h4 th:if="${text != null && text != '' }" th:text="'text: ' + ${text}"></h4>
+
+
+<div class="alert alert-info mt-2">
+    <h4 th:if="${block?.index != null}" th:text="'index: ' + ${block?.index}"></h4>
+    <h4 th:if="${block?.previousHash != null}" th:text="'previous hash: ' + ${block?.previousHash}"></h4>
+    <h4 th:if="${block?.hashBlock != null}" th:text="'hash: ' + ${block?.hashBlock}"></h4>
+    <h4 th:if="${block?.minerAddress != null}" th:text="'miner address: ' + ${block?.minerAddress}"></h4>
+    <h4 th:if="${block?.hashCompexity != null}" th:text="'block difficulty: ' + ${block?.hashCompexity}"></h4>
+    <h4 th:if="${block?.randomNumberProof != null}" th:text="'nonce: ' + ${block?.randomNumberProof}"></h4>
+    <h4 th:if="${block?.founderAddress != null}" th:text="'founder address: ' + ${block?.founderAddress}"></h4>
+    <h4 th:if="${block?.timestamp != null}" th:text="'time: ' + ${block?.timestamp}"></h4>
+    <h4 th:if="${block?.dtoTransactions != null}" th:text="'count transaction: ' + ${block?.dtoTransactions?.size}"></h4>
+
+
+
+    <h4 th:if="${dto?.sender != null}" th:text="'sender: ' + ${dto?.sender}"></h4>
+    <h4 th:if="${dto?.customer != null}" th:text="'customen: ' + ${dto?.customer}"></h4>
+    <h4 th:if="${dto?.voteEnum != null}" th:text="'voteEnum: ' + ${dto?.voteEnum}"></h4>
+    <h4 th:if="${dto?.signStr != null}" th:text="'sign: ' + ${dto?.signStr}"></h4>
+    <h4 th:if="${dto?.bonusForMiner != null}" th:text="'bonusForMiner: ' + ${dto?.bonusForMiner}"></h4>
+    <h4 th:if="${dto?.digitalDollar != null}" th:text="'stock votes raiting: '+${#numbers.formatDecimal(dto?.digitalDollar, 1, 'COMMA', 16, 'POINT')}"/>
+    <h4 th:if="${dto?.digitalStockBalance != null}" th:text="'stock votes raiting: '+${#numbers.formatDecimal(dto?.digitalStockBalance, 1, 'COMMA', 16, 'POINT')}"/>
+
+
+
+</div>
+
+
+<!--<div th:each="el : ${allBlocks}" class="alert alert-info mt-2">-->
+<!--    <h4 th:text="'address package law: '+${el.addressLaw}"/>-->
+<!--    <p th:text="'stock votes raiting: '+${#numbers.formatDecimal(el.votes, 1, 'COMMA', 16, 'POINT')}"/>-->
+<!--    <p th:text="'votesCorporateCouncilOfReferees raiting: '+${el.votesCorporateCouncilOfReferees}"/>-->
+<!--    <p th:text="'votes board of directiors raitng: '+${el.votesBoardOfDirectors}"/>-->
+<!--    <p th:text="'votesBoardOfShareholders raiting: '+${el.votesBoardOfShareholders}"/>-->
+<!--    <p th:text="'voteGeneralExecutiveDirector: '+${el.voteGeneralExecutiveDirector}"/>-->
+<!--    <p th:text="'founderVote: '+${el.founderVote}"/>-->
+<!--    &lt;!&ndash;        <p th:text="'fraction-leader voice: '+${el.fractionVote}"/>&ndash;&gt;-->
+<!--    <p th:text="'package law name: '+${el.packageName}"/>-->
+<!--    <a th:href="'/detail-laws-current/' + ${el.addressLaw}" class="btn btn-warning">Details</a>-->
+<!--</div>-->
 </div>
 
 
