@@ -32,7 +32,39 @@ public class UtilUrl {
         }
         return sb.toString();
     }
+    public static String getObject(String jsonObject, String requstStr) throws IOException {
+        URL url = new URL(requstStr);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//        conn.connect();
+        conn.setReadTimeout(35000);
+        conn.setConnectTimeout(35000);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json; utf-8");
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setDoOutput(true);
 
+
+
+        try(OutputStream outputStream = conn.getOutputStream()) {
+            byte[] input = jsonObject.getBytes("utf-8");
+            outputStream.write(input, 0, input.length);
+            conn.getResponseCode();
+        }
+
+
+        conn.connect();
+        try(BufferedReader br = new BufferedReader(
+                new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+            StringBuilder response = new StringBuilder();
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            return response.toString();
+
+        }
+
+    }
     public static String getObject(String jsonObject, String requstStr, boolean isPost) throws IOException {
         URL url = new URL(requstStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

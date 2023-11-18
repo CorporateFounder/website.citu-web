@@ -1,14 +1,18 @@
 package com.example.website.citu.controller;
 
 import com.example.website.citu.entity.InfoDificultyBlockchain;
+import com.example.website.citu.entity.SubBlockchainEntity;
 import com.example.website.citu.model.Block;
 import com.example.website.citu.model.DtoTransaction;
 import com.example.website.citu.utils.UtilUrl;
 import com.example.website.citu.utils.UtilsJson;
+import com.example.website.citu.utils.UtilsUse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,14 +20,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.net.NoRouteToHostException;
 import java.net.SocketException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WebController {
 
-    boolean IS_TEST = false;
-    String address = IS_TEST?"http://localhost:8083" : "http://194.87.236.238:80";
+
+    private String uriBase = "http://localhost:8080"; // change this to your server address
+    String address = ExplorerController.getAddress();
+
     @GetMapping("/")
     public String mainPage(Model model){
         //first api size blockchain
@@ -75,6 +89,7 @@ public class WebController {
         model.addAttribute("telegram", "https://t.me/citu_coin");
         model.addAttribute("github", "https://github.com/CorporateFounder/unitedStates_final");
         model.addAttribute("storage", "https://github.com/CorporateFounder/unitedStates_storage");
+        model.addAttribute("twitter", "@citu4030");
 
 
 
@@ -574,64 +589,12 @@ public class WebController {
         return "solving_common_problems";
     }
 
-    @GetMapping("/conductor")
-    public String conductors(Model model){
+//    @GetMapping("/conductor")
+//    public String conductors(
+//            Model model){
+//
+//
+//        return "conductor";
+//    }
 
-
-        return "conductor";
-    }
-
-    @PostMapping("/conductor")
-    public String conductor(
-            @RequestParam String info,
-            RedirectAttributes redirectAttrs) throws IOException {
-
-        if(isNumeric(info)){
-            String url = address +"/conductorBlock?index=" + info;
-//            String url = address +"/conductorBlock";
-            Integer integer = Integer.valueOf(info);
-
-            // Используем GET-запрос для получения данных по индексу
-            String text = UtilUrl.getObject( url );
-
-            if(integer == 0){
-                String information = "The peculiarity of this blockchain is " +
-                        "that the genesis block also has an index of 1, " +
-                        "as does the block following it. This is normal," +
-                        " the entire block chain is correct and each block is unique, " +
-                        "with unique content. Thus, in the blockchain, " +
-                        "two blocks have identical indices, but different contents. " +
-                        "This is simply a feature of this blockchain.\n";
-
-
-                redirectAttrs.addFlashAttribute("text", information );
-            }
-            Block block = (Block) UtilsJson.jsonToListBLock(text, Block.class);
-            redirectAttrs.addFlashAttribute("block", block);
-
-        }else {
-            String url = address +"/conductorHashTran?hash="+info;
-//            String url = address +"/conductorHashTran";
-
-            String json = info;
-            // Используем GET-запрос для получения данных по хешу
-            String text = UtilUrl.getObject( url );
-
-            redirectAttrs.addFlashAttribute("text", null);
-            DtoTransaction dtoTransaction = (DtoTransaction) UtilsJson.jsonToListBLock(text, DtoTransaction.class);
-            redirectAttrs.addFlashAttribute("dto", dtoTransaction);
-        }
-
-        return "redirect:/conductor";
-    }
-    public static boolean isNumeric(String str) {
-        // Проверяем, не пустая ли строка
-        if (str == null || str.isEmpty()) {
-            return false;
-        }
-        // Создаем регулярное выражение для целых или дробных чисел
-        String regex = "[-+]?\\d+(\\.\\d+)?";
-        // Проверяем, соответствует ли строка регулярному выражению
-        return str.matches(regex);
-    }
 }

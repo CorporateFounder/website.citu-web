@@ -2,6 +2,7 @@ package com.example.website.citu.model;
 
 import com.example.website.citu.model.utils.base.Base;
 import com.example.website.citu.model.utils.base.Base58;
+import com.example.website.citu.utils.UtilsUse;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
@@ -29,6 +30,10 @@ public class DtoTransaction {
     private VoteEnum voteEnum;
     private byte[] sign;
     private String signStr;
+
+    public String hex(){
+        return UtilsUse.bytesToHex(sign);
+    }
 
 
     public DtoTransaction(String sender,
