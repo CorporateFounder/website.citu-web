@@ -28,12 +28,12 @@ public final class Block implements Cloneable {
     private String founderAddress;
     private long randomNumberProof;
     private double minerRewards;
-    private int hashCompexity;
+    private long hashCompexity;
     private Timestamp timestamp;
     private long index;
     private String hashBlock;
 
-    public Block(List<DtoTransaction> dtoTransactions, String previousHash, String minerAddress, String founderAddress, long randomNumberProof, double minerRewards, int hashCompexity, Timestamp timestamp, long index, String hashBlock) {
+    public Block(List<DtoTransaction> dtoTransactions, String previousHash, String minerAddress, String founderAddress, long randomNumberProof, double minerRewards, long hashCompexity, Timestamp timestamp, long index, String hashBlock) {
         this.dtoTransactions = dtoTransactions;
         this.previousHash = previousHash;
         this.minerAddress = minerAddress;

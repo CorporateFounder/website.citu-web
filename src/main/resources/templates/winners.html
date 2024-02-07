@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header "></header>
+
+
+<div class="container mt-5">
+    <h5  th:text="${title}"></h5>
+    <h5 th:text="'all winners: ' + ${allWinnerCount}"/>
+    <div th:each="el : ${allWiners}" class="alert alert-info mt-2">
+        <h5 th:text="'index: '+${el.index}"/>
+        <h5 th:text="'miner address: '+${el.address}"/>
+        <h5 th:text="'hash block: '+${el.hash}"/>
+        <h5 th:text="'count transactions in block: '+${el.countTransactions}"/>
+        <h5 th:text="'staking miner: '+${el.staking}"/>
+        <h5 th:text="'big random number in block: '+${el.bigRandom}"/>
+        <h5 th:text="'block difficult: '+${el.diff}"/>
+    </div>
+
+    <h5 class="container mt-5" th:text="'all power winners: ' + ${allDiffCount}"/>
+    <div th:each="el : ${allDiff}" class="alert alert-info mt-2">
+        <h5 th:text="'index: '+${el.index}"/>
+        <h5 th:text="'miner address: '+${el.address}"/>
+        <h5 th:text="'hash block: '+${el.hash}"/>
+        <h5 th:text="'count transactions in block: '+${el.countTransactions}"/>
+        <h5 th:text="'staking miner: '+${el.staking}"/>
+        <h5 th:text="'big random number in block: '+${el.bigRandom}"/>
+        <h5 th:text="'block difficult: '+${el.diff}"/>
+    </div>
+
+    <h5 class="container mt-5" th:text="'all transactions winners: ' + ${allTransactionsCount}"/>
+    <div  th:each="el : ${allTransactions}" class="alert alert-info mt-2">
+        <h5 th:text="'index: '+${el.index}"/>
+        <h5 th:text="'miner address: '+${el.address}"/>
+        <h5 th:text="'hash block: '+${el.hash}"/>
+        <h5 th:text="'count transactions in block: '+${el.countTransactions}"/>
+        <h5 th:text="'staking miner: '+${el.staking}"/>
+        <h5 th:text="'big random number in block: '+${el.bigRandom}"/>
+        <h5 th:text="'block difficult: '+${el.diff}"/>
+    </div>
+
+    <h5 class="container mt-5" th:text="'all staking winners: ' +${allStakingCount}"/>
+    <div th:each="el : ${allStaking}" class="alert alert-info mt-2">
+        <h5 th:text="'index: '+${el.index}"/>
+        <h5 th:text="'miner address: '+${el.address}"/>
+        <h5 th:text="'hash block: '+${el.hash}"/>
+        <h5 th:text="'count transactions in block: '+${el.countTransactions}"/>
+        <h5 th:text="'staking miner: '+${el.staking}"/>
+        <h5 th:text="'big random number in block: '+${el.bigRandom}"/>
+        <h5 th:text="'block difficult: '+${el.diff}"/>
+    </div>
+
+    <h5 class="container mt-5" th:text="'all big random winners: ' + ${bigRandomCount}"/>
+    <div th:each="el : ${bigRandom}" class="alert alert-info mt-2">
+        <h5 th:text="'index: '+${el.index}"/>
+        <h5 th:text="'miner address: '+${el.address}"/>
+        <h5 th:text="'hash block: '+${el.hash}"/>
+        <h5 th:text="'count transactions in block: '+${el.countTransactions}"/>
+        <h5 th:text="'staking miner: '+${el.staking}"/>
+        <h5 th:text="'big random number in block: '+${el.bigRandom}"/>
+        <h5 th:text="'block difficult: '+${el.diff}"/>
+    </div>
+</div>
+
+
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>

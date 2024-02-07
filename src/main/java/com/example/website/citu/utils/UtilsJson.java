@@ -3,6 +3,7 @@ package com.example.website.citu.utils;
 import com.example.website.citu.entity.InfoDificultyBlockchain;
 import com.example.website.citu.model.Block;
 import com.example.website.citu.model.DtoTransaction;
+import com.example.website.citu.model.LiteVersionWiner;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +24,10 @@ public class UtilsJson {
     public static Object jsonToClass(String json, Class cls) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json, cls);
+    }
+    public static List<LiteVersionWiner> jsonToLiteVersionWiners(String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, new TypeReference<List<LiteVersionWiner>>(){});
     }
 
     public static List<Block> jsonToListBlock(String json) throws JsonProcessingException {

@@ -1,6 +1,8 @@
 package com.example.website.citu;
 
+import com.example.website.citu.controller.WebController;
 import com.example.website.citu.model.Block;
+import com.example.website.citu.model.LiteVersionWiner;
 import com.example.website.citu.utils.UtilsJson;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,4 +20,6 @@ public class Test {
         List<Block> firstList = UtilsJson.jsonToListBlock(first);
         List<Block> secondList = UtilsJson.jsonToListBlock(second);
     }
+
+
 }

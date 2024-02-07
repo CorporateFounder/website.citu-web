@@ -12,6 +12,26 @@
     <h6 th:text="'blockchain size: '+${size}"/>
     <h6 th:text="'difficulty one block: '+${difficulty}"/>
     <h6 th:text="'difficulty all blockchain: '+${difficultyAll}"/>
+    <h6 th:text="'multiplier: '+${multiplier}"/>
+    <h6 th:text="'target uniq sender in prev block: '+${targetTotalUniqAddress}"/>
+    <h6 th:text="'target sum sender transaction in prev block: '+${#numbers.formatDecimal(targetTotalSum, 1, 'COMMA', 16, 'POINT')}"/>
+
+    <h6 th:text="'total dollars: '+${#numbers.formatDecimal(totalDollars, 1, 'COMMA', 16, 'POINT')}"/>
+    <h6 th:text="'total accounts: '+${totalAccounts}"/>
+    <h6 th:text="'reward miners its (5 + coefficient + (difficulty * 0.2)) * multiplier: '"/>
+    <h6 th:text="'previous block total transaction: ' +${prevBlockTotalTransaction}"/>
+    <h6 th:text="'previous block total dollar sum: '+${#numbers.formatDecimal(prevBlockTotalSum, 1, 'COMMA', 16, 'POINT')}"/>
+
+
+    <h6 th:text="'total transactions in day: ' +${totalTransactionsDay}"/>
+    <h6 th:text="'total dollar sum transactions in day: '+${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'COMMA', 16, 'POINT')}"/>
+
+
+    <h6 th:text="'Every year the multiplier decreases by one, starting from this block ' +${startReduce}"/>
+    <h6 th:text="'A day in this system is 576 blocks, a year is 207,360 blocks.  '"/>
+    <h6 th:text="'How many blocks are left until the decline is shown here ' +${daysReduce}"/>
+
+
 </div>
 <div class="alert alert-info mt-2">
     <h6 th:text="'discord: '+${discord}"/>
@@ -59,6 +79,7 @@
 
                     <li class="nav-item mb-2"><a href="/solving_common_problems" class="nav-link p-0 text-body-secondary">solving_common_problems</a></li>
                     <li class="nav-item mb-2"><a href="/conductor" class="nav-link p-0 text-body-secondary">Explorer</a></li>
+                    <li class="nav-item mb-2"><a href="/winners" class="nav-link p-0 text-body-secondary">winners</a></li>
                 </ul>
             </div>
 

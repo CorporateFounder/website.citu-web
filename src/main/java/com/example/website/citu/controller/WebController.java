@@ -25,63 +25,110 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
 public class WebController {
+    String BASIS_ADDRESS = "faErFrDnBhfSfNnj1hYjxydKNH28cRw1PBwDQEXH3QsJ";
 
-
-    private String uriBase = "http://localhost:8080"; // change this to your server address
-    String address = ExplorerController.getAddress();
-
-    @GetMapping("/")
-    public String mainPage(Model model){
-        //first api size blockchain
-        String sizeStr = "-1";
+    public static String getResult(String url, String errorText) {
+        String str = "-1";
         try {
-            sizeStr = UtilUrl.readJsonFromUrl(address + "/size");
-        }catch (NoRouteToHostException e){
-            System.out.println("home page you cannot connect to global server," +
-                    "you can't give size global server");
-            sizeStr = "-1";
-        }catch (SocketException e){
-            System.out.println("home page you cannot connect to global server," +
-                    "you can't give size global server");
-            sizeStr = "-1";
+            str = UtilUrl.readJsonFromUrl(address + url);
+        } catch (NoRouteToHostException e) {
+            System.out.println(errorText);
+            str = "-1";
+        } catch (SocketException e) {
+            System.out.println(errorText);
+            str = "-1";
         } catch (IOException e) {
             throw new RuntimeException(e);
+
+        } finally {
+            return str;
         }
+
+    }
+
+    private String uriBase = "http://localhost:8080"; // change this to your server address
+    static String address = ExplorerController.getAddress();
+
+    @GetMapping("/")
+    public String mainPage(Model model) throws IOException {
+        //first api size blockchain
+        String sizeStr = "-1";
+        sizeStr = getResult("/size", "home page you cannot connect to global server,\" +\n" +
+                "                    \"you can't give size global server");
+
         model.addAttribute("size", sizeStr);
 
         //second api
         InfoDificultyBlockchain infoDificultyBlockchain = new InfoDificultyBlockchain(-1, -1);
-        String difficultOneBlock =  ":";
+        String difficultOneBlock = ":";
         String difficultAllBlockchain = ":";
         try {
-            String json = UtilUrl.readJsonFromUrl(address+ "/difficultyBlockchain");
+            String json = UtilUrl.readJsonFromUrl(address + "/difficultyBlockchain");
             infoDificultyBlockchain = UtilsJson.jsonToInfoDifficulty(json);
-
-        }catch (NoRouteToHostException e){
-            System.out.println("home page you cannot connect to global server," +
-                    "you can't give difficulty global server");
-
-        }catch (SocketException e){
-            System.out.println("," +
-                    "you can't give difficulty global server");
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        String startReduce = getResult("/v28Index", "you can't give start index global server");
+        String totalDollars = getResult("/totalDollars", "you can't give total dollars global server");
+        String totalAccounts = getResult("/allAccounts", "you can't give total accounts global server");
+        String multiplier = getResult("/multiplier", "you can't give multiplier global server");
+        String daysReduce = getResult("/dayReduce", "you can't give day reduce global server");
+
+        long size = Long.valueOf(sizeStr);
+
+        String urlPrev = address + "/conductorBlock?index=" + (size - 1);
+        String prevJson = UtilUrl.getObject(urlPrev);
+        Block prev = (Block) UtilsJson.jsonToClass(prevJson, Block.class);
+
+        int prevBlockTotalTransaction = prev.getDtoTransactions().size();
+        double prevBlockTotalSum = prev.getDtoTransactions()
+                .stream().mapToDouble(t->t.getDigitalDollar())
+                .sum();
+
+
+        String totalTransactionsJson = getResult("/totalTransactionsDay", "you can't give total transactions day global server");
+        int totalTransactionsDay = Integer.valueOf(totalTransactionsJson);
+        String totalTransactionsSumJson = getResult("/totalTransactionsSum", "you can't give total transactions sum global server");
+        double totalTransactionsDaySum =  Double.valueOf(totalTransactionsSumJson);
+
+        double targetTotalSum = prev.getDtoTransactions().stream()
+                .filter(t->!t.getSender().equals(BASIS_ADDRESS))
+                .mapToDouble(t->t.getDigitalDollar())
+                .sum();
+        long targetTotalUniqAddress = prev.getDtoTransactions().stream()
+                .filter(t->!t.getSender().equals(BASIS_ADDRESS))
+                .map(t->t.getSender())
+                .distinct()
+                .count();
+
+
 
         difficultOneBlock = Long.toString(infoDificultyBlockchain.getDiffultyOneBlock());
         difficultAllBlockchain = Long.toString(infoDificultyBlockchain.getDifficultyAllBlockchain());
         model.addAttribute("difficulty", difficultOneBlock);
         model.addAttribute("difficultyAll", difficultAllBlockchain);
+        model.addAttribute("targetTotalUniqAddress", targetTotalUniqAddress);
+        model.addAttribute("targetTotalSum", targetTotalSum);
+
+        model.addAttribute("startReduce", startReduce);
+        model.addAttribute("totalDollars", totalDollars);
+        model.addAttribute("totalAccounts", totalAccounts);
+        model.addAttribute("multiplier", multiplier);
+        model.addAttribute("daysReduce", daysReduce);
+        model.addAttribute("prevBlockTotalTransaction", prevBlockTotalTransaction);
+        model.addAttribute("prevBlockTotalSum", prevBlockTotalSum);
+        model.addAttribute("totalTransactionsDay", totalTransactionsDay);
+        model.addAttribute("totalTransactionsDaySum", totalTransactionsDaySum);
+
+
+
+
 
         model.addAttribute("title", "Main page");
         model.addAttribute("Summary", "Summary and Benefits");
@@ -92,168 +139,117 @@ public class WebController {
         model.addAttribute("twitter", "@citu4030");
 
 
-
         model.addAttribute("text",
-"Preamble\n" +
-        "Hi all.\n" +
-        "Before downloading, I would like you to read the text below.\n" +
-        "My cryptocurrency was inspired by the US Constitution and the parliamentary system of government.\n" +
-        "My system implements a system that allows all participants to create laws and approve laws through democratic procedures.\n" +
-        "Imagine a world where residents of the USA, Mexico, Canada or other regions elect their representatives and approve laws,\n" +
-        "and also through direct democracy, but I need you to participate, I am a developer and can modify\n" +
-        "code so that the legal system becomes better. We will all be like the founding fathers of digital democracy.\n" +
-        "\n" +
-        "What are its advantages.\n" +
-        "1. There are 576 blocks in a day, for each block it is given if the block index is even (difficulty * 30) coins, if not even\n" +
-        "   (difficulty * 30) + 1 coin. where difficulty is equal to the number of zeros in the hash.\n" +
-        "2. Two unique digital dollar and digital stock coins.\n" +
-        "3. There is no halving; instead, the limitation occurs by burning coins from all accounts in the amount\n" +
-        "   0.2% every six months for digital dollars and 0.4% for digital stocks.\n" +
-        "4. A unique electoral system inspired by the principles of libertarianism, the English and New Zealand parliaments and\n" +
-        "   US Constitution.\n" +
-        "5. It has a unique mining system built on the basis of SHA-256 (A valid block must have the number\n" +
-        "   zeros in the hash string equal to the amount of complexity and the number of zeros in the hash bits must be 2).\n" +
-        "\n" +
-        "6. Difficulty adapts every 288 blocks.\n" +
-        "7. An election system that allows you to elect your representatives to different branches of government and directly vote for them.\n" +
-        "8. A unique system of government consisting of elements of the English parliament and a charter inspired by the constitution\n" +
-        "   USA and libertarian principles, including NAP.\n" +
-        "9. The ability to mine blocks directly on a local server, which automatically connects to the global server, which only stores,\n" +
-        "   updates and returns the current blockchain.\n" +
-        "10. All settings are made taking into account knowledge in the field of Macroeconomics and such schools as Milton Friedman’s Monetarism were taken into account,\n" +
-        "    Austrian School of Economics (Mises, Hayek), Silvio Gesel - money with demurrage and other books.\n" +
-        "11. The algorithm is designed in such a way that over time the economy will grow more steadily and have a more stable rate,\n" +
-        "    which will prevent future crises such as Deflationary Spiral and Stagflation, and allow for the optimal development of all humanity.\n" +
-        "    the total number of coins never exceeds 10 billion dollars and 5 billion shares unless the difficulty is higher than 10.\n" +
-        "12. Ultimately this system will be able to function as a Confederation or Federation for humanity\n" +
-        "    and eliminate problems such as financial crises (Deflationary Spiral, Stagflation, Galloping Inflation, etc.)\n" +
-        "    Pandemics, Space Threats, Environmental problems and will reduce the occurrence of military conflicts.\n" +
-        "\n" +
-        "\n" +
-        "Mission.\n" +
-        "Using a new economic model that is resistant to deflationary and inflationary crises,\n" +
-        "unite humanity into a single democratic trading network. Our digital democracy is resilient to stuffing\n" +
-        "and parliament represents all sections of society. First of all, we are creating a democratic platform,\n" +
-        "where the views of all participants must be heard. The goal is to unite people of different views, different religions,\n" +
-        "regions and social groups to solve social and economic problems, as well as reduce conflicts between\n" +
-        "countries and the economic growth of mankind.\n");
+                "Preamble\n" +
+                        "Hi all.\n" +
+                        "Before downloading, I would like to read the text below.\n" +
+                        "My meeting was inspired by the US Constitution and the leadership of the parliamentary system.\n" +
+                        "My system implements a system that allows all creators to create and approve laws through democratic procedures.\n" +
+                        "   imagine a world in which the people of the United States, Mexico, Canada, or other regions elect their representatives and recommend laws.\n" +
+                        "and also on the principle of democracy, but I need your participation, I am a developer and can change\n" +
+                        "code to make the legal system better. We will all be like the founding fathers of digital democracy.\n" +
+                        "What are its advantages?\n" +
+                        "1. There are 576 blocks per day, for each block you get (5+ coefficient + (difficulty * 0.2))*multiplier. Where the initial multiplier is 29, but decreases by one every year, but cannot be lower than one. The factor can be zero or 3. If you are blocking this data above, select the unique sender in the previous block:\n" +
+                        "sender's target transaction amount in the previous block: the name of the number of unique senders, not including the base address, greater than the previous block, and subsequent all transactions, greater than the previous block, not including the founder and miner reward.\n" +
+                        "2. Two unique digital dollars and digital cryptocurrency coins.\n" +
+                        "3. A unique electoral system inspired by the principles of libertarianism, the parliaments of England and New Zealand and the US Constitution.\n" +
+                        "4. Has a mining system built on SHA-256, the block is valid if the conditions are effectively applied.\n" +
+                        "The mining algorithm is that we convert a hash into bits.\n" +
+                        "and count all units in bits.\n" +
+                        "The sum of units must be less than or equal to the target.\n" +
+                        "Goal 100 is difficulty. that is, the complexity can only double each time. Example:\n" +
+                        "   if previously the difficulty was 1, but became 2, then the probability of finding the correct hash has become half as strong.\n" +
+                        "This allows us to have better control over the difficulty of the difficulty levels, up to 100 in fact.\n" +
+                        "7. An electoral system that allows you to separate your representatives from different branches of government and directly vote for them.\n" +
+                        "8. A unique system of government, consisting of elements of parliament and statutes of parliament, based on the constitution.\n" +
+                        "USA and libertarian principles, including NAP.\n" +
+                        "9. The ability to mine blocks directly on a local server, which automatically connects to a global server that only hosts storage,\n" +
+                        "updates and restores the current balance.\n" +
+                        "10. All settings are made taking into account knowledge in the field of macroeconomics and were taken into account in such schools as Milton Friedman’s monetarism,\n" +
+                        "Austrian School of Economics (Mises, Hayek), Silvio Gesel - idle money and other books.\n" +
+                        "11. The algorithm is designed in such a way that over time the economy will grow at a more sustainable and stable pace,\n" +
+                        "which will prevent future crises such as deflationary spiral and stagflation, and best ensure the development of all humanity, the total number of coins in 29 years will reach a maximum of less than a billion (844635200.000000.00000000) with the fundamental fact that participants will always receive an additional payment for the coefficient (3) . The minimum amount for 29 years, if the coefficient is not received, will be about half a billion (570272000.000000.00000000)\n" +
+                        "   with such an increase in the total mass annually in 29 years there will be a minimum of min 1051200.000000.00000000 one million per year and a maximum of 1681920.000000.00000000\n" +
+                        "               \n" +
+                        "12. Ultimately this system will be able to function as a Confederation or Federation of Humanity.\n" +
+                        "and solve problems such as financial crises (deflationary spiral, stagflation, runaway inflation, etc.)\n" +
+                        "Pandemics, space threats, environmental problems and international mitigation measures." +
+                        "                      \n" +
+                        "Mission.\n" +
+                        "use an economic model that is resistant to new deflationary and inflationary crises,\n" +
+                        "this means in a single democratic trading network. Our digital democracy is resistant to stuffing\n" +
+                        "Parliament represents all sectors of society. First of all, we are creating a democratic platform,\n" +
+                        "where there should be unique opinions of all participants. The goal is to know people of different views, different religions,\n" +
+                        "regional and social groups to solve social and economic problems, as well as take into account the differences between\n" +
+                        "countries and the economic growth of humanity.");
         return "main";
     }
+
     @GetMapping("/summary_and_benefits")
-    public String summaryAndBenefits(Model model){
+    public String summaryAndBenefits(Model model) {
         List<String> strings = new ArrayList<>();
         strings.add("Brief description of cryptocurrency\n" +
-                "A unique cryptocurrency that has a number of features, such as:\n" +
-                "\n" +
+                "A unique cryptocurrency with a number of features, such as:\n" +
                 "Two unique coins, a digital dollar and digital shares.\n" +
-                "A unique mechanism for limiting coins by burning co of all coin accounts in the amount of, 0.2% digital dollars and 0.4% digital shares every six months.\n" +
                 "On average, 576 blocks are mined per day.\n" +
-                "A unique mining algorithm, where the block is considered valid if the number of zeros in the hash string matches the current difficulty, and the number of zeros in the hash bits is equal to or greater than two.\n" +
-                "Difficulty adapts every 288 blocks.\n" +
-                "A unique electoral system that allows you to elect your representatives.\n" +
-                "Three branches of government Legislative, Judicial and Executive.\n" +
-                "Parliamentary Form of Government.\n" +
-                "Unique Mining System the number of coins is equal to the difficulty multiplied by 30 (if the block index is even, if not even then we add +1 to this). Example: difficulty 9 a) even index 930=270, odd block index (930)+1= 271.\n" +
-                "All laws and elected positions are valid for exactly 4 years and every four years you need re-vote.\n" +
-                "A unique sanctions system where participants can donate their coins to another participant lost the same number of coins, but this mechanism only works for shares.\n" +
+                "A unique mining algorithm in which a block is considered valid if it meets these conditions\n" +
+
+                "The mining algorithm is that we convert the hash into bits and count all the units in bits." +
+                " The sum of units must be less than or equal to the target. The goal is 100 - difficulty. that is, the " +
+                "difficulty can only double each time. Example: if previously the complexity was 1 and became 2," +
+                " then the probability of finding the correct hash has become half as much. This allows us " +
+                "to better control the difficulty of the difficulty levels, up to 100 in fact." +
+                "public static int getBitSum2(String hash) {\n" +
+                "    int bitSum = 0;\n" +
+                "    String hashUpper = hash.toUpperCase();\n" +
+                "    for (int i = 0; i < hashUpper.length(); i += 2) {\n" +
+                "      String hex = hashUpper.substring(i, i + 2);\n" +
+                "      int hexValue = Integer.parseInt(hex, 16);\n" +
+                "      while (hexValue > 0) {\n" +
+                "        bitSum += hexValue & 1;\n" +
+                "        hexValue >>= 1;\n" +
+                "      }\n" +
+                "    }\n" +
+                "    return bitSum;\n" +
+                "  }\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "  public static boolean isValidHashV29(String hash, int difficulty){\n" +
+                "    // Вычислить сумму битов в хэше\n" +
+                "    int bitSum = getBitSum2(hash);\n" +
+                "    // Проверить, меньше ли или равна сумма битов заданному уровню сложности\n" +
+                "    return bitSum <= difficulty;\n" +
+                "  }" +
+                "A unique electoral system that allows you to choose your representatives.\n" +
+                "Three branches of government: legislative, judicial and executive.\n" +
+                "Parliamentary form of government.\n" +
+                "\n" +
+                "A unique mining system, the number of mined coins per block is equal to the formula (5+coefficient) * multiplier.\n" +
+                "where the coefficient can be either zero or three if these conditions are met \"target uniq sender in prev block\" where the number of unique senders must be greater than\n" +
+                "the number of unique senders in the previous block, but not counting the base address, also the sum of all transactions, not counting the founder and miner reward\n" +
+                "must be higher than in the previous block, then the coefficient is 3, otherwise 0. \"target sum sender transaction in prev block\"\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "All laws and elected positions are valid for exactly 4 years and must be re-voted every four years.\n" +
+                "A unique sanctions system where participants can donate their coins to another participant who has lost the same number of coins, but this mechanism only works for shares.\n" +
                 "Detailed description of each part\n" +
                 "1. Two unique coins\n" +
-                "For each block two types of coins are given, one coin is a dollar, the second is a share, Shares are used in voting to elect officers, and in voting for laws.\n" +
-                "\n" +
-                "2. Every six months, coins are burned from all accounts\n" +
-                "Every six months, coins are burned from all accounts in the amount 0.2% digital dollars and 0.4% digital stocks, which holds back inflation and allows miners to mine coins in the same quantity.\n" +
-                "\n" +
-                "3. Approximately 576 are mined per day\n" +
-                "Approximately 576 blocks are mined per day, which allows a large number of participants engage in mining for many participants. But the quantity is not strict fixed, and each block is mined in approximately 150 seconds, and the difficulty may rise or fall if production rose 2.7 times or fell 1.6 times\n" +
-                "\n" +
-                "4. Unique mining algorithm\n" +
-                "Unlike other cryptocurrencies, where they often use the number of zeros in bits hash, double check is used here. 1. Number of zeros, in the string, the hash of the block must match the complexity. 2. Also Each block hash must contain 2 or more zeros in the bits. This measure is made for more accurate protection against ASIC attacks.\n" +
-                "\n" +
-                "5. Difficulty adapts dynamically.\n" +
-                "Difficulty adjustment occurs every 288 blocks, If a block is mined more than 2.7 times faster, then the difficulty increases +1, if production drops by 1.6 times, then difficulty drops to -1 if none of the conditions are met, then the difficulty remains the same\n" +
-                "\n" +
-                "public static int v2getAdjustedDifficultyMedian(Block latestBlock, List<Block> blocks, long BLOCK_GENERATION_INTERVAL, int DIFFICULTY_ADJUSTMENT_INTERVAL){\n" +
-                "         Block prevAdjustmentBlock = blocks.get(blocks.size() - DIFFICULTY_ADJUSTMENT_INTERVAL);\n" +
-                "         // Median time from index 0 to 10 of blocks\n" +
-                "         List<Long> adjustmentBlockTimes = new ArrayList<>();\n" +
-                "         for (int i = 0; i < Math.min(DIFFICULTY_ADJUSTMENT_INTERVAL, blocks.size()); i++) {\n" +
-                "             adjustmentBlockTimes.add(blocks.get(i).getTimestamp().getTime());\n" +
-                "         }\n" +
-                "         Collections.sort(adjustmentBlockTimes);\n" +
-                "         long prevTime = adjustmentBlockTimes.get(adjustmentBlockTimes.size() / 2);\n" +
-                "\n" +
-                "         // Includes the latestBlock time and the last 10 indices from blocks\n" +
-                "         List<Long> latestBlockTimes = new ArrayList<>();\n" +
-                "         latestBlockTimes.add(latestBlock.getTimestamp().getTime());\n" +
-                "         for (int i = Math.max(blocks.size() - 30, 0); i < blocks.size(); i++) {\n" +
-                "             latestBlockTimes.add(blocks.get(i).getTimestamp().getTime());\n" +
-                "         }\n" +
-                "         Collections.sort(latestBlockTimes);\n" +
-                "         long latestTime = latestBlockTimes.get(latestBlockTimes.size() / 2);\n" +
-                "\n" +
-                "\n" +
-                "         double percentGrow = 2.7;\n" +
-                "         double percentDown = 1.6;\n" +
-                "\n" +
-                "\n" +
-                "         long timeExpected = BLOCK_GENERATION_INTERVAL * DIFFICULTY_ADJUSTMENT_INTERVAL;\n" +
-                "         long timeTaken = latestTime - prevTime;\n" +
-                "\n" +
-                "         if(timeTaken < timeExpected / percentGrow){\n" +
-                "             return prevAdjustmentBlock.getHashCompexity() + 1;\n" +
-                "         }else if(timeTaken > timeExpected * percentDown){\n" +
-                "             return prevAdjustmentBlock.getHashCompexity() - 1;\n" +
-                "         }else {\n" +
-                "             return prevAdjustmentBlock.getHashCompexity();\n" +
-                "         }\n" +
-                "     }\n" +
-                "6, 7, 8. Electoral system and branches of government.\n" +
-                "For the electoral system of its representatives, shares are used. One share gives the right to vote one FOR and one AGAINST. Each participant can give your votes both FOR and AGAINST a candidate or law. You can also split your votes equally among several participants. For each candidate, a rating is calculated, rating this is the sum of all votes FOR minus all votes AGAINST, equals RATING. All Government consists of three branches of government .\n" +
-                "\n" +
-                "The legislative branch consists of the Parliament of the Council of Directors. their number is 201 accounts. One count equals one vote. For each law it is calculated as the rating received from the shares, and the rating received from a member of the board of directors. The law comes into force as soon as its rating from a stock is above 1, so his rating is above a certain level.\n" +
-                "The executive branch is the General Executive Director, and other leadership positions. The entire executive branch is appointed Board of Directors.\n" +
-                "The judiciary consists of 50 judges also elected by the community.\n" +
-                "To elect the Board of Directors, 201 accounts with the largest rating, but each account can only submit itself for this position.\n" +
-                "\n" +
-                "At any time, any participant can change their voice to the opposite one. Any voice is only valid for 4 years and needs to be renewed again, so that he continues to act.\n" +
-                "\n" +
-                "9. Unique mining system.\n" +
-                "There are currently only two types of coin mining in the world,\n" +
-                "\n" +
-                "Bitcoin and its successors, which reduce production every four year or other period.\n" +
-                "dogecoin and its successors, which have a fixed number of coins.\n" +
-                "This system has a unique production system, where production is determined from complexity, which makes it possible to regulate emissions and attract more investment. The number of coins for even blocks is equal to the difficulty multiplied by 30, for odd numbers (difficulty multiplied by 30) + 1. Thus, in even blocks, for example, if the difficulty is 9, it will be equal to 930=270, when the block index is not even (930)+1 = 271. Why is such a measure needed? To understand why it is needed, you first need to understand the disadvantages other coins.\n" +
-                "\n" +
-                "What disadvantages do type 1 coins have?\n" +
-                "First of all, this reduces the incentive to invest in the coin, since if mining profitability falls, then in order to remain profitable the cost should increase in proportion to the reduction. Now I’ll explain in more detail: the current price of Bitcoin (10/23/2023) is equal to 30571.90, while the production per block is 6.25. Now let's imagine that Every four years production decreases,\n" +
-                "\n" +
-                "award 2024 3.125, cost-effective value 61143.8\n" +
-                "award 2028 1.5625 cost effective 122287.6\n" +
-                "award 2032 0.78125 cost effective 244575.2\n" +
-                "award 2036 0.390625 cost effective 489150.4\n" +
-                "award 2040 0.1953125 cost effective 978300.8\n" +
-                "Thus, it is clear that after each extraction, to remain cost-effective the cost must double or they will need cut costs in half after every change. This coin will contribute to the monopolization of the system and degradation due to reduced investment. Since in some moment, production will become absolutely unprofitable, and it will be engage only large coin holders. Due to the reduction in production, the incentive to invest is reduced both for large holders, as well as new players.\n" +
-                "\n" +
-                "What disadvantages do type 2 coins have?\n" +
-                "There are advantages to having a fixed amount of loot, but there are some disadvantages. Both excess inflation and oligopoly and stagnation. Since the number of coins is fixed, then at some point investing in equipment becomes not profitable. Due to increasing complexity, the cost increases costs, which will often lead to unspoken collusion when large participants will not invest and as a result society will not develop. But this also has a problem with inflation, because when demand falls, so does complexity falls more often, but the number of mined coins remains the same. But in fairness it must be said that the second coin more stable than the first and less subject to volatility.\n" +
-                "\n" +
-                "Our coin.\n" +
-                "In this coin we give an additional reward for increasing difficulties, which in turn gives an incentive to participants to finance into the equipment. We also determine demand depending on complexity, the higher the complexity, the higher the demand, but if demand falls, so does the complexity also falls, which leads to a decrease in production and reduces inflation. And the difference between the income of even and odd blocks stimulates further violate the conspiracy. Since no one wants to give to others players have more advantage. This mechanism also allows you to better regulate the exchange rate of the coin.\n" +
-                "\n" +
-                "10. Laws and Positions\n" +
-                "All participants can vote for both several participants and for individuals. Each vote is counted only for the last four years. For example, you have one hundred shares, which means you have one hundred votes FOR and one hundred votes against. Example: You have 100 shares. There are 6 Candidates board positions A) B) C) D) E) F) you want to support A) and C) then by voting for them they receive 50 votes each, votes divided by the number of candidates FOR. Similar you want to vote against the remaining 4 at the same time, and each of them will receive minus 25 votes, votes divided by the number candidates AGAINST, so you voted for 6 candidates, 2 of them received +50, four of them -25. Every law, like every position, has its own oh hash, for which the participants can cast votes and thus take part in the vote.\n" +
+                "For each block two types of coins are given, one coin is a dollar, the second is a share. Shares are used to vote on the election of officials and to vote on legislation.\n" +
+                "2. Approximately 576 are mined per day\n" +
+                "Approximately 576 blocks are mined per day, allowing for a large number of participants to engage in mining. But the quantity is not strictly fixed, and each block takes about 150 seconds to mine, and the difficulty can rise or fall depending on the mining. increased by 2.3 times or fell by 1.6 times\n" +
+
+                "10. Laws and regulations\n" +
+                "All participants can vote for both multiple participants and individuals. Each vote is counted only for the last four years. For example, you have one hundred shares, which means you have one hundred votes FOR and one hundred votes against. Example: You have 100 shares. There are 6 positions of candidates on the board A) B) C) D) E) E) F) you want to support A) and B) then by voting for them, they receive 50 votes each, the votes are divided by the number of candidates FOR Similarly, you want to vote against the remaining 4 at the same time, and each of them will receive minus 25 votes, divide the votes by the number of candidates AGAINST, which means you voted for 6 candidates, 2 of them received +50, four of them -25 .Each law, like each position, has its own hash, for which participants can vote and thus take part in voting.\n" +
                 "\n" +
                 "11. Sanctions\n" +
-                "This system implements a sanctions mechanism, imagine that there are participants who violate the rules of the network and they are trying to use laws of a fairly radical type. Let's imagine there are six participants with such views,\n" +
-                "\n" +
+                "This system implements a sanctions mechanism; imagine that there are participants who violate the rules of the network and they are trying to use laws of a fairly radical type. Let's imagine that there are six participants with such views,\n" +
                 "one centrist.\n" +
                 "two left\n" +
-                "two right\n" +
-                "one radical.\n" +
-                "Each participant has one hundred shares, thus a radical may try to make a decision that everyone else participants are not supportive. And then they decide that each of them they are ready to lose twenty coins, but the radical also loses this number of coins. Now imagine that each of them imposes sanctions, against the radical, and all participants lose their coins, but the radical thus the radical loses all his hundred shares. But others too participants also lose their shares, 20 each.\n" +
-                "\n" +
-                "What does this mean for the whole society.\n" +
-                "This coin stimulates investment by burning coins, which in turn reduces unemployment, as well as poverty, as well as the exchange rate becomes stable to fluctuations. Also index indicators ginnies will provide a more equitable distribution of income, and help reduce the stratification of society.");
+                "two on the right\n" +
+                "  one radical.\n" +
+                "  Each participant has one hundred shares, so a radical may try to make a decision that all other participants do not support. And then they decide that each of them is ready to lose twenty coins, but the radical loses this number of coins. .Now imagine that each of them imposes sanctions against the radical, and all participants lose their coins, but the radical loses all his hundred shares. But other participants also lose their shares, 20 each.");
 
 
         model.addAttribute("title", "Summary and benefits");
@@ -263,7 +259,7 @@ public class WebController {
 
 
     @GetMapping("/how_to_install")
-    public String installPage(Model model){
+    public String installPage(Model model) {
         model.addAttribute("title", "INSTALLATION:  how to install");
         model.addAttribute("text", "If you have windows, then you need to download from the folder target unitedStates-0.0.1-SHAPSHOT.jar\n" +
                 "in the search for windows, enter cmd open the command line and enter java -jar there (where the file is located) / unitedStates-0.0.1-SNAPSHOT.jar\n" +
@@ -291,7 +287,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_open_an_account")
-    public String howToOpenAnAccount(Model model){
+    public String howToOpenAnAccount(Model model) {
         model.addAttribute("title", "How to open an account");
         model.addAttribute("text1", "Once the server has been properly started, go to http://localhost:8082/create-account\n" +
                 "There you need to copy NEW ADDRESS this is your LOGIN and PUBLIC KEY.\n" +
@@ -306,7 +302,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_change_miner_account")
-    public String howToChangeMinerAccount(Model model){
+    public String howToChangeMinerAccount(Model model) {
         model.addAttribute("title", "How to change miner account");
         model.addAttribute("text1", "Start local server and login http://localhost:8082/seting\n" +
                 "or click the settings button, enter your ADDRESS (PUBLIC KEY)\n" +
@@ -317,44 +313,80 @@ public class WebController {
     }
 
     @GetMapping("/how_to_mining")
-    public String howToMining(Model model){
+    public String howToMining(Model model) {
         model.addAttribute("title", "How to mining");
         model.addAttribute("text1", "Block mining\n" +
+                "NOTE!!!\n" +
+                "THE BEING BLOCK HAS INDEX = 1, THE SAME AS THE ONE FOLLOWING IT.\n" +
+                "SO IN THIS BLOCKCHAIN THERE ARE TWO BLOCKS WITH IDENTICAL INDICES,\n" +
+                "BUT WITH DIFFERENT CONTENT. THIS IS ABSOLUTELY NORMAL AND THIS IS THE FEATURE OF THIS\n" +
+                "BLOCKCHAIN.\n" +
+                "                \n" +
+                "               \n" +
+                "A unique mining system is implemented here, which stimulates a smooth increase in the value of the coin, preventing it from falling much with the onset of winter and is resistant to strong volatility, but at the same time the value increases. For mine, you need to go to localhost:8082/, multithreading is automatically turned on there and the number of threads is automatically turned on.\n" +
+                "Then go back to the menu in the top right corner and click on “Get Locked”, click on the “Start” button and then click on “International Union Corporation”, in the information window you should see “Is Mining Proper”. the update is also correct, which means that the system is loading the blockchain. Nothing will be displayed in the console, because if we display information there, mining will slow down six times for single-threaded and multi-threaded mining. If you want to turn off mining, click the “Stop” button twice, then click on the Corporation Intertation Union inscription, if everything stopped correctly, the information window will disappear. Under no circumstances should you interrupt the mining process by disabling the command line during mining or updating, as at this point the Blockchain and balance will be overwritten. When the information window goes out, mining will stop. A block is valid if the hash matches the target value according to this formula:\n" +
+                "//************************************************ *************************************************\n" +
+                "//mining formula\n" +
+                "public static BigInteger CalcultTargetV30(long complexity) {\n" +
+                "                         BigInteger maxTarget = new BigInteger(Setting.MAX_TARGET_v30, 16);\n" +
+                "                       return maxTarget.divide(BigInteger.valueOf(complexity));\n" +
                 "\n" +
-                "HOW TO START MINING\n" +
-                "Before you start mining blocks, you\n" +
-                "you need to set the address of the miner to which the block will be mined.\n" +
-                "Once you have set your address as a miner, there are two options.\n" +
                 "\n" +
-                "OPTION 1.\n" +
-                "To start mining, after launch, go to\n" +
-                "there will be a button on http://localhost:8082/miningblock. START MINING\n" +
-                "clicking on it will automatically produce a block.");
+                "//used to select a block\n" +
+                "                  }\n" +
+                "   /**You count a random number based on the hash definition and the current one and the higher the number, the higher\n" +
+                "       * originality.*/\n" +
+                "      /**You count a random number based on the hash definition and the current one and the higher the number, the higher\n" +
+                "       * originality.*/\n" +
+                "      public static int bigRandomWinner(Actual lock, account miner) {\n" +
+                "          // Concatenation of two hashes\n" +
+                "          String combinedHash = act.getHashBlock();\n" +
+                "\n" +
+                "          if (actual == null || fact.getHashBlock() == null || fact.getHashBlock().isBlank() || fact.getHashBlock().isEmpty())\n" +
+                "              return 0;\n" +
+                "          // Convert concatenated hashes to BigInteger\n" +
+                "          BigInteger hashAsNumber = new BigInteger(combinedHash, 16);\n" +
+                "          if (hashAsNumber == null) {\n" +
+                "              return 0;\n" +
+                "          }\n" +
+                "\n" +
+                "          // Using BigInteger as a seed for a deterministic random number generator\n" +
+                "          Random deterministicRandom = new Random(hashAsNumber.longValue());\n" +
+                "\n" +
+                "          // Generate a random number depending on 0 to 130\n" +
+                "          int int = 131; // Assuming the limit is the largest value + 1\n" +
+                "          int result = deterministicRandom.nextInt(limit);\n" +
+                "          result = (int) ((int) (result + (actual.getHashCompexity() * 3)) + CalculateScore(miner.getDigitalStakeBalance(), 0.1));\n" +
+                "          return result;\n" +
+                "\n" +
+                "      }\n" +
+                "      public static long CalculateScore(double x, double x0) {\n" +
+                "          double score = Math.ceil(Math.log(x / x0) / Math.log(2));\n" +
+                "          return Math.min(200, (long) count);\n" +
+                "      }\n" +
+                "The mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1.\n" +
+                "The coefficient can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block,\n" +
+                "excluding the founder's remuneration and the miner's remuneration. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address,\n" +
+                "which sends the reward to the founder and miner.\n" +
+                "                \n" +
+                "The reward is also affected by the difficulty that each of you can set for yourself, from 17 to 100, but not lower than 17. To increase your chances, you can add some of your money to staking in the mining menu, and you can also withdraw your money from staking. How the winner is determined:\n" +
+                "Every 150 seconds, the server first selects the 100 blocks with the highest difficulty from all the blocks presented. After this, 80 blocks with the largest number of transactions per block are selected. It then selects the 60 accounts with the highest staking amount and chooses one winner at the end.\n" +
+                "The winner is determined by a formula.\n" +
+                "1. First, a hash block is used as a seed to generate a random number from 0 to 130 inclusive\n" +
+                "2. to this number is added the number of complexity multiplied by 3.\n" +
+                "3. The number from staking is added to this, and the calculated points from staking are returned.\n" +
+                "that is the first point is enough for staking 0.1 coins, to get the second point you need 0.2, for the 3rd you need 0.4, etc.\n" +
+                "that is, the final formula is random + (diff * 3) + public static long calculateScore(Staking, 0.1 )\n" +
+                "http://94.87.236.238:82/winners\n" +
+                "\n" +
+                "blocks.." );
 
-        model.addAttribute("text2", "### OPTION 2\n" +
-                "push button ***Constant mining 576 block in while***\n" +
-                "there will be a cycle of 576 attempts to find blocks\n" +
-                "\n" +
-                "\n" +
-                "OPTION 3.\n" +
-                "calling http://localhost:8082/mine automatically starts mining.\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "Blockchain complexity adapts similarly to bitcoin, but adaptation happens\n" +
-                "once every half day.\n" +
-                "Each block gives 400 digital dollars and 400 digital shares\n" +
-                "\n" +
-                "The current blockchain is not only the longest blockchain, but it should also have more zeros.\n" +
-                "\n" +
-                "this method counts the number of zeros in the blockchain and the current blockchain, not only the longest, but also the one with the most zeros\n");
 
         return "how_to_mining";
     }
 
     @GetMapping("/how_to_transaction")
-    public String howToTransaction(Model model){
+    public String howToTransaction(Model model) {
         model.addAttribute("title", "How to transaction");
         model.addAttribute("text1", "# Transaction\n" +
                 "\n" +
@@ -407,7 +439,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_apply_for_a_job")
-    public String howToApplyForAJob(Model model){
+    public String howToApplyForAJob(Model model) {
         model.addAttribute("title", "how to apply for a job");
         model.addAttribute("text1", "In this system there are three branches of government, " +
                 "1. Legislative 2. Judicial 3. Executive. The legislative branch consists of 201 Board of Directors accounts." +
@@ -458,7 +490,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_make_laws")
-    public String howToMakeLaws(Model model){
+    public String howToMakeLaws(Model model) {
         model.addAttribute("text1", "1. Go to the CREATE LAWS PACKAGE tab.\n" +
                 "2. fill in the fields, the name of the package must be filled in\n" +
                 "in capital letters and if the package name consists of several words, " +
@@ -470,7 +502,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_vote_and_what_voting_types_are_there")
-    public String howToVoteAndWhatVotingTypesAreThere(Model model){
+    public String howToVoteAndWhatVotingTypesAreThere(Model model) {
         model.addAttribute("text1", "There are three types of voting that are used here." +
                 "1. ONE_VOTE (One Voice)\n" +
                 "\n" +
@@ -557,7 +589,7 @@ public class WebController {
     }
 
     @GetMapping("/solving_common_problems")
-    public String solvingCommonProblems(Model model){
+    public String solvingCommonProblems(Model model) {
         model.addAttribute("titile", "solving common problems");
         List<String> list = new ArrayList<>();
         list.add("1. Problem with the port.\n" +
