@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${title}"/>
@@ -8,21 +8,46 @@
 <body>
 <header th:insert="blocks/header :: header "></header>
 
+<div class="container mt-4">
+    <div class="content-section">
+        <h6>Note:</h6>
+        <p th:text="${noteText}"></p>
 
-<div class="alert alert-info mt-2">
-    <h6 th:text="':' + ${text1}"/>
-    <img  th:src="@{/mining/mining.png}"/>
-    <img  th:src="@{/mining/mining1.png}"/>
-    <img  th:src="@{/mining/mining2.png}"/>
-    <img  th:src="@{/mining/mining3.png}"/>
-    <img  th:src="@{/mining/mining4.png}"/>
+        <h6>Instructions:</h6>
+        <p th:text="${instructionsText}"></p>
 
+        <h6>Important Information:</h6>
+        <p th:text="${importantInfoText}"></p>
 
+        <h6>History:</h6>
+        <p th:text="${randomAndStakingText}"></p>
+
+        <h6>Scoring Table:</h6>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Score</th>
+                <th>Minimum value `x` + 1</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="score : ${scoringTable}">
+                <td th:text="${score.index}"></td>
+                <td th:text="${score.value}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+<img  th:src="@{/mining/mining.png}"/>
+<img  th:src="@{/mining/mining1.png}"/>
+<img  th:src="@{/mining/mining2.png}"/>
+<img  th:src="@{/mining/mining3.png}"/>
+<img  th:src="@{/mining/mining4.png}"/>
+<img  th:src="@{/mining/mining5.png}"/>
+<img  th:src="@{/mining/checkBalance.png}"/>
 
-
-
-</div>
 <footer th:insert="blocks/footer :: footer"></footer>
 
 </body>

@@ -140,48 +140,89 @@ public class WebController {
 
 
         model.addAttribute("text",
-                "Preamble\n" +
-                        "Hi all.\n" +
-                        "Before downloading, I would like to read the text below.\n" +
-                        "My meeting was inspired by the US Constitution and the leadership of the parliamentary system.\n" +
-                        "My system implements a system that allows all creators to create and approve laws through democratic procedures.\n" +
-                        "   imagine a world in which the people of the United States, Mexico, Canada, or other regions elect their representatives and recommend laws.\n" +
-                        "and also on the principle of democracy, but I need your participation, I am a developer and can change\n" +
-                        "code to make the legal system better. We will all be like the founding fathers of digital democracy.\n" +
-                        "What are its advantages?\n" +
-                        "1. There are 576 blocks per day, for each block you get (5+ coefficient + (difficulty * 0.2))*multiplier. Where the initial multiplier is 29, but decreases by one every year, but cannot be lower than one. The factor can be zero or 3. If you are blocking this data above, select the unique sender in the previous block:\n" +
-                        "sender's target transaction amount in the previous block: the name of the number of unique senders, not including the base address, greater than the previous block, and subsequent all transactions, greater than the previous block, not including the founder and miner reward.\n" +
-                        "2. Two unique digital dollars and digital cryptocurrency coins.\n" +
-                        "3. A unique electoral system inspired by the principles of libertarianism, the parliaments of England and New Zealand and the US Constitution.\n" +
-                        "4. Has a mining system built on SHA-256, the block is valid if the conditions are effectively applied.\n" +
-                        "The mining algorithm is that we convert a hash into bits.\n" +
-                        "and count all units in bits.\n" +
-                        "The sum of units must be less than or equal to the target.\n" +
-                        "Goal 100 is difficulty. that is, the complexity can only double each time. Example:\n" +
-                        "   if previously the difficulty was 1, but became 2, then the probability of finding the correct hash has become half as strong.\n" +
-                        "This allows us to have better control over the difficulty of the difficulty levels, up to 100 in fact.\n" +
-                        "7. An electoral system that allows you to separate your representatives from different branches of government and directly vote for them.\n" +
-                        "8. A unique system of government, consisting of elements of parliament and statutes of parliament, based on the constitution.\n" +
-                        "USA and libertarian principles, including NAP.\n" +
-                        "9. The ability to mine blocks directly on a local server, which automatically connects to a global server that only hosts storage,\n" +
-                        "updates and restores the current balance.\n" +
-                        "10. All settings are made taking into account knowledge in the field of macroeconomics and were taken into account in such schools as Milton Friedman’s monetarism,\n" +
-                        "Austrian School of Economics (Mises, Hayek), Silvio Gesel - idle money and other books.\n" +
-                        "11. The algorithm is designed in such a way that over time the economy will grow at a more sustainable and stable pace,\n" +
-                        "which will prevent future crises such as deflationary spiral and stagflation, and best ensure the development of all humanity, the total number of coins in 29 years will reach a maximum of less than a billion (844635200.000000.00000000) with the fundamental fact that participants will always receive an additional payment for the coefficient (3) . The minimum amount for 29 years, if the coefficient is not received, will be about half a billion (570272000.000000.00000000)\n" +
-                        "   with such an increase in the total mass annually in 29 years there will be a minimum of min 1051200.000000.00000000 one million per year and a maximum of 1681920.000000.00000000\n" +
-                        "               \n" +
-                        "12. Ultimately this system will be able to function as a Confederation or Federation of Humanity.\n" +
-                        "and solve problems such as financial crises (deflationary spiral, stagflation, runaway inflation, etc.)\n" +
-                        "Pandemics, space threats, environmental problems and international mitigation measures." +
-                        "                      \n" +
-                        "Mission.\n" +
-                        "use an economic model that is resistant to new deflationary and inflationary crises,\n" +
-                        "this means in a single democratic trading network. Our digital democracy is resistant to stuffing\n" +
-                        "Parliament represents all sectors of society. First of all, we are creating a democratic platform,\n" +
-                        "where there should be unique opinions of all participants. The goal is to know people of different views, different religions,\n" +
-                        "regional and social groups to solve social and economic problems, as well as take into account the differences between\n" +
-                        "countries and the economic growth of humanity.");
+                "Preamble:\n" +
+                        "This cryptocurrency aims to create a single international currency that is resistant to high volatility.\n" +
+                        "Our coin was initially designed in such a way that the value of the coin increased, but decreased slightly over time.\n" +
+                        "I crisis situations.\n" +
+                        "\n" +
+                        "The organizational structure of this coin functions as an independent corporation, where solutions to improve the cryptocurrency\n" +
+                        "divided between several positions.\n" +
+                        "1. The charter is mainly approved by the founder of this cryptocurrency\n" +
+                        "2. Code improvements, within the framework of the charter and financing of other related projects,\n" +
+                        "is carried out by a board of directors of 7 elected by the network participants.\n" +
+                        "3. Implements decisions made by the board of directors, the general director elected by the board of directors.\n" +
+                        "4. Controversial decisions, or the ability to veto decisions of the board of directors, are dealt with\n" +
+                        "Council of Corporate Judges of 7 members.\n" +
+                        "5. The Council of Corporate Judges is also elected by the network.\n" +
+                        "6. Every approximately 100 seconds, a block is approved in the network.\n" +
+                        "7. The reward for each block is calculated using this formula: (5+ coefficient + (difficulty * 0.2)) * multiplier\n" +
+                        "- multiplier: initially in the first year it has a value of 29, but each year it decreases by one until it reaches one.\n" +
+                        "- coefficient: can be 3 or 0, if your block that you are trying to add has a sum of transactions and the number of transactions is greater than in the previous block, then 3, otherwise 0.\n" +
+                        "- coefficient: But transactions rewarding the founder and rewarding the miner are not taken into account.\n" +
+                        "- difficulty: difficulty can be from 17 to 100, each participant sets the difficulty himself before mining.\n" +
+                        "- complexity: we take the hash of the block, and count the number of ones in the hash bits, the hash must be lower than or equal to the target\n" +
+                        "- goal: the goal is 100 minus the difficulty set by the miner.\n" +
+                        "- mining: uses sha256 for hashing\n" +
+                        "\n" +
+                        "Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE.\n" +
+                        "The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for\n" +
+                        "several candidates, and if you vote AGAINST (NO), then the candidate receives minus 100, if FOR (YES) plus 100.\n" +
+                        "As a result, for each candidate his YES-NO rating is calculated, Thus, seven candidates for the Board of Directors,\n" +
+                        "and the 7 highest ranked candidates for the Council of Corporate Judges are in office.\n" +
+                        "Each network participant can change their vote at any time.\n" +
+                        "Only votes cast in the last two years are counted.\n" +
+                        "\n" +
+                        "Board of Directors:\n" +
+                        "Can approve network decisions, for example, can create a project by approving a decision where participants will voluntarily send money to an approved address.\n" +
+                        "Example: Let's imagine that the board of directors has created a package, where the first line is the address and the amount separated by a space. The second line is a description, and the third is contact information.\n" +
+                        "Moreover, the amount and address do not necessarily have to be in this coin, the board of directors can approve the decision in other currencies, then after the amount, separated by a space\n" +
+                        "you need to register the type of usdt coin or other currency.\n" +
+                        "1. rDqx8hhZRzNm6xxvL1GL5aWyYoQRKVdjEHqDo5PY2nbM 10000\n" +
+                        "2. For the development of the project and the acquisition of new servers, you need to collect ten thousand coins\n" +
+                        "3. citucorp.com\n" +
+                        "According to the decision of the Board of Directors:\n" +
+                        "Each director has a vote equal to his rating share relative to the other directors. Let's imagine that we have 7 directors,\n" +
+                        "1. First, we will sum up the ratings of all these 7 directors. For example, it turned out to be 200. But director A has a rating of 40, that is, his share is 20%\n" +
+                        "Therefore, for a resolution to be adopted, the resolution must receive a vote of 57% or more from the Directors.\n" +
+                        "If the director has a very high rating, then he can make decisions alone; if he has a low rating, then he will have to get the support of other directors.\n" +
+                        "Similarly, the Board of Directors elects the General Director.\n" +
+                        "\n" +
+                        "Council of Corporate Judges:\n" +
+                        "The Board of Corporate Judges is elected in the same way as the Board of Directors, but it performs several functions\n" +
+                        "1. Resolves disputes that arise between network participants, creating a precedent.\n" +
+                        "2. May veto a decision of the Board of Directors if this decision contradicts the Charter or other current decisions.\n" +
+                        "Each Judge has one vote, each Judge can vote YES, NO or abstain, as well as remove their previous vote.\n" +
+                        "For each decision, the votes of the judges are calculated using the following formula: YES - NO. If the number falls below 0, then the decision is VETOed.\n" +
+                        "\n" +
+                        "Powers of the founder; only the founder can approve the new charter. also the property of a corporation belongs to the corporation, but to manage this property\n" +
+                        "Board of Directors (Member accounts are not the property of the corporation). The Board of Directors can finance new projects by collecting money from voluntary contributions,\n" +
+                        "or from sales of goods and services of the corporation, as well as from voluntary membership fees. The merger of this corporation with other corporations can only be carried out\n" +
+                        "after approval by the Founder. Board of Directors, the board of directors is appointed " +
+                        "for the management of this corporation within the framework of the charter.\n" +
+                        "\n" +
+                        "\n" +
+                        "General Director:\n" +
+                        "General Director, implements decisions made by the Board of Directors.\n" +
+                        "\n" +
+                        "\n" +
+                        "1. Board of Directors (7 participants):\n" +
+                        "Can approve decisions for the network, such as creating projects and raising funds for their implementation.\n" +
+                        "Approves decisions by a majority vote, where the weight of the director's vote depends on his rating relative to other directors.\n" +
+                        "Elects the General Director.\n" +
+                        "May not act contrary to the Charter or decisions imposed by the Council of Corporate Judges.\n" +
+                        "\n" +
+                        "2. Council of Corporate Judges (7 participants):\n" +
+                        "Resolves disputes between network participants by creating precedents.\n" +
+                        "Can veto decisions of the Board of Directors if they contradict the Charter or other current decisions.\n" +
+                        "Each judge has one vote, decisions are made by majority vote (YES - NO > 0).\n" +
+                        "Cannot make decisions that contradict the Charter approved by the Founder.\n" +
+                        "\n" +
+                        "3. General Director:\n" +
+                        "Implements decisions made by the Board of Directors.\n" +
+                        "Does not have the authority to make independent decisions, except for the execution of decisions of the Board of Directors.\n" +
+                        "It should be noted that one person can hold several elected positions at the same time, for example, be a member of the Board of Directors and the Council of Corporate Judges. However," +
+                        " in this case, when voting on decisions, his votes will be counted separately for each position" +
+                        " in accordance with the established rules.");
         return "main";
     }
 
@@ -286,6 +327,10 @@ public class WebController {
         return "how_to_install";
     }
 
+    @GetMapping("how_to_install_server")
+    public String installServer(){
+        return "how_to_install_server";
+    }
     @GetMapping("/how_to_open_an_account")
     public String howToOpenAnAccount(Model model) {
         model.addAttribute("title", "How to open an account");
@@ -315,73 +360,133 @@ public class WebController {
     @GetMapping("/how_to_mining")
     public String howToMining(Model model) {
         model.addAttribute("title", "How to mining");
-        model.addAttribute("text1", "Block mining\n" +
-                "NOTE!!!\n" +
-                "THE BEING BLOCK HAS INDEX = 1, THE SAME AS THE ONE FOLLOWING IT.\n" +
-                "SO IN THIS BLOCKCHAIN THERE ARE TWO BLOCKS WITH IDENTICAL INDICES,\n" +
-                "BUT WITH DIFFERENT CONTENT. THIS IS ABSOLUTELY NORMAL AND THIS IS THE FEATURE OF THIS\n" +
-                "BLOCKCHAIN.\n" +
-                "                \n" +
-                "               \n" +
-                "A unique mining system is implemented here, which stimulates a smooth increase in the value of the coin, preventing it from falling much with the onset of winter and is resistant to strong volatility, but at the same time the value increases. For mine, you need to go to localhost:8082/, multithreading is automatically turned on there and the number of threads is automatically turned on.\n" +
-                "Then go back to the menu in the top right corner and click on “Get Locked”, click on the “Start” button and then click on “International Union Corporation”, in the information window you should see “Is Mining Proper”. the update is also correct, which means that the system is loading the blockchain. Nothing will be displayed in the console, because if we display information there, mining will slow down six times for single-threaded and multi-threaded mining. If you want to turn off mining, click the “Stop” button twice, then click on the Corporation Intertation Union inscription, if everything stopped correctly, the information window will disappear. Under no circumstances should you interrupt the mining process by disabling the command line during mining or updating, as at this point the Blockchain and balance will be overwritten. When the information window goes out, mining will stop. A block is valid if the hash matches the target value according to this formula:\n" +
-                "//************************************************ *************************************************\n" +
-                "//mining formula\n" +
-                "public static BigInteger CalcultTargetV30(long complexity) {\n" +
-                "                         BigInteger maxTarget = new BigInteger(Setting.MAX_TARGET_v30, 16);\n" +
-                "                       return maxTarget.divide(BigInteger.valueOf(complexity));\n" +
+        model.addAttribute("noteText", "Block mining NOTE!!! THE BEING BLOCK HAS INDEX = 1, THE SAME AS THE ONE FOLLOWING IT. SO IN THIS BLOCKCHAIN \u200B\u200BTHERE ARE TWO BLOCKS WITH IDENTICAL INDICES, BUT WITH DIFFERENT CONTENT. THIS IS ABSOLUTELY NORMAL AND THIS IS THE FEATURE OF THIS BLOCKCHAIN. A unique mining system is implemented here, which stimulates a smooth increase in the value of the coin, preventing it from falling much with the onset of winter and is resistant to strong volatility, but at the same time the value increases. For mine, you need to go to localhost:8082/, multithreading is automatically turned on there and the number of threads is automatically turned on. Then go back to the menu in the top right corner and click on “Get Locked”, click on the “Start” button and then click on “International Union Corporation”, in the information window you should see “Is Mining Proper”. the update is also correct, which means that the system is loading the blockchain. Nothing will be displayed in the console, because if we display information there, mining will slow down six times for single-threaded and multi-threaded mining. If you want to turn off mining, click the “Stop” button twice, then click on the Corporation Intertation Union inscription, if everything stopped correctly, the information window will disappear. Under no circumstances should you interrupt the mining process by disabling the command line during mining or updating, as at this point the Blockchain and balance will be overwritten. When the information window goes out, mining will stop. A block is valid if the hash matches the target value according to this formula");
+        model.addAttribute("instructionsText", "In the get a block tab (http://localhost:8082/mining) you can make staking or withdraw money from staking. By filling in all fields.\n" +
+                "NOTE: IMPORTANT!!!!!!\n" +
+                "IF YOU CALL http://localhost:8082/testCalculate in the console you will see a list of accounts, and the balance there is different. Be sure to report this\n" +
+                "to the server owner, since the balance either on your wallet or on the server is not displayed correctly and he will not be able to send money.\n" +
+                "look at the picture. If the server owner has discovered this problem, then he should update the resources folder and you don’t have to worry,\n" +
+                "if the problem is with the server, all the owners are exceptional professionals and know their stuff.\n" +
+                "P.S. (At the moment, in addition to the founder, you can also contact @suprtrupr and @caspar2114 on discord, since they are one of the best in\n" +
+                "these matters and can help you when I don’t have time.)");
+        model.addAttribute("importantInfoText", "In this system, the block with the most big random wins. Big random is a number that is formed from three components.\n" +
+                "1. Difficulty\n" +
+                "2. Random number\n" +
+                "3. staking\n" +
                 "\n" +
+                "up to index 247867, each difficulty level gave 9 points. difficult * 9.\n" +
+                "after 247867 each difficulty level gives 55 points. Difficult * 55.\n" +
                 "\n" +
-                "//used to select a block\n" +
-                "                  }\n" +
-                "   /**You count a random number based on the hash definition and the current one and the higher the number, the higher\n" +
-                "       * originality.*/\n" +
-                "      /**You count a random number based on the hash definition and the current one and the higher the number, the higher\n" +
-                "       * originality.*/\n" +
-                "      public static int bigRandomWinner(Actual lock, account miner) {\n" +
-                "          // Concatenation of two hashes\n" +
-                "          String combinedHash = act.getHashBlock();\n" +
+                "up to index 247867 hash as a seed could give a number from 0 to 55.\n" +
+                "after 247867 hash as a seed, it gives a number from 0 to 135.\n" +
                 "\n" +
-                "          if (actual == null || fact.getHashBlock() == null || fact.getHashBlock().isBlank() || fact.getHashBlock().isEmpty())\n" +
-                "              return 0;\n" +
-                "          // Convert concatenated hashes to BigInteger\n" +
-                "          BigInteger hashAsNumber = new BigInteger(combinedHash, 16);\n" +
-                "          if (hashAsNumber == null) {\n" +
-                "              return 0;\n" +
-                "          }\n" +
+                "up to index 247867, initial staking cost 1 coin, first point.\n" +
+                "After the index 247867, initial staking costs 10 coins, the first point.\n" +
                 "\n" +
-                "          // Using BigInteger as a seed for a deterministic random number generator\n" +
-                "          Random deterministicRandom = new Random(hashAsNumber.longValue());\n" +
+                "Now in more detail: this is the formula by which a single score is calculated.\n" +
+                "int result = deterministicRandom.nextInt(limit);\n" +
+                "result = (int) ((int) (result + (actual.getHashCompexity() * waight)) + calculateScore(miner.getDigitalStakingBalance(), number)\n" +
                 "\n" +
-                "          // Generate a random number depending on 0 to 130\n" +
-                "          int int = 131; // Assuming the limit is the largest value + 1\n" +
-                "          int result = deterministicRandom.nextInt(limit);\n" +
-                "          result = (int) ((int) (result + (actual.getHashCompexity() * 3)) + CalculateScore(miner.getDigitalStakeBalance(), 0.1));\n" +
-                "          return result;\n" +
+                "1. Difficulty.\n" +
+                "Each participant can choose the difficulty from 17 to 100.\n" +
+                "Each block has a hash, where the sum of the ones in bits must be equal to or lower than the target.\n" +
+                "The goal is calculated as 100 - difficulty (100 minus difficulty.).\n" +
+                "Each difficulty level gives 55 points. That is, if you set the difficulty to 20, then the difficulty points will be equal to 20 * 55 = 1100.\n" +
                 "\n" +
-                "      }\n" +
-                "      public static long CalculateScore(double x, double x0) {\n" +
-                "          double score = Math.ceil(Math.log(x / x0) / Math.log(2));\n" +
-                "          return Math.min(200, (long) count);\n" +
-                "      }\n" +
-                "The mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1.\n" +
-                "The coefficient can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block,\n" +
-                "excluding the founder's remuneration and the miner's remuneration. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address,\n" +
-                "which sends the reward to the founder and miner.\n" +
-                "                \n" +
-                "The reward is also affected by the difficulty that each of you can set for yourself, from 17 to 100, but not lower than 17. To increase your chances, you can add some of your money to staking in the mining menu, and you can also withdraw your money from staking. How the winner is determined:\n" +
-                "Every 150 seconds, the server first selects the 100 blocks with the highest difficulty from all the blocks presented. After this, 80 blocks with the largest number of transactions per block are selected. It then selects the 60 accounts with the highest staking amount and chooses one winner at the end.\n" +
-                "The winner is determined by a formula.\n" +
-                "1. First, a hash block is used as a seed to generate a random number from 0 to 130 inclusive\n" +
-                "2. to this number is added the number of complexity multiplied by 3.\n" +
-                "3. The number from staking is added to this, and the calculated points from staking are returned.\n" +
-                "that is the first point is enough for staking 0.1 coins, to get the second point you need 0.2, for the 3rd you need 0.4, etc.\n" +
-                "that is, the final formula is random + (diff * 3) + public static long calculateScore(Staking, 0.1 )\n" +
-                "http://94.87.236.238:82/winners\n" +
+                "2. Random number.\n" +
+                "The hash of the block becomes the seed to generate a random number from 0 to 135.\n" +
                 "\n" +
-                "blocks.." );
+                "3. Staking.\n" +
+                "Each subsequent point costs twice as much and is calculated using this formula:\n" +
+                " public static long calculateScore(double x, double x0) {\n" +
+                " if (x <= 0) {\n" +
+                " return 0;\n" +
+                " }\n" +
+                " double score = Math.ceil(Math.log(x / x0) / Math.log(2));\n" +
+                " return Math.min(400, (long) score);\n" +
+                " }\n" +
+                "\n" +
+                "but this number cannot be more than 400.\n All points from the three parameters are summed up.\n" +
+                "Each node (server) selects one block with the highest number of points every 100 seconds.\n" +
+                "Afterwards, each node contacts random 7 nodes and compares the total\n" +
+                "big random (of all blocks of a given blockchain) of your blockchain and the blockchain of another node.\n" +
+                "If on another node the total big random is greater than on yours + the complexity of the last block, then your server will delete blocks up to the intersection point,\n" +
+                "and will add blocks of this node. The difference between blocks must be at least 100 seconds.\nThe mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1. The multiplier can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block, excluding the founder's reward and the miner's reward. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address from which the reward is sent to the founder and miner. http://94.87.236.238:82/winners this URL shows the last winner on this node, but does not show the winner if it was taken from another server and to see the last final winner you need /prevBlock\n" +
+                "P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse).\n");
+        model.addAttribute("randomAndStakingText", "Story:\n" +
+                "a special block was created on index 24281, with the help of which we created 12,000,000 coins and these coins were given to the participants, since the blockchain was broken by an attack in 40 days\n" +
+                "and with the help of this address jPjuyLStHTCzwYt9J7R5M7pGUKshfcmEbtE3zVvCBE52 this money was returned to all participants who lost their coins.\n" +
+                "The bug in the code that allowed this attack was also finally fixed, and now the system is completely safe.\nStory:\n" +
+                "Starting from the index int V34_NEW_ALGO = 187200, the difficulty is selected by participants from 17 to 100.\n" +
+                "Before this index, the complexity algorithm changed and its details are in the UtilsBlock class method difficulty.\n" +
+                "Before this index, the mining algorithm also changed. Before index 151940, the mining algorithm was also different and the details are in the Block class as well as in related classes,\n" +
+                "UtilsUse.\n");
 
+        List<Map<String, Object>> scoringTable = new ArrayList<>();
+        scoringTable.add(Map.of("index", 1, "value", 11));
+        scoringTable.add(Map.of("index", 2, "value", 21));
+        scoringTable.add(Map.of("index", 3, "value", 41));
+        scoringTable.add(Map.of("index", 4, "value", 81));
+        scoringTable.add(Map.of("index", 5, "value", 161));
+        scoringTable.add(Map.of("index", 6, "value", 321));
+        scoringTable.add(Map.of("index", 7, "value", 641));
+        scoringTable.add(Map.of("index", 8, "value", 1281));
+        scoringTable.add(Map.of("index", 9, "value", 2561));
+        scoringTable.add(Map.of("index", 10, "value", 5121));
+        scoringTable.add(Map.of("index", 11, "value", 10241));
+        scoringTable.add(Map.of("index", 12, "value", 20481));
+        scoringTable.add(Map.of("index", 13, "value", 40961));
+        scoringTable.add(Map.of("index", 14, "value", 81921));
+        scoringTable.add(Map.of("index", 15, "value", 163841));
+        scoringTable.add(Map.of("index", 16, "value", 327681));
+        scoringTable.add(Map.of("index", 17, "value", 655361));
+        scoringTable.add(Map.of("index", 18, "value", 1310721));
+        scoringTable.add(Map.of("index", 19, "value", 2621441));
+        scoringTable.add(Map.of("index", 20, "value", 5242881));
+        scoringTable.add(Map.of("index", 21, "value", 10485761));
+        scoringTable.add(Map.of("index", 22, "value", 20971521));
+        scoringTable.add(Map.of("index", 23, "value", 41943041));
+        scoringTable.add(Map.of("index", 24, "value", 83886081));
+        scoringTable.add(Map.of("index", 25, "value", 167772161));
+        scoringTable.add(Map.of("index", 26, "value", 335544321));
+        scoringTable.add(Map.of("index", 27, "value", 671088641));
+        scoringTable.add(Map.of("index", 28, "value", 1342177281));
+        scoringTable.add(Map.of("index", 29, "value", 2684354561L));
+        scoringTable.add(Map.of("index", 30, "value", 5368709121L));
+        scoringTable.add(Map.of("index", 31, "value", 10737418241L));
+        scoringTable.add(Map.of("index", 32, "value", 21474836481L));
+        scoringTable.add(Map.of("index", 33, "value", 42949672961L));
+        scoringTable.add(Map.of("index", 34, "value", 85899345921L));
+        scoringTable.add(Map.of("index", 35, "value", 171798691841L));
+        scoringTable.add(Map.of("index", 36, "value", 343597383681L));
+        scoringTable.add(Map.of("index", 37, "value", 687194767361l));
+        scoringTable.add(Map.of("index", 38, "value", 1374389534721l));
+        scoringTable.add(Map.of("index", 39, "value", 2748779069441l));
+        scoringTable.add(Map.of("index", 40, "value", 5497558138881l));
+        scoringTable.add(Map.of("index", 41, "value", 10995116277761l));
+        scoringTable.add(Map.of("index", 42, "value", 21990232555521l));
+        scoringTable.add(Map.of("index", 43, "value", 43980465111041l));
+        scoringTable.add(Map.of("index", 44, "value", 87960930222081l));
+        scoringTable.add(Map.of("index", 45, "value", 175921860444161l));
+        scoringTable.add(Map.of("index", 46, "value", 351843720888321l));
+        scoringTable.add(Map.of("index", 47, "value", 703687441776641l));
+        scoringTable.add(Map.of("index", 48, "value", 1407374883553281l));
+        scoringTable.add(Map.of("index", 49, "value", 2814749767106561l));
+        scoringTable.add(Map.of("index", 50, "value", 5629499534213121l));
+        scoringTable.add(Map.of("index", 51, "value", 11258999068426241l));
+        scoringTable.add(Map.of("index", 52, "value", 22517998136852481l));
+        scoringTable.add(Map.of("index", 53, "value", 45035996273704961l));
+        scoringTable.add(Map.of("index", 54, "value", 90071992547409921l));
+        scoringTable.add(Map.of("index", 55, "value", 180143985094819841l));
+        scoringTable.add(Map.of("index", 56, "value", 360287970189639681l));
+        scoringTable.add(Map.of("index", 57, "value", 720575940379279361l));
+        scoringTable.add(Map.of("index", 58, "value", 1441151880758558721l));
+        scoringTable.add(Map.of("index", 59, "value", 2882303761517117441l));
+        scoringTable.add(Map.of("index", 60, "value", 5764607523034234881l));
 
+        // add more entries as needed
+
+        model.addAttribute("scoringTable", scoringTable);
         return "how_to_mining";
     }
 
@@ -441,49 +546,48 @@ public class WebController {
     @GetMapping("/how_to_apply_for_a_job")
     public String howToApplyForAJob(Model model) {
         model.addAttribute("title", "how to apply for a job");
-        model.addAttribute("text1", "In this system there are three branches of government, " +
-                "1. Legislative 2. Judicial 3. Executive. The legislative branch consists of 201 Board of Directors accounts." +
-                " 2. The judiciary consists of 50 accounts of judges. " +
-                "3. The executive branch consists of 1 account of the General Executive Director. " +
-                "The Board of Directors and Judges are elected equally. " +
-                "To do this, you must enter the “apply for a positon” tab, wait until the calculations " +
-                "finish (calculate voting: index: ...) and the tab opens, then: " +
-                "1. enter the first field, your public key. 2. reward for the miner to install 5 or more coins. " +
-                "3. select the position you want from the tab. In the \"input address sender\" " +
-                "field enter your pub key again. 4. enter your contact information in the last field. " +
-                "(if you have already applied for a position once, you do not have to do it again with the same address). " +
-                "5. After you must enter the “All created law packages” tab, find your position in the name of the package, " +
-                "example: BOARD_OF_DIRECTORS, 6. Go to “details” and find your public key, in index 0. further, " +
-                "if you find it. 7. copy \"address package law\", 8. give this address to other participants so that " +
-                "they vote for you and you are elected. to do this, they must enter the \"Vote\" " +
-                "tab, where in the first field they must enter their public key, and in the second " +
-                "they must enter the address of the law that you copied in point 7 (in the same way, " +
-                "you yourself can vote for other laws). 9. Select YES or NO from the tab. " +
-                "10. Fill in the remaining data and click send. How Positions Are Elected The Board of Directors and " +
-                "Judges are elected in the same manner. To elect the Board of Directors, " +
-                "201 addresses from point 7 with the highest rating are selected. The rating is calculated this way. " +
-                "The number of your shares is equal to the number of votes that you can give either YES or NO, " +
-                "let’s say you have 100 shares, which means you can give 100 YES and 100 NO votes. For each candidate, " +
-                "the counting takes place in this way, all votes are YES - NO, and thus the result is the RATING. " +
-                "201 bills filed for the position of the Board of Directors and 50 bills filed for the position of a " +
-                "judge are elected judges. The CEO is elected in a similar way, but his rating must also be received from " +
-                "the Board of Directors, when the board of directors and judges vote, they also have their " +
-                "own chambers both within their chambers and within the chambers, one score equals one vote, " +
-                "so to be elected by the board of directors, your rating must be 10 or more from the chamber. " +
-                "All current positions are in the Fea tured Guid. All your votes are taken into account " +
-                "only for the last four years, and you can change your vote at any time. If, for example, " +
-                "you vote for several participants, then your votes will be divided between them. Example: you gave YES " +
-                "for 2 candidates and NO for 4 candidates. You have one hundred shares (100), so two participants will " +
-                "receive 50 votes according to the formula 100 / YES, and four against whom you voted will receive minus " +
-                "twenty-five (-25) according to the same formula 100 / NO. All created laws have an expiration date of " +
-                "up to 4 years, and you must vote for them. You also need to take into account that all your " +
-                "representatives are, in fact, delegates, since if your number of shares decreases or increases, " +
-                "the number of votes also changes. More details are currently described in the GitHub readme. to " +
-                "create laws Create a package law . All laws are created by the package, you also need to pay 5 or more " +
-                "digital dollars to the miner and fill out the fields, then send. all current laws fall into the Current " +
-                "tab and packages of laws. In order for your law to also be voted for, you need the same as for the " +
-                "position in paragraph 7. You need to find the name of your package and copy the address of this law.");
-
+        model.addAttribute("text1", " model.addAttribute(\"text1\", \"In this system there are three branches of government, \" +\n" +
+                "                \"1. Legislative 2. Judicial 3. Executive. The legislative branch consists of 201 Board of Directors accounts.\" +\n" +
+                "                \" 2. The judiciary consists of 50 accounts of judges. \" +\n" +
+                "                \"3. The executive branch consists of 1 account of the General Executive Director. \" +\n" +
+                "                \"The Board of Directors and Judges are elected equally. \" +\n" +
+                "                \"To do this, you must enter the “apply for a positon” tab, wait until the calculations \" +\n" +
+                "                \"finish (calculate voting: index: ...) and the tab opens, then: \" +\n" +
+                "                \"1. enter the first field, your public key. 2. reward for the miner to install 5 or more coins. \" +\n" +
+                "                \"3. select the position you want from the tab. In the \\\"input address sender\\\" \" +\n" +
+                "                \"field enter your pub key again. 4. enter your contact information in the last field. \" +\n" +
+                "                \"(if you have already applied for a position once, you do not have to do it again with the same address). \" +\n" +
+                "                \"5. After you must enter the “All created law packages” tab, find your position in the name of the package, \" +\n" +
+                "                \"example: BOARD_OF_DIRECTORS, 6. Go to “details” and find your public key, in index 0. further, \" +\n" +
+                "                \"if you find it. 7. copy \\\"address package law\\\", 8. give this address to other participants so that \" +\n" +
+                "                \"they vote for you and you are elected. to do this, they must enter the \\\"Vote\\\" \" +\n" +
+                "                \"tab, where in the first field they must enter their public key, and in the second \" +\n" +
+                "                \"they must enter the address of the law that you copied in point 7 (in the same way, \" +\n" +
+                "                \"you yourself can vote for other laws). 9. Select YES or NO from the tab. \" +\n" +
+                "                \"10. Fill in the remaining data and click send. How Positions Are Elected The Board of Directors and \" +\n" +
+                "                \"Judges are elected in the same manner. To elect the Board of Directors, \" +\n" +
+                "                \"201 addresses from point 7 with the highest rating are selected. The rating is calculated this way. \" +\n" +
+                "                \"The number of your shares is equal to the number of votes that you can give either YES or NO, \" +\n" +
+                "                \"let’s say you have 100 shares, which means you can give 100 YES and 100 NO votes. For each candidate, \" +\n" +
+                "                \"the counting takes place in this way, all votes are YES - NO, and thus the result is the RATING. \" +\n" +
+                "                \"201 bills filed for the position of the Board of Directors and 50 bills filed for the position of a \" +\n" +
+                "                \"judge are elected judges. The CEO is elected in a similar way, but his rating must also be received from \" +\n" +
+                "                \"the Board of Directors, when the board of directors and judges vote, they also have their \" +\n" +
+                "                \"own chambers both within their chambers and within the chambers, one score equals one vote, \" +\n" +
+                "                \"so to be elected by the board of directors, your rating must be 10 or more from the chamber. \" +\n" +
+                "                \"All current positions are in the Fea tured Guid. All your votes are taken into account \" +\n" +
+                "                \"only for the last four years, and you can change your vote at any time. If, for example, \" +\n" +
+                "                \"you vote for several participants, then your votes will be divided between them. Example: you gave YES \" +\n" +
+                "                \"for 2 candidates and NO for 4 candidates. You have one hundred shares (100), so two participants will \" +\n" +
+                "                \"receive 50 votes according to the formula 100 / YES, and four against whom you voted will receive minus \" +\n" +
+                "                \"twenty-five (-25) according to the same formula 100 / NO. All created laws have an expiration date of \" +\n" +
+                "                \"up to 4 years, and you must vote for them. You also need to take into account that all your \" +\n" +
+                "                \"representatives are, in fact, delegates, since if your number of shares decreases or increases, \" +\n" +
+                "                \"the number of votes also changes. More details are currently described in the GitHub readme. to \" +\n" +
+                "                \"create laws Create a package law . All laws are created by the package, you also need to pay 5 or more \" +\n" +
+                "                \"digital dollars to the miner and fill out the fields, then send. all current laws fall into the Current \" +\n" +
+                "                \"tab and packages of laws. In order for your law to also be voted for, you need the same as for the \" +\n" +
+                "                \"position in paragraph 7. You need to find the name of your package and copy the address of this law.\");\n");
 
         return "how_to_apply_for_a_job";
 
@@ -503,88 +607,68 @@ public class WebController {
 
     @GetMapping("/how_to_vote_and_what_voting_types_are_there")
     public String howToVoteAndWhatVotingTypesAreThere(Model model) {
-        model.addAttribute("text1", "There are three types of voting that are used here." +
-                "1. ONE_VOTE (One Voice)\n" +
+        model.addAttribute("text1", "If you want to become a member of the board of directors or a member of the Council of Corporate Judges or a General Director, then you need to go to apply for a position,\n" +
+                "select a position, fill out all fields, then click submit. When this transaction is accepted online, find in the all laws tab the identification number of your\n" +
+                "positions, there the name of the package will correspond to your position, go to each position, and see that the first line inside is your pubkey, as soon as you\n" +
+                "found, copy the identification number of your position, it always starts with LIBER, then send it to all network participants so that they go to the tab, vote and vote for\n" +
+                "you. You can also vote for other network members, both FOR and AGAINST. You can also remove your voice.\n" +
                 "\n" +
-                "When these positions are voted count as one score = one vote\n" +
-                "(CORPORATE_COUNCIL_OF_REFEREES-Council of Corporate Judges,\n" +
-                "GENERAL_EXECUTIVE_DIRECTOR-General Executive Director,\n" +
-                "HIGH_JUDGE - Supreme Judge and Board of Shareholders).\n" +
-                "Each score that starts with LIBER counts all votes FOR (VoteEnum.YES) and AGAINST (VoteEnum.NO) for it\n" +
-                "further deducted from FOR - AGAINST = if the balances are above the threshold, then it becomes the current law. But if a position is elected,\n" +
-                "then after that it is sorted from largest to smallest and the largest number that is described for this position is selected.\n" +
-                "Recalculation of votes occurs every block.\n" +
+                "Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE.\n" +
+                "The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for\n" +
+                "several candidates, and if you vote AGAINST (NO), then the candidate receives minus 100, if FOR (YES) plus 100.\n" +
+                "As a result, for each candidate his YES-NO rating is calculated, Thus, seven candidates for the Board of Directors,\n" +
+                "and the 7 highest ranked candidates for the Council of Corporate Judges are in office.\n" +
+                "Each network participant can change their vote at any time.\n" +
+                "Only votes cast in the last two years are counted.\n" +
                 "\n" +
-                "After voting, the vote can only be changed to the opposite one.\n" +
-                "There is no limit on the number of times you can change your vote. Only those votes that are given by accounts are taken into account\n" +
-                "in his position, for example, if the account ceased to be in CORPORATE_COUNCIL_OF_REFEREES, his vote as\n" +
-                "CORPORATE_COUNCIL_OF_REFEREES does not count and will not count in voting. All votes are valid until the bills\n" +
-                "voters are in their positions. Only those votes from which no more than\n" +
-                "four years, but each participant may at any time renew their vote." +
-                "" +
-                "2. VOTE_STOCK (How shares are voted.)\n" +
-                "How shares are voted.\n" +
-                "1. The number of shares is equal to the number of votes.\n" +
-                "2. Your votes are recounted every block and if you lose your shares,\n" +
-                "   or increase your shares, your cast votes also change\n" +
-                "   according to the number of shares.\n" +
-                "3. For each law that you voted, for this law, all\n" +
-                "   FOR and AGAINST and after that with FOR minus AGAINST and this is the rating of the law.\n" +
-                "4. Your votes are divided separately for all the laws that you voted FOR and separately AGAINST\n" +
-                "   Example: you have 100 shares and you voted FOR one candidate and for one law,\n" +
-                "   you also voted AGAINST two candidates and two laws.\n" +
-                "   Now each of your candidates and the law for which you voted FOR will receive 50 votes.\n" +
-                "   and for which you voted AGAINST will receive 25 votes AGAINST.\n" +
-                "   the formula is simple FOR/number of laws and AGAINST/number of laws you are against." +
-                "" +
-                "3. FAVORITE_FRACTION\n" +
-                "The faction is extracted like the chief judges, 200 scores received by the maximum number of votes\n" +
-                "from a unique electoral one, as previously and an observed share equal to one vote of the described\n" +
-                "in VOTE_STOCK\n" +
+                "Board of Directors:\n" +
+                "Can approve network decisions, for example, can create a project by approving a decision where participants will voluntarily send money to an approved address.\n" +
+                "Example: Let's imagine that the board of directors has created a package, where the first line is the address and the amount separated by a space. The second line is a description, and the third is contact information.\n" +
+                "Moreover, the amount and address do not necessarily have to be in this coin, the board of directors can approve the decision in other currencies, then after the amount, separated by a space\n" +
+                "you need to register the type of usdt coin or other currency.\n" +
+                "1. rDqx8hhZRzNm6xxvL1GL5aWyYoQRKVdjEHqDo5PY2nbM 10000\n" +
+                "2. For the development of the project and the acquisition of new servers, you need to collect ten thousand coins\n" +
+                "3. citucorp.com\n" +
+                "According to the decision of the Board of Directors:\n" +
+                "Each director has a vote equal to his rating share relative to the other directors. Let's imagine that we have 7 directors,\n" +
+                "1. First, we will sum up the ratings of all these 7 directors. For example, it turned out to be 200. But director A has a rating of 40, that is, his share is 20%\n" +
+                "Therefore, for a resolution to be adopted, the resolution must receive a vote of 57% or more from the Directors.\n" +
+                "If the director has a very high rating, then he can make decisions alone; if he has a low rating, then he will have to get the support of other directors.\n" +
+                "Similarly, the Board of Directors elects the General Director.\n" +
                 "\n" +
-                "#VOTE_FRACTION\n" +
-                "This voting system is used only for factions.\n" +
-                "First, 200 factions are selected that have become legitimate.\n" +
-                "Then all the votes given to 200 selected factions are summed up.\n" +
-                "After that, the share of each fraction from the total amount is determined.\n" +
-                "votes cast for this faction.\n" +
-                "The number of votes of each faction is equal to its percentage shares.\n" +
-                "Thus, if a faction has 23% of the votes of all votes, out of\n" +
-                "200 factions, then her vote is equal to 23%.\n" +
-                "On behalf of the factions, the leaders always act and because of this it is\n" +
-                "First of all, the leader system. Identical factions with ideological\n" +
-                "system here can be represented by different leaders, even\n" +
-                "if they are from the same community.\n" +
+                "Council of Corporate Judges:\n" +
+                "The Board of Corporate Judges is elected in the same way as the Board of Directors, but it performs several functions\n" +
+                "1. Resolves disputes that arise between network participants, creating a precedent.\n" +
+                "2. May veto a decision of the Board of Directors if this decision contradicts the Charter or other current decisions.\n" +
+                "Each Judge has one vote, each Judge can vote YES, NO or abstain, as well as remove their previous vote.\n" +
+                "For each decision, the votes of the judges are calculated using the following formula: YES - NO. If the number falls below 0, then the decision is VETOed.\n" +
                 "\n" +
-                "Then every time a faction votes for laws,\n" +
-                "that start with LIBER (VoteEnum.YES) or (VoteEnum.NO).\n" +
-                "This law counts all the votes given *** for ***\n" +
-                "and *** against ***, after which it is subtracted from *** for *** - *** against ***.\n" +
-                "This result is displayed as a percentage.");
-
-        model.addAttribute("text2", "to vote you have to do a few things.\n" +
-                "1. First you must go to the tab of all created law packages.\n" +
-                "2. see the details of this law, if it is a network rule, there will be a list of laws inside the package.\n" +
-                "3. if this is a candidate, then the first line inside the packet will be the address of the candidate.\n" +
-                "4. copy the address of the law, it always starts with LIBER\n" +
-                "5. enter the vote tab.\n" +
-                "6. Enter your address in the first line.\n" +
-                "7. to the second address of the law,\n" +
-                "8. enter the amount of remuneration to the earner in digital dollars. Choose your vote YES or NO and click vote.");
-
-        model.addAttribute("text3", "1. If you are an independent member and your account is not an elected position, then your vote will be counted according to the second type.\n" +
-                "2. If you are a judge and you vote for chief judge, then your vote will be counted according to the first type only if you vote for chief judge, as a judge.\n" +
-                "3. if you are a faction and you vote for laws or the CEO, your vote will be counted by\n" +
-                "the third type, but if you do not vote for candidates of other positions.\n" +
-                "If you are a member of the Board of Shareholders and vote for amendments, then you vote by type 1.\n" +
+                "Powers of the founder; only the founder can approve the new charter. also the property of a corporation belongs to the corporation, but to manage this property\n" +
+                "Board of Directors (Member accounts are not the property of the corporation). The Board of Directors can finance new projects by collecting money from voluntary contributions,\n" +
+                "or from sales of goods and services of the corporation, as well as from voluntary membership fees. The merger of this corporation with other corporations can only be carried out\n" +
+                "after approval by the Founder. Board of Directors A board of directors is appointed to govern a given corporation within the scope of its bylaws.\n" +
                 "\n" +
-                "1. how the faction is elected. The 200 candidates who received the highest number of share rankings become factions.\n" +
-                "2. how judges are elected. The 55 candidates who receive the most votes in the ranking of the shares become judges.\n" +
-                "3. How the Chief Justice is elected. 1 candidate who received the most votes of the share rating and the most (more than 2 votes) the number of ratings from the votes of the judges, becomes the supreme judge.\n" +
-                "4. how the CEO is elected.\n" +
-                "The 1 candidate who receives the most share ranking votes and the most faction ranking votes (more than 15% of the rating) becomes the Executive CEO.\n" +
-                "5. How laws are elected, any package of laws must receive more than 1 rating from the number of votes of shares and a rating from the votes of factions above 15% percent, then it is valid.");
-
+                "\n" +
+                "General Director:\n" +
+                "General Director, implements decisions made by the Board of Directors.\n" +
+                "\n" +
+                "\n" +
+                "1. Board of Directors (7 participants):\n" +
+                "Can approve decisions for the network, such as creating projects and raising funds for their implementation.\n" +
+                "Approves decisions by a majority vote, where the weight of the director's vote depends on his rating relative to other directors.\n" +
+                "Elects the General Director.\n" +
+                "May not act contrary to the Charter or decisions imposed by the Council of Corporate Judges.\n" +
+                "\n" +
+                "2. Council of Corporate Judges (7 participants):\n" +
+                "Resolves disputes between network participants by creating precedents.\n" +
+                "Can veto decisions of the Board of Directors if they contradict the Charter or other current decisions.\n" +
+                "Each judge has one vote, decisions are made by majority vote (YES - NO > 0).\n" +
+                "Cannot make decisions that contradict the Charter approved by the Founder.\n" +
+                "\n" +
+                "3. General Director:\n" +
+                "Implements decisions made by the Board of Directors.\n" +
+                "Has no authority have independent decisions, except for the execution of decisions of the Board of Directors.\n" +
+                "It should be noted that one person can hold several elected positions at the same time, for example, be a member of the Board of Directors and the Council of Corporate Judges. However, in this case, when voting on decisions, his votes will be counted separately for each position in accordance with the established rules.");
         return "how_to_vote_and_what_voting_types_are_there";
     }
 
