@@ -23,7 +23,6 @@ public class WinnersController {
         model.addAttribute("uniq", uniq);
         model.addAttribute("allWinnerCount", allWinersList.size());
 
-
         String bigRandom = WebController.getResult("/bigRandomWiner", "error bigRandom");
         List<LiteVersionWiner> bigRandomList = UtilsJson.jsonToLiteVersionWiners(bigRandom);
         model.addAttribute("bigRandom", bigRandomList);

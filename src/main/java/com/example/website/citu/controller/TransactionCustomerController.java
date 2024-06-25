@@ -51,7 +51,6 @@ public class TransactionCustomerController {
         List<DtoTransaction> list =
                 UtilsJson.jsonToListDto(text);
 
-
         url = address + "/customerCountDto?address=" + pubkey;
         long totalTransactions = (long) UtilsJson.jsonToClass(UtilUrl.getObject(url), Long.class);
 
@@ -59,13 +58,9 @@ public class TransactionCustomerController {
         httpSession.setAttribute("page", page);
         httpSession.setAttribute("size", size);
 
-
         redirectAttrs.addAttribute("transactions", list);
         redirectAttrs.addAttribute("page", page);
-
         redirectAttrs.addAttribute("totalPages", totalTransactions);
-
-
         redirectAttrs.addAttribute("pubkey", pubkey);
         return "transactionsCustomer";
 

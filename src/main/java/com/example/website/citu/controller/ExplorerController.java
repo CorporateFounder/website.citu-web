@@ -194,11 +194,6 @@ public class ExplorerController {
         return "detail-transactions";
     }
 
-
-
-
-
-
     @GetMapping("/detail-transactions/{index}")
     public String detailTransactionIndex(@PathVariable(value = "index") String index, RedirectAttributes redirectAttrs) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException, SignatureException, NoSuchProviderException, InvalidKeyException {
         System.out.println("LawsController /detail-laws-all/{index}: " + index);

@@ -34,12 +34,13 @@
 
 </div>
 <div class="alert alert-info mt-2">
-    <h6 th:text="'discord: '+${discord}"/>
-    <h6 th:text="'telegeram: '+${telegram}"/>
-    <h6 th:text="'twitter: ' +${twitter} "/>
-    <h6 th:text="'wallet: '+${github}"/>
-    <h6 th:text="'global server: '+${storage}"/>
+    <h6><a th:href="${discord}" th:text="'discord: '+${discord}"></a></h6>
+    <h6><a th:href="${telegram}" th:text="'telegram: '+${telegram}"></a></h6>
+    <h6><a th:href="'https://twitter.com/' + ${twitter.substring(1)}" th:text="'twitter: ' +${twitter}"></a></h6>
+    <h6><a th:href="${github}" th:text="'wallet: '+${github}"></a></h6>
+    <h6><a th:href="${storage}" th:text="'global server: '+${storage}"></a></h6>
 </div>
+
 <div class="alert alert-info mt-2">
     <h1 th:text="${Summary}"/>
     <h6 th:text="${text}"/>
@@ -66,7 +67,6 @@
                 <h5>Section</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="/how_to_install" class="nav-link p-0 text-body-secondary">how to install</a></li>
-<!--                    <li class="nav-item mb-2"><a href="/summary_and_benefits" class="nav-link p-0 text-body-secondary">summary and benefits</a></li>-->
                     <li class="nav-item mb-2"><a href="/how_to_open_an_account" class="nav-link p-0 text-body-secondary">how to open an account</a></li>
                     <li class="nav-item mb-2"><a href="/how_to_change_miner_account" class="nav-link p-0 text-body-secondary">How to change miner account</a></li>
                     <li class="nav-item mb-2"><a href="/how_to_mining" class="nav-link p-0 text-body-secondary">How to mining</a></li>
@@ -80,10 +80,14 @@
                     <li class="nav-item mb-2"><a href="/how_to_transaction" class="nav-link p-0 text-body-secondary">How to transaction.html</a></li>
                     <li class="nav-item mb-2"><a href="/how_to_apply_for_a_job" class="nav-link p-0 text-body-secondary">how to apply for a job end voting</a></li>
                     <li class="nav-item mb-2"><a href="/how_to_vote_and_what_voting_types_are_there" class="nav-link p-0 text-body-secondary">how to voting</a></li>
+                    <li class="nav-item mb-2"><a href="/charter" class="nav-link p-0 text-body-secondary">CHARTER</a></li>
+                    <li class="nav-item mb-2"><a href="/vision" class="nav-link p-0 text-body-secondary">vision of the future</a></li>
 
                     <li class="nav-item mb-2"><a href="/solving_common_problems" class="nav-link p-0 text-body-secondary">solving_common_problems</a></li>
                     <li class="nav-item mb-2"><a href="/conductor" class="nav-link p-0 text-body-secondary">Explorer</a></li>
                     <li class="nav-item mb-2"><a href="/winners" class="nav-link p-0 text-body-secondary">winners</a></li>
+                    <li class="nav-item mb-2"><a href="/wallet_and_node_url" class="nav-link p-0 text-body-secondary">wallet and node url</a></li>
+
                 </ul>
             </div>
 

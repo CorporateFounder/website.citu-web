@@ -139,6 +139,7 @@ public class WebController {
         model.addAttribute("twitter", "@citu4030");
 
 
+
         model.addAttribute("text",
                 "Preamble:\n" +
                         "This cryptocurrency aims to create a single international currency that is resistant to high volatility.\n" +
@@ -412,7 +413,8 @@ public class WebController {
                 "big random (of all blocks of a given blockchain) of your blockchain and the blockchain of another node.\n" +
                 "If on another node the total big random is greater than on yours + the complexity of the last block, then your server will delete blocks up to the intersection point,\n" +
                 "and will add blocks of this node. The difference between blocks must be at least 100 seconds.\nThe mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1. The multiplier can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block, excluding the founder's reward and the miner's reward. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address from which the reward is sent to the founder and miner. http://94.87.236.238:82/winners this URL shows the last winner on this node, but does not show the winner if it was taken from another server and to see the last final winner you need /prevBlock\n" +
-                "P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse).\n");
+                "P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse)." +
+                "be sure, if you use your own server, you can configure your wallet on your server by going to the settings and writing your server there, without the slash at the end.\n");
         model.addAttribute("randomAndStakingText", "Story:\n" +
                 "a special block was created on index 24281, with the help of which we created 12,000,000 coins and these coins were given to the participants, since the blockchain was broken by an attack in 40 days\n" +
                 "and with the help of this address jPjuyLStHTCzwYt9J7R5M7pGUKshfcmEbtE3zVvCBE52 this money was returned to all participants who lost their coins.\n" +
@@ -546,48 +548,7 @@ public class WebController {
     @GetMapping("/how_to_apply_for_a_job")
     public String howToApplyForAJob(Model model) {
         model.addAttribute("title", "how to apply for a job");
-        model.addAttribute("text1", " model.addAttribute(\"text1\", \"In this system there are three branches of government, \" +\n" +
-                "                \"1. Legislative 2. Judicial 3. Executive. The legislative branch consists of 201 Board of Directors accounts.\" +\n" +
-                "                \" 2. The judiciary consists of 50 accounts of judges. \" +\n" +
-                "                \"3. The executive branch consists of 1 account of the General Executive Director. \" +\n" +
-                "                \"The Board of Directors and Judges are elected equally. \" +\n" +
-                "                \"To do this, you must enter the “apply for a positon” tab, wait until the calculations \" +\n" +
-                "                \"finish (calculate voting: index: ...) and the tab opens, then: \" +\n" +
-                "                \"1. enter the first field, your public key. 2. reward for the miner to install 5 or more coins. \" +\n" +
-                "                \"3. select the position you want from the tab. In the \\\"input address sender\\\" \" +\n" +
-                "                \"field enter your pub key again. 4. enter your contact information in the last field. \" +\n" +
-                "                \"(if you have already applied for a position once, you do not have to do it again with the same address). \" +\n" +
-                "                \"5. After you must enter the “All created law packages” tab, find your position in the name of the package, \" +\n" +
-                "                \"example: BOARD_OF_DIRECTORS, 6. Go to “details” and find your public key, in index 0. further, \" +\n" +
-                "                \"if you find it. 7. copy \\\"address package law\\\", 8. give this address to other participants so that \" +\n" +
-                "                \"they vote for you and you are elected. to do this, they must enter the \\\"Vote\\\" \" +\n" +
-                "                \"tab, where in the first field they must enter their public key, and in the second \" +\n" +
-                "                \"they must enter the address of the law that you copied in point 7 (in the same way, \" +\n" +
-                "                \"you yourself can vote for other laws). 9. Select YES or NO from the tab. \" +\n" +
-                "                \"10. Fill in the remaining data and click send. How Positions Are Elected The Board of Directors and \" +\n" +
-                "                \"Judges are elected in the same manner. To elect the Board of Directors, \" +\n" +
-                "                \"201 addresses from point 7 with the highest rating are selected. The rating is calculated this way. \" +\n" +
-                "                \"The number of your shares is equal to the number of votes that you can give either YES or NO, \" +\n" +
-                "                \"let’s say you have 100 shares, which means you can give 100 YES and 100 NO votes. For each candidate, \" +\n" +
-                "                \"the counting takes place in this way, all votes are YES - NO, and thus the result is the RATING. \" +\n" +
-                "                \"201 bills filed for the position of the Board of Directors and 50 bills filed for the position of a \" +\n" +
-                "                \"judge are elected judges. The CEO is elected in a similar way, but his rating must also be received from \" +\n" +
-                "                \"the Board of Directors, when the board of directors and judges vote, they also have their \" +\n" +
-                "                \"own chambers both within their chambers and within the chambers, one score equals one vote, \" +\n" +
-                "                \"so to be elected by the board of directors, your rating must be 10 or more from the chamber. \" +\n" +
-                "                \"All current positions are in the Fea tured Guid. All your votes are taken into account \" +\n" +
-                "                \"only for the last four years, and you can change your vote at any time. If, for example, \" +\n" +
-                "                \"you vote for several participants, then your votes will be divided between them. Example: you gave YES \" +\n" +
-                "                \"for 2 candidates and NO for 4 candidates. You have one hundred shares (100), so two participants will \" +\n" +
-                "                \"receive 50 votes according to the formula 100 / YES, and four against whom you voted will receive minus \" +\n" +
-                "                \"twenty-five (-25) according to the same formula 100 / NO. All created laws have an expiration date of \" +\n" +
-                "                \"up to 4 years, and you must vote for them. You also need to take into account that all your \" +\n" +
-                "                \"representatives are, in fact, delegates, since if your number of shares decreases or increases, \" +\n" +
-                "                \"the number of votes also changes. More details are currently described in the GitHub readme. to \" +\n" +
-                "                \"create laws Create a package law . All laws are created by the package, you also need to pay 5 or more \" +\n" +
-                "                \"digital dollars to the miner and fill out the fields, then send. all current laws fall into the Current \" +\n" +
-                "                \"tab and packages of laws. In order for your law to also be voted for, you need the same as for the \" +\n" +
-                "                \"position in paragraph 7. You need to find the name of your package and copy the address of this law.\");\n");
+        model.addAttribute("text1", " If you want to become a member of the board of directors or a member of the Council of Corporate Judges or a General Director, then you need to go to apply for a position, select a position, fill out all fields, then click submit. When this transaction is accepted online, find in the all laws tab the identification number of your positions, there the name of the package will correspond to your position, go to each position, and see that the first line inside is your pubkey, as soon as you found, copy the identification number of your position, it always starts with LIBER, then send it to all network participants so that they go to the tab, vote and vote for you. You can also vote for other network members, both FOR and AGAINST. You can also remove your voice. Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE. The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for several candidates, and if you vote AGAINST (NO), then the candidate receives minus 100, if FOR (YES) plus 100. As a result, for each candidate his YES-NO rating is calculated, Thus, seven candidates for the Board of Directors, and the 7 highest ranked candidates for the Council of Corporate Judges are in office. Each network participant can change their vote at any time. Only votes cast in the last two years are counted. Board of Directors: Can approve network decisions, for example, can create a project by approving a decision where participants will voluntarily send money to an approved address. Example: Let's imagine that the board of directors has created a package, where the first line is the address and the amount separated by a space. The second line is a description, and the third is contact information. Moreover, the amount and address do not necessarily have to be in this coin, the board of directors can approve the decision in other currencies, then after the amount, separated by a space you need to register the type of usdt coin or other currency. 1. rDqx8hhZRzNm6xxvL1GL5aWyYoQRKVdjEHqDo5PY2nbM 10000 2. For the development of the project and the acquisition of new servers, you need to collect ten thousand coins 3. citucorp.com According to the decision of the Board of Directors: Each director has a vote equal to his rating share relative to the other directors. Let's imagine that we have 7 directors, 1. First, we will sum up the ratings of all these 7 directors. For example, it turned out to be 200. But director A has a rating of 40, that is, his share is 20% Therefore, for a resolution to be adopted, the resolution must receive a vote of 57% or more from the Directors. If the director has a very high rating, then he can make decisions alone; if he has a low rating, then he will have to get the support of other directors. Similarly, the Board of Directors elects the General Director. Council of Corporate Judges: The Board of Corporate Judges is elected in the same way as the Board of Directors, but it performs several functions 1. Resolves disputes that arise between network participants, creating a precedent. 2. May veto a decision of the Board of Directors if this decision contradicts the Charter or other current decisions. Each Judge has one vote, each Judge can vote YES, NO or abstain, as well as remove their previous vote. For each decision, the votes of the judges are calculated using the following formula: YES - NO. If the number falls below 0, then the decision is VETOed. Powers of the founder; only the founder can approve the new charter. also the property of a corporation belongs to the corporation, but to manage this property Board of Directors (Member accounts are not the property of the corporation). The Board of Directors can finance new projects by collecting money from voluntary contributions, or from sales of goods and services of the corporation, as well as from voluntary membership fees. The merger of this corporation with other corporations can only be carried out after approval by the Founder. Board of Directors A board of directors is appointed to govern a given corporation within the scope of its bylaws. General Director: General Director, implements decisions made by the Board of Directors. 1. Board of Directors (7 participants): Can approve decisions for the network, such as creating projects and raising funds for their implementation. Approves decisions by a majority vote, where the weight of the director's vote depends on his rating relative to other directors. Elects the General Director. May not act contrary to the Charter or decisions imposed by the Council of Corporate Judges. 2. Council of Corporate Judges (7 participants): Resolves disputes between network participants by creating precedents. Can veto decisions of the Board of Directors if they contradict the Charter or other current decisions. Each judge has one vote, decisions are made by majority vote (YES - NO > 0). Cannot make decisions that contradict the Charter approved by the Founder. 3. General Director: Implements decisions made by the Board of Directors. Has no authority have independent decisions, except for the execution of decisions of the Board of Directors. It should be noted that one person can hold several elected positions at the same time, for example, be a member of the Board of Directors and the Council of Corporate Judges. However, in this case, when voting on decisions, his votes will be counted separately for each position in accordance with the established rules.");
 
         return "how_to_apply_for_a_job";
 
@@ -705,12 +666,288 @@ public class WebController {
         return "solving_common_problems";
     }
 
-//    @GetMapping("/conductor")
-//    public String conductors(
-//            Model model){
-//
-//
-//        return "conductor";
-//    }
+    @GetMapping("/wallet_and_node_url")
+    public String wallet_and_node_url(Model model){
+        model.addAttribute("title", "url for wallet and node");
+        List<String> urls = new ArrayList<>();
+        urls.add("use the host from which you want to receive data (official host http://194.87.236.238:82) All methods are contained in the BassisController class.\n" +
+                "1. /winnerList \n" +
+                "returns a list of Blocks that should be included in the tournament.\n" +
+                "public String winnerList()\n");
+        urls.add("2. /allwinners \n" +
+                "returns a listLiteVersionWinerwho participated in the last tournament (Means that this tournament is completed).\n" +
+                "public String allWinners()\n");
+        urls.add("3. /bigRandomWiner\n" +
+                "shows the winner of the last tournamentLiteVersionWiner\n" +
+                "public String bigRandomWiner()\n");
+        urls.add("4. /datashort\n" +
+                "returns meta data, {\"size\":265671,\"hashCount\":3489676,\"staking\":816578.0250480324,\"transactions\":617581,\"bigRandomNumber\":56872082,\"validation\":true}\n" +
+                "size: height of this node\n" +
+                "hashCount: the total amount of difficulty from the entire blockchain.\n" +
+                "staking: total staking amount for all blocks divided by 100000\n" +
+                "bigRandomNumber: the total sum of all bigRandoms\n" +
+                "validation: if true, then the blockchain is intact and has the correct order of hashes and blocks (but this does not mean that the blockchain is completely correct and for detailed verification, you need to follow the instructions http://citucorp.com/how_to_install_server\n" +
+                "public DataShortBlockchainInformation dataShortBlockchainInformation()\n");
+        urls.add("5. /status \n" +
+                "returns the status of the blockchain, blockFromDb and blockFromFile must match and have the same index and hash. If one of them is null or they are different, then there has been corruption either in the h2 database or in the file, then delete the corrupted version and use the fallback.\n" +
+                "public String status()\n");
+        urls.add("6. /allAccounts\n" +
+                "returns the total number of accounts that are recorded in a given node and a given blockchain.\n" +
+                "public long accounts()\n");
+        urls.add("7. /totalDollars \n" +
+                "returns the total dollar amount on a given node, taking into account onlydigitalDollarBalanceThus, money transferred to staking will not be taken into account, and therefore the total amount of dollars may decrease as they are transferred to staking. And similarly increase.\n" +
+                "public double getTotalDollars()\n");
+        urls.add("8. /totalTransactionsDay \n" +
+                "returns the total number of transactions completed per day since the server was launched. Every 576 blocks, the number resets to zero.\n" +
+                "public int getTotalTransactionsDays()\n");
+        urls.add("9. /totalTransactionsSum \n" +
+                "returns the total amount of transactions per day, since the server was launched. Every 576 blocks, the number resets to zero.\n" +
+                "public double getTotalTransactionsSumDllar()\n");
+        urls.add("10. /multiplier\n" +
+                "this is a multiplier, described in more detail http://citucorp.com/how_to_mining\n" +
+                "public long multiplier()\n");
+        urls.add("11. /dayReduce \n" +
+                "number of blocks left before reduction multiplierper unit.\n" +
+                "http://citucorp.com/how_to_mining\n" +
+                "public long daysReduce()\n");
+        urls.add("12. /size \n" +
+                "returns the height of the block.\n" +
+                "public Integer sizeBlockchain()\n");
+        urls.add("13. /sub-blocks \n" +
+                "returns a list of Blocks, fromstartup to finish, inclusive finish.\n" +
+                "That is, if you call start=0, finish=500. Then it will return as a list which includes block 0 and 500 too.\n" +
+                "public List<Block> subBlocks(@RequestBody SubBlockchainEntity entity)\n");
+        urls.add("14. /version \n" +
+                "returns the version, if the version of the wallet and the server is different, then the server does not\n" +
+                "will accept its blocks (practically not used in version 201)\n" +
+                "public double version()\n");
+        urls.add("15. /block \n" +
+                "returns the Block type by index.\n" +
+                "@Async(\"threadPoolTaskExecutor\")public Block getBlock(@RequestBody Integer index)\n" +
+                "\n");
+        urls.add("16. /isSaveFile \n" +
+                "used for the interior, blocks taking blocks,\n" +
+                "during dubbing. It returns the status of whether blocking is currently occurring or not.\n" +
+                "public boolean isSaveFile()\n");
+        urls.add("17. /balance \n" +
+                "returns the balances of a given account\n" +
+                "public Account getBalance(@RequestParam String address)\n" +
+                "accepts pubkey as input\n" +
+                "public Account getBalance(@RequestParam String address)\n");
+        urls.add("18. /prevBlock \n" +
+                "returns the last block that is in the blockchain,\n" +
+                "may also match the last winner of the tournament.\n" +
+                "public Block getPrevBlock()\n");
+        urls.add("19. /nodes/resolve_from_to_block \n" +
+                "adds a block or blocks to the tournament\n" +
+                "after verification, and also distributes this block to other nodes.\n" +
+                "public synchronized ResponseEntity<String> resolve_conflict(@RequestBody SendBlocksEndInfo sendBlocksEndInfo)\n");
+        urls.add("20. /difficultyBlockchain \n" +
+                "returns difficulty information, returns as\n" +
+                "total and final complexity.\n" +
+                "public InfoDificultyBlockchain dificultyBlockchain()\n");
+        urls.add("21. /senderTransactions \n" +
+                "returns a list of transactions,\n" +
+                "from and to the sender. That is, all transactions where this address is sent to senders\n" +
+                "for a certain period.\n" +
+                "public List<DtoTransaction> senderTransactions\n");
+        urls.add("22. /customerTransactions \n" +
+                "similar/senderTransactions, with that\n" +
+                "The only difference is where the address is already the recipient.\n" +
+                "public List<DtoTransaction> customerTransactions\n");
+        urls.add("23. /senderCountDto \n" +
+                "returns the number of transactions sent,\n" +
+                "from this address.\n" +
+                "public long countSenderTransaction( @RequestParam String address)\n" +
+                "\n");
+        urls.add("24. /customerCountDto \n" +
+                "similar/senderCountDtobut returns quantity\n" +
+                "transactions where this account was the recipient.\n" +
+                "public long countCustomerTransaction( @RequestParam String address)\n" +
+                "\n");
+        urls.add("25. /addresses \n" +
+                "returns the entire list of addresses\n" +
+                "public Map<String, Account> addresses()\n");
+        urls.add("26./getNodes \n" +
+                "returns a list of nodes\n" +
+                "public Set<String> getAllNodes()\n");
+        urls.add("Controller from classConductorController\n" +
+                "1./account\n" +
+                "Returns the balances of a given account\n" +
+                "public Account account(@RequestParam String address)\n");
+        urls.add("2./dollar\n" +
+                "Returns the dollar balance of a given account\n" +
+                "public Double dollar(@RequestParam String address)\n");
+        urls.add("3./stock\n" +
+                "Returns the stock balance of a given account\n" +
+                "public Double stock(@RequestParam String address)\n");
+        urls.add("4./isTransactionAdd\n" +
+                "Returns the result whether the given signature has been added to the blockchain or not\n" +
+                "public Boolean isTransactionGet(@RequestParam String sign)\n");
+        urls.add("5./blockHash\n" +
+                "Returns Block based on the hash of the block, thereby making it clear whether this block exists in this\n" +
+                "blockchain.\n" +
+                "public Block blockFromHash(@RequestParam String hash)\n");
+        urls.add("6./conductorBlock\n" +
+                "Returns a block by index, which is often used to understand whether a given block has been added to the blockchain.\n" +
+                "\n" +
+                "public Block block(@RequestParam Integer index)\n");
+        urls.add("7./conductorHashTran\n" +
+                "Returns the transaction by hash.\n" +
+                "public DtoTransaction transaction(@RequestParam String hash)\n");
+        urls.add("Controller in classNodesController\n" +
+                "1./putNode\n" +
+                "adds a host and port to this server./putNode\n" +
+                "public void addNode(@RequestBody MyHost host)\n");
+        urls.add("Controller in classTransactionController\n" +
+                "1./addTransaction\n" +
+                "Adds a transaction to the list of transactions waiting to be added to the blockchain.\n" +
+                "public void add(@RequestBody DtoTransaction data) throws IOException, NoSuchAlgorithmException, SignatureException, InvalidKeySpecException, NoSuchProviderException, InvalidKeyException\n");
+        urls.add("2./getTransactions\n" +
+                "Returns a list of transactions to be added to\n");
+        urls.add("Wallet controllers that are accessed through localhost:8082" +
+                "The methods below are in the BasisController class\n");
+        urls.add("1. http://localhost:8082/getNodes\n" +
+                "returns a list of hosts that are stored on the wallet.\n" +
+                "public Set<String> getAllNodes()\n");
+        urls.add("2. http://localhost:8082/chain \n" +
+                "returns the size of the blockchain all blocks. PS IT IS NOT RECOMMENDED TO USE AS THE SIZE OF THE BLOCKS CAN BE BIGGER THAN THE RAM MEMORY AND THIS CAN FAIL THE CHAIN.\n" +
+                "public EntityChain full_chain()\n");
+        urls.add("3. http://localhost:8082/size\n" +
+                "returns the height of the local blockchain.\n" +
+                "public Integer sizeBlockchain()\n");
+        urls.add("4. http://localhost:8082/sub-blocks" +
+                "returns a list of blocks from start to finish, but no more than 500 blocks at a time.\n" +
+                "Also finish is included in the list.\n" +
+                "public List<Block> subBlocks(@RequestBody SubBlockchainEntity entity)\n");
+        urls.add("5. http://localhost:8082/nodes/resolve" +
+                "configured for a specific server and either downloads missing blocks from there, or\n" +
+                "deletes only blocks to synchronize your blockchain with the server.\n" +
+                "public synchronized int resolve_conflicts()\n");
+        urls.add("6. http://localhost:8082/resolving" +
+                "causespublic synchronized int resolve_conflicts()\n" +
+                "and similar to it.\n" +
+                "public String resolving()\n");
+        urls.add("7. http://localhost:8082/addBlock" +
+                "OUTDATED AND NOT USED, STRICTLY DO NOT CALL SO AS NOT TO BREAK THE BLOCKCHAIN.\n" +
+                "Previously used to restore balance and other meta data from a blockchain file,\n" +
+                "but after implementing the h2 database, it does not work correctly.\n" +
+                "public ResponseEntity getBLock()\n");
+        urls.add("8. http://localhost:8082/miningblock http://localhost:8082/process-mining\n" +
+                "Mines one block, calls a method that mines the block only once.\n" +
+                "public synchronized ResponseEntity minings()\n" +
+                "public synchronized String processMining(Model model, Integer number)\n");
+        urls.add("9. http://localhost:8082/nodes/register\n" +
+                "registers the host in the wallet.\n" +
+                "public static synchronized void register_node(@RequestBody AddressUrl urlAddrress)\n");
+        urls.add("10. http://localhost:8082/moreMining" +
+                "continues mining for 2000 attempts.\n" +
+                "public void moreMining()\n" +
+                "mainly used for testing\n");
+        urls.add("11. http://localhost:8082/constantMining" +
+                "when you mine through the get a block tab, this is what is called.\n" +
+                "Mining continues until the stop button is pressed.\n" +
+                "public String alwaysMining() throws JSONException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, SignatureException, NoSuchProviderException, InvalidKeyException, CloneNotSupportedException\n" +
+                "PS All mining methods call this method inside their methods.\n" +
+                "public synchronized String mining()\n");
+        urls.add("12. http://localhost:8082/stopMining" +
+                "stops mining in the method http://localhost:8082/constantMining\n" +
+                "public String stopMining(RedirectAttributes model)\n");
+        urls.add("13. http://localhost:8082/testCalculate\n" +
+                "used to check the integrity of the balance on the wallet and server.\n" +
+                "If everything is correct, then you should not see a list of Accounts in the console\n" +
+                "whose balance is different from the server.\n" +
+                "If this still appears, perhaps the server or wallet has a damaged file\n" +
+                "details are described herehttp://citucorp.com/how_to_install_server\n" +
+                "public String testResolving()\n");
+        urls.add("14. http://localhost:8082/status" +
+                "checks the status of whether the blocks are written correctly; if the block recorded in the file and in the database are different or one of them is null, then perhaps you should replace it with a backup version or download it from scratch.\n" +
+                "\n" +
+                "public String status()\n");
+        urls.add("Class in the walletpublic class BlockchainCheckController\n" +
+                "controllers.\n 1.http://localhost:8082/checkValidation\n" +
+                "checks the integrity of the blockchain from files located in the blockchain folder\n" +
+                "public boolean checkValidation()\n");
+        urls.add("In a wallet in class public class ConductorControlle\n" +
+                "1.http://localhost:8082HYPERLINK \"http://localhost:8082/status\"/keys\n" +
+                "Creates a new pair, public key, private key.\n" +
+                "public Map<String, String> keys()\n");
+        urls.add("2.http://localhost:8082/updating\n" +
+                "Updates the local blockchain on the wallet.\n" +
+                "public Integer updating()\n");
+        urls.add("3.http://localhost:8082/account\n" +
+                "Gets the full balance from a given wallet, for a given address.\n" +
+                "public Account account(@RequestParam String address)\n");
+        urls.add("4.http://localhost:8082/dollar\n" +
+                "Returns the dollar balance for a given address.\n" +
+                "public Double dollar(@RequestParam String address)\n");
 
+        urls.add("5.http://localhost:8082/stock\n" +
+                "Returns the stock balance for a given address.\n" +
+                "public Double stock(@RequestParam String address)\n");
+        urls.add("6.http://localhost:8082/sendCoin\n" +
+                "This method takes as input the address of the sender, the recipient, the amount that\n" +
+                "we want to transfer in dollars and shares, also the miner's reward (at the moment,\n" +
+                "the mechanism to reward the miner for the transaction and the password are disabled.\n" +
+                "The method locally signs and creates a transaction using this data and already\n" +
+                "then sends it to 7 random nodes, calling them/addTransaction\n" +
+                "public String send(@RequestParam String sender, @RequestParam String recipient, @RequestParam Double dollar, @RequestParam Double stock, @RequestParam Double reward, @RequestParam String password)\n");
+        urls.add("7.http://localhost:8082/isTransactionAdd\n" +
+                "Determines by signature whether a given transaction has been added\n" +
+                "to the local blockchain or not.\n" +
+                "public Boolean isTransactionGet(@RequestParam String sign)\n");
+        urls.add("8.http://localhost:8082/blockHash\n" +
+                "By block hash, returns a block if this block is in the local blockchain.\n" +
+                "public Block blockFromHash(@RequestParam String hash)\n");
+        urls.add("9.http://localhost:8082/conductorBlock\n" +
+                "Returns a block by its index if this index with the block is in the local\n" +
+                "blockchain.\n" +
+                "public Block block(@RequestParam Integer index)\n");
+        urls.add("10.http://localhost:8082/conductorHashTran\n" +
+                "Returns the transaction by hash (not the signature, but the hash)\n" +
+                "public DtoTransaction transaction(@RequestParam String hash)\n");
+        urls.add("Methods in classMineController\n" +
+                "1.http://localhost:8082/staking\n" +
+                "Adds dollars to staking.\n" +
+                "at the entrance your address, the amount you want to transfer to staking\n" +
+                "and your password. It locally creates a transaction object and signs\n" +
+                "it, after which it already sends this object to 7 random nodes.\n" +
+                "public String staking(@RequestParam String miner, Double dollar, String password, RedirectAttributes redirectAttrs)\n");
+        urls.add("2.http://localhost:8082/unstaking\n" +
+                "Similar to the /staking method, only it removes your money from staking and returns it\n" +
+                "into the dollar balance.\n" +
+                "public String unstaking(@RequestParam String miner, Double dollar, String password, RedirectAttributes redirectAttrs)\n" +
+                "\n" +
+                "\n");
+        urls.add("More details about the transaction\n" +
+                "1. A transaction object is created and initialized\n" +
+                "International_Trade_Union.entity.DtoTransaction\n" +
+                "2. Then toSign is called on this object\n" +
+                "This is how we sign\n" +
+                "PrivateKey privateKey = UtilsSecurity.privateBytToPrivateKey(base.decode(password));byte[] sign = UtilsSecurity.sign(privateKey, dtoTransaction.toSign());\n" +
+                "3. Your transaction is already initialized with a signature\n" +
+                "dtoTransaction.setSign(sign);\n" +
+                "After which this transaction can be sent.\n" +
+                "The choice of states for your transaction is like this\n" +
+                "public enum VoteEnum { YES, NO, REMOVE_YOUR_VOICE, STAKING, UNSTAKING}\n" +
+                "\n");
+        urls.add("Classpublic class ServerController\n" +
+                "1.http://localhost:8082/server\n" +
+                "This is how you change on your wallet which server you want to tune into.\n" +
+                "public String server(@RequestParam String host)\n");
+
+        model.addAttribute("urls", urls);
+        return "wallet_and_node_url";
+    }
+
+    @GetMapping("/charter")
+    public String charter(Model model){
+        model.addAttribute("title", "charter");
+        return "charter";
+    }
+    @GetMapping("/vision")
+    public String vision_of_the_future(Model model){
+
+        return "vision";
+    }
 }

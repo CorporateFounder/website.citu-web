@@ -92,6 +92,75 @@
         screen -r //restores .jar session to the screen
     </h5>
 
+    <h5>Install PuTTy in your windows PC or something else for remote control.(For VPS server)
+
+        Installation on Ubuntu 22.04 step by step
+        -------------------------------------------
+        You must be logged in as the "root" user
+
+        apt update && sudo apt upgrade
+
+        apt install openjdk-19-jre-headless (or another)
+
+        apt install curl
+
+        apt install screen
+
+        apt install ufw
+
+        ufw allow 82/tcp  (or put here your server port)
+
+        ufw allow 22/tcp  (ssh access)
+
+        ufw allow 123/udp (NTP access)
+
+        ufw enable
+
+        ufw status  (checking the rules, your port must be allowed)
+
+        apt install chrony
+
+        sudo nano /etc/chrony/chrony.conf
+        (change the NTP provider in the configuration file to this:)
+        server 0.ch.pool.ntp.org
+        server 1.ch.pool.ntp.org
+        server 2.ch.pool.ntp.org
+        server 3.ch.pool.ntp.org
+
+        crtl+O, Enter, ctrl+x.
+
+        systemctl restart chrony
+
+        chronyc makestep (manual time sync)
+
+        systemctl enable chrony
+
+        --------------------------------------------------------------------
+        ----------------------------------------------------------------------
+        Download .jar
+
+        curl -L -o unitedStates-0.0.64-SNAPSHOT.jar https://github.com/CorporateFounder/unitedStates_storage/blob/master/target/unitedStates-0.0.64-SNAPSHOT.jar?raw=true
+
+        create a "server" folder at location "/" (parent folder) and copy "resources" folder to the folder "server" using FileZilla or similar.
+        In the parent folder labeled "/" (You can see the "root", "etc",... folders in this folder.)
+        ------------------------------------------------------------------------------
+        (After copying is complete)
+        cd /
+        screen
+        2x put key SPACE
+        -------------------------------------------------------------------------
+        put command where u need change ??? to your IP address and PORT number.
+        java -Dserver.port=??? -Dserver.address=???.???.???.??? -jar unitedStates-0.0.0-SNAPSHOT.jar
+        -------------------------------------------------------------------------------------------------
+        U can close PuTTy. (The screen command will make the .jar run in the background.)
+        -------------------
+
+        After relogin to PuTTy
+        ------------------------
+        screen -r (restores .jar session to the screen)
+
+
+    </h5>
     <h4 error/>
     <img th:src="@{/server/error.png}"/>
     <h4 normal/>
