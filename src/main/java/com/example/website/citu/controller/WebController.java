@@ -156,14 +156,14 @@ public class WebController {
                         "Council of Corporate Judges of 7 members.\n" +
                         "5. The Council of Corporate Judges is also elected by the network.\n" +
                         "6. Every approximately 100 seconds, a block is approved in the network.\n" +
-                        "7. The reward for each block is calculated using this formula: (5+ coefficient + (difficulty * 0.2)) * multiplier\n" +
-                        "- multiplier: initially in the first year it has a value of 29, but each year it decreases by one until it reaches one.\n" +
-                        "- coefficient: can be 3 or 0, if your block that you are trying to add has a sum of transactions and the number of transactions is greater than in the previous block, then 3, otherwise 0.\n" +
-                        "- coefficient: But transactions rewarding the founder and rewarding the miner are not taken into account.\n" +
-                        "- difficulty: difficulty can be from 17 to 100, each participant sets the difficulty himself before mining.\n" +
-                        "- complexity: we take the hash of the block, and count the number of ones in the hash bits, the hash must be lower than or equal to the target\n" +
-                        "- goal: the goal is 100 minus the difficulty set by the miner.\n" +
-                        "- mining: uses sha256 for hashing\n" +
+                        "7. The reward for each block is calculated using this formula: (5+ coefficient + (difficulty * 0.2)) * multiplier.\n" +
+                        " multiplier: initially in the first year it has a value of 29, but each year it decreases by one until it reaches one.\n" +
+                        " coefficient: can be 3 or 0, if your block that you are trying to add has a sum of transactions and the number of transactions is greater than in the previous block, then 3, otherwise 0.\n" +
+                        " coefficient: But transactions rewarding the founder and rewarding the miner are not taken into account.\n" +
+                        " difficulty: difficulty can be from 17 to 100, each participant sets the difficulty himself before mining.\n" +
+                        " complexity: we take the hash of the block, and count the number of ones in the hash bits, the hash must be lower than or equal to the target\n" +
+                        " goal: the goal is 100 minus the difficulty set by the miner.\n" +
+                        " mining: uses sha256 for hashing\n" +
                         "\n" +
                         "Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE.\n" +
                         "The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for\n" +
@@ -412,8 +412,9 @@ public class WebController {
                 "Afterwards, each node contacts random 7 nodes and compares the total\n" +
                 "big random (of all blocks of a given blockchain) of your blockchain and the blockchain of another node.\n" +
                 "If on another node the total big random is greater than on yours + the complexity of the last block, then your server will delete blocks up to the intersection point,\n" +
-                "and will add blocks of this node. The difference between blocks must be at least 100 seconds.\nThe mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1. The multiplier can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block, excluding the founder's reward and the miner's reward. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address from which the reward is sent to the founder and miner. http://94.87.236.238:82/winners this URL shows the last winner on this node, but does not show the winner if it was taken from another server and to see the last final winner you need /prevBlock\n" +
-                "P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse)." +
+                "and will add blocks of this node. The difference between blocks must be at least 100 seconds.\nThe mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1. The multiplier can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block, excluding the founder's reward and the miner's reward. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address from which the reward is sent to the founder and miner. http://194.87.236.238:82/winners this URL shows the last winner on this node, but does not show the winner if it was taken from another server and to see the last final winner you need /prevBlock\n" +
+                "IMPORTANT!!! The founder's reward from each block is equal to 10% of the miner's reward. This is necessary so that we can finance development. But these coins are created additionally, that is, they are not taken from the miner, but additional coins are created." +
+                " account founder nNifuwmFZr7fnV1zvmpiyQDV5z7ETWvqR6GSeqeHTY43 P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse)." +
                 "be sure, if you use your own server, you can configure your wallet on your server by going to the settings and writing your server there, without the slash at the end.\n");
         model.addAttribute("randomAndStakingText", "Story:\n" +
                 "a special block was created on index 24281, with the help of which we created 12,000,000 coins and these coins were given to the participants, since the blockchain was broken by an attack in 40 days\n" +
