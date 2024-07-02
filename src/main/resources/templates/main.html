@@ -35,11 +35,13 @@
 </div>
 <div class="alert alert-info mt-2">
     <h6><a th:href="${discord}" th:text="'discord: '+${discord}"></a></h6>
+    <h6><a th:href="${telegram}" th:text="'telegram channel: '+${telegram}"></a></h6>
     <h6><a th:href="${telegram}" th:text="'telegram: '+${telegram}"></a></h6>
-    <h6><a th:href="'https://twitter.com/' + ${twitter.substring(1)}" th:text="'twitter: ' +${twitter}"></a></h6>
+    <h6><a th:href="'https://t.me/' + ${telegramUsername}" th:text="'Telegram: @' + ${telegramUsername}"></a></h6>
+    <h6><a th:href="'https://twitter.com/' + ${twitter.substring(0)}" th:text="'twitter: ' +${twitter}"></a></h6>
     <h6><a th:href="${github}" th:text="'wallet: '+${github}"></a></h6>
     <h6><a th:href="${storage}" th:text="'global server: '+${storage}"></a></h6>
-</div>
+    <h6><a th:href="'mailto:' + ${gmail}" th:text="'gmail: ' + ${gmail}"></a></h6>
 
 <div class="alert alert-info mt-2">
     <h1 th:text="${Summary}"/>

@@ -134,9 +134,12 @@ public class WebController {
         model.addAttribute("Summary", "Summary and Benefits");
         model.addAttribute("discord", "https://discord.gg/MqkvC3SGHH");
         model.addAttribute("telegram", "https://t.me/citu_coin");
+        model.addAttribute("telegramUsername", "Negmat_Tuychiev"); // замените пробелы на подчеркивания
         model.addAttribute("github", "https://github.com/CorporateFounder/unitedStates_final");
         model.addAttribute("storage", "https://github.com/CorporateFounder/unitedStates_storage");
-        model.addAttribute("twitter", "@citu4030");
+        model.addAttribute("twitter", "citu4030");
+        model.addAttribute("gmail", "citu4030@gmail.com");
+
 
 
 
