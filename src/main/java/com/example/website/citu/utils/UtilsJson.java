@@ -1,5 +1,6 @@
 package com.example.website.citu.utils;
 
+import com.example.website.citu.entity.Account;
 import com.example.website.citu.entity.InfoDificultyBlockchain;
 import com.example.website.citu.model.Block;
 import com.example.website.citu.model.DtoTransaction;
@@ -14,11 +15,16 @@ import java.util.List;
 import java.util.Set;
 
 public class UtilsJson {
+    private static ObjectMapper mapper = new ObjectMapper();
     public static String objToStringJson(Object object) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         StringWriter writer = new StringWriter();
         mapper.writeValue(writer, object);
         return writer.toString();
+    }
+    public static Account jsonToAccount(String json) throws JsonProcessingException {
+
+        return mapper.readValue(json, Account.class);
     }
 
     public static Object jsonToClass(String json, Class cls) throws JsonProcessingException {
@@ -52,5 +58,9 @@ public class UtilsJson {
         return mapper.readValue(json, InfoDificultyBlockchain.class);
     }
 
+    public static List<Block> jsonToListBLock(String json) throws JsonProcessingException {
+
+        return mapper.readValue(json, new TypeReference<List<Block>>(){});
+    }
 
 }

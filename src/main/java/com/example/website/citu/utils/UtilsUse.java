@@ -3,6 +3,8 @@ package com.example.website.citu.utils;
 import com.example.website.citu.model.Block;
 import com.example.website.citu.model.DtoTransaction;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -93,5 +95,12 @@ public class UtilsUse {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
     }
-
+    public static long calculateScore(BigDecimal x, BigDecimal x0) {
+        if (x.compareTo(BigDecimal.ZERO) <= 0) {
+            return 0;
+        }
+        BigDecimal log2 = new BigDecimal(Math.log(2));
+        BigDecimal score = BigDecimal.valueOf(Math.ceil(Math.log(x.divide(x0, RoundingMode.HALF_UP).doubleValue()) / log2.doubleValue()));
+        return Math.min(400, score.longValue());
+    }
 }
