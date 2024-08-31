@@ -3,6 +3,7 @@ package com.example.website.citu.entity;
 import com.example.website.citu.model.DtoTransaction;
 import com.example.website.citu.model.utils.base.Base;
 import com.example.website.citu.model.utils.base.Base58;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.IOException;
@@ -21,8 +22,14 @@ import java.util.Objects;
 @Data
 public class Account implements Cloneable {
     private String account;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalDollarBalance;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalStockBalance;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalStakingBalance;
 
     public Account(String account, BigDecimal digitalDollarBalance) {

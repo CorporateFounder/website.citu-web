@@ -1,6 +1,7 @@
 package com.example.website.citu.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 
@@ -20,8 +21,14 @@ public class EntityAccount {
     }
 
     private String account;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalDollarBalance;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalStockBalance;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.0000000000")
     private BigDecimal digitalStakingBalance;
 
     public EntityAccount() {

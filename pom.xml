@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>website.citu</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>website.citu</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -71,7 +71,11 @@
 			<artifactId>bootstrap</artifactId>
 			<version>5.2.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.9.1</version>
+		</dependency>
 
 	</dependencies>
 

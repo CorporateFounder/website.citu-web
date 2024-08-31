@@ -75,7 +75,11 @@ public class WebController {
         }
 
         String startReduce = getResult("/v28Index", "you can't give start index global server");
+
+        String cleanedValue = "";
         String totalDollars = getResult("/totalDollars", "you can't give total dollars global server");
+        cleanedValue = totalDollars.replaceAll("\"", "");
+        totalDollars = cleanedValue;
         String totalAccounts = getResult("/allAccounts", "you can't give total accounts global server");
         String multiplier = getResult("/multiplier", "you can't give multiplier global server");
         String daysReduce = getResult("/dayReduce", "you can't give day reduce global server");
@@ -95,7 +99,11 @@ public class WebController {
         String totalTransactionsJson = getResult("/totalTransactionsDay", "you can't give total transactions day global server");
         int totalTransactionsDay = Integer.valueOf(totalTransactionsJson);
         String totalTransactionsSumJson = getResult("/totalTransactionsSum", "you can't give total transactions sum global server");
-        double totalTransactionsDaySum =  Double.valueOf(totalTransactionsSumJson);
+
+        cleanedValue = totalTransactionsSumJson.replaceAll("\"", "");
+        System.out.println("cleaneValue: " + cleanedValue);
+        double totalTransactionsDaySum =  Double.parseDouble(cleanedValue);
+        System.out.println("totalTransactionsDaySum: " + totalTransactionsDaySum);
 
         double targetTotalSum = prev.getDtoTransactions().stream()
                 .filter(t->!t.getSender().equals(BASIS_ADDRESS))
@@ -427,6 +435,17 @@ public class WebController {
                 "Before this index, the complexity algorithm changed and its details are in the UtilsBlock class method difficulty.\n" +
                 "Before this index, the mining algorithm also changed. Before index 151940, the mining algorithm was also different and the details are in the Block class as well as in related classes,\n" +
                 "UtilsUse.\n");
+        model.addAttribute("newReward", "friends, starting from index 295316 and from index 296583 the mining reward has been increased, as the minimum sending amount is now 0.01 coin. Here is the new formula\n" +
+                "if (index > Seting.ALGORITM_MINING ) {\n" +
+                "moneyFromDif = (difficulty - DIFFICULT_MONEY) / 2;\n" +
+                "moneyFromDif = moneyFromDif > 0 ? moneyFromDif : 0;\n" +
+                "}\n" +
+                "\n" +
+                "minerRewards = (Seting.V28_REWARD + G + (difficulty * Seting.V34_MINING_REWARD) + moneyFromDif) * money;\n" +
+                "if(index > ALGORITM_MINING_2){\n" +
+                "minerRewards += moneyFromDif * (MULT + G);\n" +
+                "digitalReputationForMiner += moneyFromDif * (MULT + G);\n" +
+                "} V28_REWARD = 5. G = 3 if the number and amount of transactions of the current block relative to the previous block is higher, then it is equal to 3, otherwise zero. G is the coefficient. difficulty - the difficulty of the block, DIFFICULT_MONEY - 22. V34_MINING_REWARD - 0.2. money - the multiplier is 29, but decreases by 1 every year, but not lower than 1. MULT - is equal to 6. These changes are made to compensate for the high complexity, as well as to stabilize the rate, which will give our coin a rate of 10 dollars or higher.");
 
         List<Map<String, Object>> scoringTable = new ArrayList<>();
         scoringTable.add(Map.of("index", 1, "value", 11));

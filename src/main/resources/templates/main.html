@@ -24,7 +24,7 @@
 
 
     <h6 th:text="'total transactions in day: ' +${totalTransactionsDay}"/>
-    <h6 th:text="'total dollar sum transactions in day: '+${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'COMMA', 16, 'POINT')}"/>
+    <h6 th:text="'total dollar sum transactions in day: ' + ${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'COMMA', 2, 'POINT')}"/>
 
 
     <h6 th:text="'Every year the multiplier decreases by one, starting from this block ' +${startReduce}"/>
