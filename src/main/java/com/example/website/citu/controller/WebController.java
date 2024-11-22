@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.NoRouteToHostException;
 import java.net.SocketException;
 import java.security.InvalidKeyException;
@@ -370,7 +371,7 @@ public class WebController {
     }
 
     @GetMapping("/how_to_mining")
-    public String howToMining(Model model) {
+    public String howToMining(Model model, @RequestParam(defaultValue = "0.0") Double staking) {
         model.addAttribute("title", "How to mining");
         model.addAttribute("noteText", "Block mining NOTE!!! THE BEING BLOCK HAS INDEX = 1, THE SAME AS THE ONE FOLLOWING IT. SO IN THIS BLOCKCHAIN \u200B\u200BTHERE ARE TWO BLOCKS WITH IDENTICAL INDICES, BUT WITH DIFFERENT CONTENT. THIS IS ABSOLUTELY NORMAL AND THIS IS THE FEATURE OF THIS BLOCKCHAIN. A unique mining system is implemented here, which stimulates a smooth increase in the value of the coin, preventing it from falling much with the onset of winter and is resistant to strong volatility, but at the same time the value increases. For mine, you need to go to localhost:8082/, multithreading is automatically turned on there and the number of threads is automatically turned on. Then go back to the menu in the top right corner and click on “Get Locked”, click on the “Start” button and then click on “International Union Corporation”, in the information window you should see “Is Mining Proper”. the update is also correct, which means that the system is loading the blockchain. Nothing will be displayed in the console, because if we display information there, mining will slow down six times for single-threaded and multi-threaded mining. If you want to turn off mining, click the “Stop” button twice, then click on the Corporation Intertation Union inscription, if everything stopped correctly, the information window will disappear. Under no circumstances should you interrupt the mining process by disabling the command line during mining or updating, as at this point the Blockchain and balance will be overwritten. When the information window goes out, mining will stop. A block is valid if the hash matches the target value according to this formula");
         model.addAttribute("instructionsText", "In the get a block tab (http://localhost:8082/mining) you can make staking or withdraw money from staking. By filling in all fields.\n" +
@@ -450,72 +451,105 @@ public class WebController {
         model.addAttribute("newBigRandom", "Friends, the latest versions work stably and display the balance stably, but we noticed that some abuse points for the number of transactions, and create transaction spam using a script to get more points. Since the number of transactions does not play on mining in any way, and hashing has the same speed in any case, now big random points from transactions will be accrued from the total amount, similarly if this money was in your staking. Thus, it is not the number that plays more, but the total amount, but the calculation of the coefficient remains the same, where both the number and the amount are taken into account. The maximum number of points from transactions you can get int diffLimit = (int) (actual.getHashCompexity() - 19);\n" +
                 "diffLimit = diffLimit >= 0 ? diffLimit : 0; // New formula for the maximum number of points for transactions\n" +
                 "double maxTransactionPoints = diffLimit * 3 + mineScore; where mineScore is the minescore you have in staking, and you can't get more points than here. Download wallet 0.32.127, and server 0.0.298. new rules will come into effect from block index 299845");
-        List<Map<String, Object>> scoringTable = new ArrayList<>();
-        scoringTable.add(Map.of("index", 1, "value", 11));
-        scoringTable.add(Map.of("index", 2, "value", 21));
-        scoringTable.add(Map.of("index", 3, "value", 41));
-        scoringTable.add(Map.of("index", 4, "value", 81));
-        scoringTable.add(Map.of("index", 5, "value", 161));
-        scoringTable.add(Map.of("index", 6, "value", 321));
-        scoringTable.add(Map.of("index", 7, "value", 641));
-        scoringTable.add(Map.of("index", 8, "value", 1281));
-        scoringTable.add(Map.of("index", 9, "value", 2561));
-        scoringTable.add(Map.of("index", 10, "value", 5121));
-        scoringTable.add(Map.of("index", 11, "value", 10241));
-        scoringTable.add(Map.of("index", 12, "value", 20481));
-        scoringTable.add(Map.of("index", 13, "value", 40961));
-        scoringTable.add(Map.of("index", 14, "value", 81921));
-        scoringTable.add(Map.of("index", 15, "value", 163841));
-        scoringTable.add(Map.of("index", 16, "value", 327681));
-        scoringTable.add(Map.of("index", 17, "value", 655361));
-        scoringTable.add(Map.of("index", 18, "value", 1310721));
-        scoringTable.add(Map.of("index", 19, "value", 2621441));
-        scoringTable.add(Map.of("index", 20, "value", 5242881));
-        scoringTable.add(Map.of("index", 21, "value", 10485761));
-        scoringTable.add(Map.of("index", 22, "value", 20971521));
-        scoringTable.add(Map.of("index", 23, "value", 41943041));
-        scoringTable.add(Map.of("index", 24, "value", 83886081));
-        scoringTable.add(Map.of("index", 25, "value", 167772161));
-        scoringTable.add(Map.of("index", 26, "value", 335544321));
-        scoringTable.add(Map.of("index", 27, "value", 671088641));
-        scoringTable.add(Map.of("index", 28, "value", 1342177281));
-        scoringTable.add(Map.of("index", 29, "value", 2684354561L));
-        scoringTable.add(Map.of("index", 30, "value", 5368709121L));
-        scoringTable.add(Map.of("index", 31, "value", 10737418241L));
-        scoringTable.add(Map.of("index", 32, "value", 21474836481L));
-        scoringTable.add(Map.of("index", 33, "value", 42949672961L));
-        scoringTable.add(Map.of("index", 34, "value", 85899345921L));
-        scoringTable.add(Map.of("index", 35, "value", 171798691841L));
-        scoringTable.add(Map.of("index", 36, "value", 343597383681L));
-        scoringTable.add(Map.of("index", 37, "value", 687194767361l));
-        scoringTable.add(Map.of("index", 38, "value", 1374389534721l));
-        scoringTable.add(Map.of("index", 39, "value", 2748779069441l));
-        scoringTable.add(Map.of("index", 40, "value", 5497558138881l));
-        scoringTable.add(Map.of("index", 41, "value", 10995116277761l));
-        scoringTable.add(Map.of("index", 42, "value", 21990232555521l));
-        scoringTable.add(Map.of("index", 43, "value", 43980465111041l));
-        scoringTable.add(Map.of("index", 44, "value", 87960930222081l));
-        scoringTable.add(Map.of("index", 45, "value", 175921860444161l));
-        scoringTable.add(Map.of("index", 46, "value", 351843720888321l));
-        scoringTable.add(Map.of("index", 47, "value", 703687441776641l));
-        scoringTable.add(Map.of("index", 48, "value", 1407374883553281l));
-        scoringTable.add(Map.of("index", 49, "value", 2814749767106561l));
-        scoringTable.add(Map.of("index", 50, "value", 5629499534213121l));
-        scoringTable.add(Map.of("index", 51, "value", 11258999068426241l));
-        scoringTable.add(Map.of("index", 52, "value", 22517998136852481l));
-        scoringTable.add(Map.of("index", 53, "value", 45035996273704961l));
-        scoringTable.add(Map.of("index", 54, "value", 90071992547409921l));
-        scoringTable.add(Map.of("index", 55, "value", 180143985094819841l));
-        scoringTable.add(Map.of("index", 56, "value", 360287970189639681l));
-        scoringTable.add(Map.of("index", 57, "value", 720575940379279361l));
-        scoringTable.add(Map.of("index", 58, "value", 1441151880758558721l));
-        scoringTable.add(Map.of("index", 59, "value", 2882303761517117441l));
-        scoringTable.add(Map.of("index", 60, "value", 5764607523034234881l));
+
+        model.addAttribute("udatingBigRandom", "starting with index 286892 each difficulty level gives 25 points, staking, the first point costs 1 coin, each subsequent point in staking requires twice as much, that is, for three points you need to have 8 coins in staking. Also randomness goes from 0 to 150, where seed is your hash block. The first point requires 1.01, in staking, the second point, 2.01, the third point 4.01, the fourth point, 8.01.");
 
         // add more entries as needed
-
-        model.addAttribute("scoringTable", scoringTable);
+        long score = UtilsUse.calculateScore(BigDecimal.valueOf(staking), BigDecimal.valueOf(1.0));
+        model.addAttribute("score", score);
         return "how_to_mining";
+    }
+
+    @PostMapping("/how_to_mining")
+    public String updateStaking(Model model, @RequestParam Double staking) {
+        model.addAttribute("title", "How to mining");
+        model.addAttribute("noteText", "Block mining NOTE!!! THE BEING BLOCK HAS INDEX = 1, THE SAME AS THE ONE FOLLOWING IT. SO IN THIS BLOCKCHAIN \u200B\u200BTHERE ARE TWO BLOCKS WITH IDENTICAL INDICES, BUT WITH DIFFERENT CONTENT. THIS IS ABSOLUTELY NORMAL AND THIS IS THE FEATURE OF THIS BLOCKCHAIN. A unique mining system is implemented here, which stimulates a smooth increase in the value of the coin, preventing it from falling much with the onset of winter and is resistant to strong volatility, but at the same time the value increases. For mine, you need to go to localhost:8082/, multithreading is automatically turned on there and the number of threads is automatically turned on. Then go back to the menu in the top right corner and click on “Get Locked”, click on the “Start” button and then click on “International Union Corporation”, in the information window you should see “Is Mining Proper”. the update is also correct, which means that the system is loading the blockchain. Nothing will be displayed in the console, because if we display information there, mining will slow down six times for single-threaded and multi-threaded mining. If you want to turn off mining, click the “Stop” button twice, then click on the Corporation Intertation Union inscription, if everything stopped correctly, the information window will disappear. Under no circumstances should you interrupt the mining process by disabling the command line during mining or updating, as at this point the Blockchain and balance will be overwritten. When the information window goes out, mining will stop. A block is valid if the hash matches the target value according to this formula");
+        model.addAttribute("instructionsText", "In the get a block tab (http://localhost:8082/mining) you can make staking or withdraw money from staking. By filling in all fields.\n" +
+                "NOTE: IMPORTANT!!!!!!\n" +
+                "IF YOU CALL http://localhost:8082/testCalculate in the console you will see a list of accounts, and the balance there is different. Be sure to report this\n" +
+                "to the server owner, since the balance either on your wallet or on the server is not displayed correctly and he will not be able to send money.\n" +
+                "look at the picture. If the server owner has discovered this problem, then he should update the resources folder and you don’t have to worry,\n" +
+                "if the problem is with the server, all the owners are exceptional professionals and know their stuff.\n" +
+                "P.S. (At the moment, in addition to the founder, you can also contact @suprtrupr and @caspar2114 on discord, since they are one of the best in\n" +
+                "these matters and can help you when I don’t have time.)");
+        model.addAttribute("importantInfoText", "In this system, the block with the most big random wins. Big random is a number that is formed from three components.\n" +
+                "1. Difficulty\n" +
+                "2. Random number\n" +
+                "3. staking\n" +
+                "\n" +
+                "up to index 247867, each difficulty level gave 9 points. difficult * 9.\n" +
+                "after 247867 each difficulty level gives 55 points. Difficult * 55.\n" +
+                "\n" +
+                "up to index 247867 hash as a seed could give a number from 0 to 55.\n" +
+                "after 247867 hash as a seed, it gives a number from 0 to 135.\n" +
+                "\n" +
+                "up to index 247867, initial staking cost 1 coin, first point.\n" +
+                "After the index 247867, initial staking costs 10 coins, the first point.\n" +
+                "\n" +
+                "Now in more detail: this is the formula by which a single score is calculated.\n" +
+                "int result = deterministicRandom.nextInt(limit);\n" +
+                "result = (int) ((int) (result + (actual.getHashCompexity() * waight)) + calculateScore(miner.getDigitalStakingBalance(), number)\n" +
+                "\n" +
+                "1. Difficulty.\n" +
+                "Each participant can choose the difficulty from 17 to 100.\n" +
+                "Each block has a hash, where the sum of the ones in bits must be equal to or lower than the target.\n" +
+                "The goal is calculated as 100 - difficulty (100 minus difficulty.).\n" +
+                "Each difficulty level gives 55 points. That is, if you set the difficulty to 20, then the difficulty points will be equal to 20 * 55 = 1100.\n" +
+                "\n" +
+                "2. Random number.\n" +
+                "The hash of the block becomes the seed to generate a random number from 0 to 135.\n" +
+                "\n" +
+                "3. Staking.\n" +
+                "Each subsequent point costs twice as much and is calculated using this formula:\n" +
+                " public static long calculateScore(double x, double x0) {\n" +
+                " if (x <= 0) {\n" +
+                " return 0;\n" +
+                " }\n" +
+                " double score = Math.ceil(Math.log(x / x0) / Math.log(2));\n" +
+                " return Math.min(400, (long) score);\n" +
+                " }\n" +
+                "\n" +
+                "but this number cannot be more than 400.\n All points from the three parameters are summed up.\n" +
+                "Each node (server) selects one block with the highest number of points every 100 seconds.\n" +
+                "Afterwards, each node contacts random 7 nodes and compares the total\n" +
+                "big random (of all blocks of a given blockchain) of your blockchain and the blockchain of another node.\n" +
+                "If on another node the total big random is greater than on yours + the complexity of the last block, then your server will delete blocks up to the intersection point,\n" +
+                "and will add blocks of this node. The difference between blocks must be at least 100 seconds.\nThe mining reward is calculated using the formula (5+coefficient + (difficulty * 0.2)) * multiplier. Where the multiplier is 29, but decreases by one each year until it reaches 1. The multiplier can be 0 or 3; For it to become equal to 3, two conditions must be met. 1. The sum of all transactions in the current block must be greater than in the previous block, excluding the founder's reward and the miner's reward. 2. The number of different senders in this block must be greater than in the previous block, not counting the base address from which the reward is sent to the founder and miner. http://194.87.236.238:82/allwinners this URL shows the last winner on this node, but does not show the winner if it was taken from another server and to see the last final winner you need /prevBlock\n" +
+                "IMPORTANT!!! The founder's reward from each block is equal to 10% of the miner's reward. This is necessary so that we can finance development. But these coins are created additionally, that is, they are not taken from the miner, but additional coins are created." +
+                " account founder nNifuwmFZr7fnV1zvmpiyQDV5z7ETWvqR6GSeqeHTY43 P.S. (before this index 187200, the reward was also different and the details are Mining and UtilsUse)." +
+                "be sure, if you use your own server, you can configure your wallet on your server by going to the settings and writing your server there, without the slash at the end.\n");
+        model.addAttribute("randomAndStakingText", "Story:\n" +
+                "a special block was created on index 24281, with the help of which we created 12,000,000 coins and these coins were given to the participants, since the blockchain was broken by an attack in 40 days\n" +
+                "and with the help of this address jPjuyLStHTCzwYt9J7R5M7pGUKshfcmEbtE3zVvCBE52 this money was returned to all participants who lost their coins.\n" +
+                "The bug in the code that allowed this attack was also finally fixed, and now the system is completely safe.\nStory:\n" +
+                "Starting from the index int V34_NEW_ALGO = 187200, the difficulty is selected by participants from 17 to 100.\n" +
+                "Before this index, the complexity algorithm changed and its details are in the UtilsBlock class method difficulty.\n" +
+                "Before this index, the mining algorithm also changed. Before index 151940, the mining algorithm was also different and the details are in the Block class as well as in related classes,\n" +
+                "UtilsUse.\n");
+        model.addAttribute("newReward", "friends, starting from index 295316 and from index 296583 the mining reward has been increased, as the minimum sending amount is now 0.01 coin. Here is the new formula\n" +
+                "if (index > Seting.ALGORITM_MINING ) {\n" +
+                "moneyFromDif = (difficulty - DIFFICULT_MONEY) / 2;\n" +
+                "moneyFromDif = moneyFromDif > 0 ? moneyFromDif : 0;\n" +
+                "}\n" +
+                "\n" +
+                "minerRewards = (Seting.V28_REWARD + G + (difficulty * Seting.V34_MINING_REWARD) + moneyFromDif) * money;\n" +
+                "if(index > ALGORITM_MINING_2){\n" +
+                "minerRewards += moneyFromDif * (MULT + G);\n" +
+                "digitalReputationForMiner += moneyFromDif * (MULT + G);\n" +
+                "} V28_REWARD = 5. G = 3 if the number and amount of transactions of the current block relative to the previous block is higher, then it is equal to 3, otherwise zero. G is the coefficient. difficulty - the difficulty of the block, DIFFICULT_MONEY - 22. V34_MINING_REWARD - 0.2. money - the multiplier is 29, but decreases by 1 every year, but not lower than 1. MULT - is equal to 6. These changes are made to compensate for the high complexity, as well as to stabilize the rate, which will give our coin a rate of 10 dollars or higher.");
+
+        model.addAttribute("newBigRandom", "Update:\n" +
+                "Friends, the latest versions work stably and display the balance stably, but we noticed that some people abuse the points for the number of transactions and create spam transactions using a script to get more points. Since the number of transactions does not play a role in mining, and hashing has the same speed anyway, now large random points from transactions will be awarded from the total amount, similarly if you had this money in staking. Thus, it is not the number that plays more, but the total amount, but the calculation of the coefficient remains the same, where both the number and the amount are taken into account. The maximum number of points from transactions that you can get int diffLimit = (int) (actual.getHashCompexity() - 19); diffLimit = diffLimit >= 0 ? diffLimit : 0; // New formula for the maximum number of points for transactions double maxTransactionPoints = diffLimit * 3 + mineScore; where mineScore is your minescore in staking, and you can't get more points than this. Download wallet 0.32.129 and server 0.0.300. new rules will come into effect from block index 299845 example: if you have 0.81 coins in your block, it will give you an additional 3 points, as if you had these coins additionally in staking. the first point is worth 0.1, that is, the sum in all transactions of your block must be greater than 0.1, that is 0.11. For the second point 0.21 and for the third 0.41 and so on.");
+
+        model.addAttribute("udatingBigRandom", "starting with index 286892 each difficulty level gives 25 points, staking, the first point costs 1 coin, each subsequent point in staking requires twice as much, that is, for three points you need to have 8 coins in staking. Also randomness goes from 0 to 150, where seed is your hash block. The first point requires 1.01, in staking, the second point, 2.01, the third point 4.01, the fourth point, 8.01.");
+
+
+        // add more entries as needed
+        long score = UtilsUse.calculateScore(BigDecimal.valueOf(staking), BigDecimal.valueOf(1.0));
+        model.addAttribute("score", score);
+        model.addAttribute("staking", staking);
+        // Add other model attributes if needed.
+        return "how_to_mining"; // This should match the name of your HTML template file.
     }
 
     @GetMapping("/how_to_transaction")
@@ -708,5 +742,11 @@ public class WebController {
     public String vision_of_the_future(Model model){
 
         return "vision";
+    }
+
+    @GetMapping("white_papper")
+    public String white_papper(Model model){
+        model.addAttribute("title", "white papper");
+        return "white_papper";
     }
 }

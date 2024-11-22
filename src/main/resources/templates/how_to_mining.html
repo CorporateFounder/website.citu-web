@@ -28,22 +28,27 @@
         <h6>Updating: </h6>
         <p th:text="${newBigRandom}"></p>
 
-        <h6>Scoring Table:</h6>
+        <h6>Updating: </h6>
+        <p th:text="${udatingBigRandom}"></p>
 
-        <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th>Score</th>
-                <th>Minimum value `x` + 1</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="score : ${scoringTable}">
-                <td th:text="${score.index}"></td>
-                <td th:text="${score.value}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <h6>new updating: Milton fridman: </h6>
+        <a href="/white_papper" class="btn btn-info mt-3">View White Paper</a>
+
+        <h6>Calculator score staking</h6>
+        <p>Your staking: <span th:text="${staking}"></span></p>
+        <p>Your calculated score: <span th:text="${score}"></span></p>
+
+        <!-- Форма для обновления значения staking -->
+        <form action="#" th:action="@{/how_to_mining}" method="post">
+            <div class="mb-3">
+                <label for="stakingInput" class="form-label">Enter new staking value:</label>
+                <input type="number" class="form-control" id="stakingInput" name="staking" step="0.01" value="0.0">
+            </div>
+            <button type="submit" class="btn btn-primary">Update staking</button>
+        </form>
+    </div>
+</div>
+
     </div>
 </div>
 <img  th:src="@{/mining/mining.png}"/>

@@ -1,18 +1,19 @@
 package com.example.website.citu.controller;
 
+import com.example.website.citu.entity.SignRequest;
 import com.example.website.citu.entity.SubBlockchainEntity;
 import com.example.website.citu.model.Block;
 import com.example.website.citu.model.DtoTransaction;
+
+import com.example.website.citu.model.StatusTransaction;
 import com.example.website.citu.utils.UtilUrl;
 import com.example.website.citu.utils.UtilsJson;
 import com.example.website.citu.utils.UtilsUse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -21,17 +22,20 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.example.website.citu.controller.WebController.address;
 
 
 @Controller
 public class ExplorerController {
 
     private static boolean IS_TEST = false;
-    private static String address = IS_TEST?"http://localhost:8083" : "http://194.87.236.238:82";
+    private static String address = IS_TEST ? "http://localhost:8083" : "http://194.87.236.238:82";
 
     public static String getAddress() {
         return address;
@@ -56,7 +60,7 @@ public class ExplorerController {
             String sizeStr = UtilUrl.readJsonFromUrl(address + "/size");
             Integer size = Integer.valueOf(sizeStr);
 
-            int start = size-different, end = size-1;
+            int start = size - different, end = size - 1;
 
             System.out.println("start: " + start);
             System.out.println("end: " + end);
@@ -64,7 +68,7 @@ public class ExplorerController {
 
             String subBlockchainJson = UtilsJson.objToStringJson(subBlockchainEntity);
 
-            String jsonList = UtilUrl.getObject(subBlockchainJson,   address + "/sub-blocks");
+            String jsonList = UtilUrl.getObject(subBlockchainJson, address + "/sub-blocks");
 
             blocks = UtilsJson.jsonToListBlock(jsonList);
             blocks = blocks.stream().sorted(Comparator.comparing(Block::getIndex).reversed())
@@ -83,28 +87,32 @@ public class ExplorerController {
 
     @PostMapping("/conductor")
     public String conductor(
-            @RequestParam(value = "info", defaultValue = "0") String info,
+            @ModelAttribute SignRequest signRequest,
             @RequestParam(required = false) String page,
             RedirectAttributes redirectAttrs,
             HttpSession session) throws IOException {
+        String info = signRequest.getSign();
+        if (info.isEmpty()) {
+            info = "0";
+        }
         int different = 10;
         //получить список блоков
         String sizeStr = UtilUrl.readJsonFromUrl(address + "/size");
         Integer size = Integer.valueOf(sizeStr);
 
-        int start = size-different, end = size-1;
+        int start = size - different, end = size - 1;
         if (page != null) {
 
             String[] str = page.split(":");
             System.out.println("button push: " + str[0]);
             int index = Integer.valueOf(str[1]);
-            if(str[0].equals("next")){
+            if (str[0].equals("next")) {
                 start = index - different;
                 end = index - 1;
 
                 System.out.println("start: next: " + start);
                 System.out.println("end: next: " + end);
-            }else {
+            } else {
                 start = index + 1;
                 end = index + different;
 
@@ -114,11 +122,11 @@ public class ExplorerController {
             }
 
         }
-        if(start >= size){
-            start = size -different;
+        if (start >= size) {
+            start = size - different;
         }
-        if (end >= size){
-            end = size -1;
+        if (end >= size) {
+            end = size - 1;
         }
 
         System.out.println("start: " + start);
@@ -126,10 +134,9 @@ public class ExplorerController {
         SubBlockchainEntity subBlockchainEntity = new SubBlockchainEntity(start, end);
 
 
-
         String subBlockchainJson = UtilsJson.objToStringJson(subBlockchainEntity);
 
-        String jsonList = UtilUrl.getObject(subBlockchainJson,   address + "/sub-blocks");
+        String jsonList = UtilUrl.getObject(subBlockchainJson, address + "/sub-blocks");
 
         List<Block> blocks = UtilsJson.jsonToListBlock(jsonList);
         blocks = blocks.stream().sorted(Comparator.comparing(Block::getIndex).reversed())
@@ -138,15 +145,15 @@ public class ExplorerController {
         // обновить список блоков в сессии
         session.setAttribute("blocks", blocks);
         redirectAttrs.addFlashAttribute("blocks", blocks);
-        if(isNumeric(info)){
-            String url = address +"/conductorBlock?index=" + info;
+        if (isNumeric(info)) {
+            String url = address + "/conductorBlock?index=" + info;
 
             Integer integer = Integer.valueOf(info);
 
             // Используем GET-запрос для получения данных по индексу
-            String text = UtilUrl.getObject( url );
+            String text = UtilUrl.getObject(url);
 
-            if(integer == 0){
+            if (integer == 0) {
                 String information = "The peculiarity of this blockchain is " +
                         "that the genesis block also has an index of 1, " +
                         "as does the block following it. This is normal," +
@@ -156,26 +163,72 @@ public class ExplorerController {
                         "This is simply a feature of this blockchain.\n";
 
 
-                redirectAttrs.addFlashAttribute("text", information );
+                redirectAttrs.addFlashAttribute("text", information);
             }
+
             Block block = (Block) UtilsJson.jsonToClass(text, Block.class);
             redirectAttrs.addFlashAttribute("block", block);
+            redirectAttrs.addFlashAttribute("status", "");
 
-        }else {
-            String url = address +"/conductorHashTran?hash="+info;
-//            String url = address +"/conductorHashTran";
 
-            String json = info;
-            // Используем GET-запрос для получения данных по хешу
-            String text = UtilUrl.getObject( url );
+        } else {
+            Block block = null;
 
-            redirectAttrs.addFlashAttribute("text", null);
-            DtoTransaction dtoTransaction = (DtoTransaction) UtilsJson.jsonToClass(text, DtoTransaction.class);
-            redirectAttrs.addFlashAttribute("dto", dtoTransaction);
+            StatusTransaction statusTransaction = new StatusTransaction();
+            String json64 = UtilUrl.getObject(UtilsJson.objToStringJson(signRequest), address + "/statusTransaction64");
+            String json58 = UtilUrl.getObject(UtilsJson.objToStringJson(signRequest), address + "/statusTransaction58");
+            String text = "";
+            String text58 = "";
+            String text64 = "";
+
+            if(json64 != null&&!json64.isEmpty()){
+                statusTransaction = (StatusTransaction) UtilsJson.jsonToClass(json64, StatusTransaction.class);
+                text64 = statusTransaction.getStatus();
+            }
+
+            if(json58 != null&&!json58.isEmpty()){
+                statusTransaction = (StatusTransaction) UtilsJson.jsonToClass(json58, StatusTransaction.class);
+                text58 = statusTransaction.getStatus();
+            }
+
+            System.out.println("text64: " + text64);
+            System.out.println("text58: " + text58);
+            List<Block> blocks1 = new ArrayList<>();
+            if (text64.equals("absent") || text58.equals("absent")) {
+                text = "absent";
+            }
+            if (!text64.equals("absent") && !text64.isEmpty()) {
+                text = text64;
+                if(text64.equals("success")){
+                    String json = UtilUrl.getObject(UtilsJson.objToStringJson(signRequest), address + "/findBlocksFromSign64");
+                    if (!json.isEmpty()) {
+                        blocks1 = UtilsJson.jsonToListBLock(json);
+                        block = blocks1.get(0);
+                    }
+                }
+                System.out.println("text:64: " + text);
+
+            }
+            if (!text58.equals("absent") && !text58.isEmpty()) {
+                text = text58;
+                if(text58.equals("success")){
+                    String json = UtilUrl.getObject(UtilsJson.objToStringJson(signRequest), address + "/findBlocksFromSign58");
+                    if (!json.isEmpty()) {
+                        blocks1 = UtilsJson.jsonToListBLock(json);
+                        block = blocks1.get(0);
+                    }
+                }
+                System.out.println("text:64: " + text);
+            }
+            redirectAttrs.addFlashAttribute("status", text.isEmpty() ? "" : text);
+            System.out.println("status: " + text);
+
+            redirectAttrs.addFlashAttribute("block", block);
         }
 
         return "redirect:/conductor";
     }
+
     public static boolean isNumeric(String str) {
         // Проверяем, не пустая ли строка
         if (str == null || str.isEmpty()) {
@@ -201,12 +254,11 @@ public class ExplorerController {
         //ORIGINAL_ALL_CORPORATION_LAWS_FILE
 
         System.out.println("index: " + index);
-        String url = address +"/conductorBlock?index=" + index;
+        String url = address + "/conductorBlock?index=" + index;
 
-        Integer integer = Integer.valueOf(index);
 
         // Используем GET-запрос для получения данных по индексу
-        String text = UtilUrl.getObject( url );
+        String text = UtilUrl.getObject(url);
 
         Block block = (Block) UtilsJson.jsonToClass(text, Block.class);
         List<DtoTransaction> transactions = block.getDtoTransactions();
@@ -221,6 +273,7 @@ public class ExplorerController {
 
         return "detail-laws";
     }
+
     @GetMapping("/detail-laws/{hex}")
     public String detailLaws(@PathVariable(value = "hex") String hex, RedirectAttributes redirectAttrs) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException, SignatureException, NoSuchProviderException, InvalidKeyException {
 
@@ -230,11 +283,11 @@ public class ExplorerController {
         byte[] sign = UtilsUse.hexToBytes(hex);
         String signStr = Base64.getEncoder().encodeToString(sign);
         System.out.println("LawsController /detail-laws-all/{signStr}: " + signStr);
-        String url = address +"/conductorHashTran?hash=" + signStr;
+        String url = address + "/conductorHashTran?hash=" + signStr;
 
 
         // Используем GET-запрос для получения данных по индексу
-        String text = UtilUrl.getObject( url );
+        String text = UtilUrl.getObject(url);
         DtoTransaction dtoTransaction = (DtoTransaction) UtilsJson.jsonToClass(text, DtoTransaction.class);
         List<String> allLaws = dtoTransaction.getLaws().getLaws();
 

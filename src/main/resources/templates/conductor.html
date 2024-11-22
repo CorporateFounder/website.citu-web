@@ -46,8 +46,8 @@
 
 
 <form action="/conductor" method="post">
-    <input type="text" name="info" placeholder="enter index block or sign transaction " class="form-control"><br>
-    <button type="submit" class="btn btn-success" name="action" value="/send">Submit</button><br>
+    <input type="text" name="sign" placeholder="Enter index block or sign transaction" class="form-control"><br>
+    <button type="submit" class="btn btn-success">Submit</button><br>
 </form>
 
 
@@ -62,6 +62,7 @@
     <button type="submit" class="btn btn-success" name="action" value="/send">Submit</button><br>
 </form>
 
+<h4 th:text="'status: ' + ${status}"></h4>
 <h4 th:if="${text != null && text != '' }" th:text="'text: ' + ${text}"></h4>
 
 
