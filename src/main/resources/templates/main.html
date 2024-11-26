@@ -9,6 +9,9 @@
 <header th:insert="blocks/header :: header "></header>
 
 <div class="alert alert-info mt-2">
+    <a href="https://bitstorage.finance/spot/trading/CITUUSDT?interface=classic" target="_blank">Go to the exchange Bitstorage</a>
+
+
     <h6 th:text="'blockchain size: '+${size}"/>
     <h6 th:text="'difficulty one block: '+${difficulty}"/>
     <h6 th:text="'difficulty all blockchain: '+${difficultyAll}"/>
@@ -43,7 +46,11 @@
     <h6><a th:href="${storage}" th:text="'global server: '+${storage}"></a></h6>
     <h6><a th:href="'mailto:' + ${gmail}" th:text="'gmail: ' + ${gmail}"></a></h6>
 
-<div class="alert alert-info mt-2">
+    <p><a href="https://bitcointalk.org/index.php?topic=5520654.new#new" target="_blank">https://bitcointalk.org announcements</a></p>
+    <p><a href="https://bitcointalk.org/index.php?topic=5520620.new#new" target="_blank">https://bitcointalk.org discussion</a></p>
+
+
+    <div class="alert alert-info mt-2">
     <h1 th:text="${Summary}"/>
     <h6 th:text="${text}"/>
 
