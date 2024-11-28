@@ -285,6 +285,26 @@
 }
       </pre>
     </div>
+
+    <div class="api-endpoint">
+        <h4>GET /getBlocksBySenderInRange</h4>
+        <p class="api-description">
+            Returns a list of blocks associated with a specific sender within the specified index range. Limits the range to a maximum of 20 blocks.
+        </p>
+        <p class="api-url">
+            http://{{host}}:{{port}}/getBlocksBySenderInRange?from=0&to=10&sender=senderAddress
+        </p>
+    </div>
+
+    <div class="api-endpoint">
+        <h4>GET /findBlocksBySenderInRange</h4>
+        <p class="api-description">
+            Returns a list of blocks associated with a specific customer within the specified index range. Limits the range to a maximum of 20 blocks.
+        </p>
+        <p class="api-url">
+            http://{{host}}:{{port}}/findBlocksBySenderInRange?from=0&to=10&customer=customerAddress
+        </p>
+    </div>
     </div>
 
 
@@ -365,6 +385,26 @@
       <p class="api-description">Returns the sum of all transactions received by this address.</p>
       <p class="api-url">localhost:8082/customerCountDto?address=nNifuwmFZr7fnV1zvmpiyQDV5z7ETWvqR6GSeqeHTY43</p>
     </div>
+
+<div class="api-endpoint">
+    <h4>GET /getBlocksBySenderInRange</h4>
+    <p class="api-description">
+        Returns a list of blocks associated with a specific sender within the specified index range. Limits the range to a maximum of 20 blocks.
+    </p>
+    <p class="api-url">
+        http://localhost:8082/getBlocksBySenderInRange?from=0&to=10&sender=senderAddress
+    </p>
+</div>
+
+<div class="api-endpoint">
+    <h4>GET /findBlocksBySenderInRange</h4>
+    <p class="api-description">
+        Returns a list of blocks associated with a specific customer within the specified index range. Limits the range to a maximum of 20 blocks.
+    </p>
+    <p class="api-url">
+        http://localhost:8082/findBlocksBySenderInRange?from=0&to=10&customer=customerAddress
+    </p>
+</div>
   </div>
 
 
