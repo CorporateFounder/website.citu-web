@@ -46,6 +46,33 @@
             </div>
             <button type="submit" class="btn btn-primary">Update staking</button>
         </form>
+
+        <form action="#" th:action="@{/calculate_reward}" method="post">
+            <div class="mb-3">
+                <label for="difficultyInput" class="form-label">Enter difficulty:</label>
+                <input type="number" class="form-control" id="difficultyInput" name="difficulty" step="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="multiplierInput" class="form-label">Enter MULTIPLIER:</label>
+                <input type="number" class="form-control" id="multiplierInput" name="MULTIPLIER" step="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="indexInput" class="form-label">Enter index:</label>
+                <input type="number" class="form-control" id="indexInput" name="index" step="1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Calculate Reward</button>
+        </form>
+
+        <div class="mt-4">
+            <h6>Reward Results:</h6>
+            <p>Reward for coefficient = 0: <span th:text="${rewardG0}"></span></p>
+            <p>Reward for coefficient = 3: <span th:text="${rewardG3}"></span></p>
+        </div>
+
+
     </div>
 </div>
 

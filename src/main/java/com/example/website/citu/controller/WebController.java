@@ -749,4 +749,20 @@ public class WebController {
         model.addAttribute("title", "white papper");
         return "white_papper";
     }
+
+    @PostMapping("/calculate_reward")
+    public String calculateReward(
+            @RequestParam("difficulty") int difficulty,
+            @RequestParam("MULTIPLIER") int MULTIPLIER,
+            @RequestParam("index") int index,
+            Model model
+    ) {
+        double rewardG0 = UtilsUse.rewardCalculatorreward(0, difficulty, MULTIPLIER, index);
+        double rewardG3 = UtilsUse.rewardCalculatorreward(3, difficulty, MULTIPLIER, index);
+
+        model.addAttribute("rewardG0", rewardG0);
+        model.addAttribute("rewardG3", rewardG3);
+
+        return "how_to_mining";
+    }
 }
