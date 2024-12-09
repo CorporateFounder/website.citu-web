@@ -70,170 +70,145 @@
 
 <div class="container">
     <div class="content">
-        <h2>Introduction</h2>
-        <p>In today's world, where traditional reserve currencies face growing challenges, including inflationary pressures and geopolitical risks, there is a need for a new form of global reserve currency. This article presents an innovative cryptocurrency mechanism that not only provides technical reliability but also embodies the key characteristics of an ideal reserve currency: predictable issuance, built-in inflation protection, and transparent governance.</p>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Crypto Reward Mechanism</title>
+        </head>
+        <body>
+        <h1>Instructions for Working with the Points System and Block Complexity</h1>
 
-        <h2>Key Advantages as a Reserve Currency</h2>
-
-        <h3>1. Predictable Monetary Policy</h3>
+        <h2>Parameters of Complexity and Hash Goal</h2>
+        <p>Each participant can send blocks with complexity from <strong>17 to 100</strong>.</p>
         <ul>
-            <li>Mathematically defined issuance eliminates the human factor</li>
-            <li>Transparent algorithm for changing the money supply</li>
-            <li>Protection from political influence on monetary policy</li>
+            <li><strong>Valid Hash</strong>: A hash where the number of units in bits is less than or equal to the value: <br>
+                <strong>Goal = 100 - Complexity.</strong></li>
         </ul>
 
-        <h3>2. Built-in Inflation Protection</h3>
-        <ul>
-            <li>Self-regulating difficulty mechanism</li>
-            <li>Dynamic supply management based on the Friedman model</li>
-            <li>Economic incentives for long-term holding</li>
-        </ul>
+        <hr>
 
-        <h3>3. Global Accessibility and Liquidity</h3>
-        <ul>
-            <li>No geographical restrictions</li>
-            <li>Encouraging high transactional activity</li>
-            <li>Promoting market liquidity through the reward mechanism</li>
-        </ul>
+        <h2>Reward Calculation</h2>
+        <ol>
+            <li><strong>Reward Formula:</strong>
+                <ul>
+                    <li><code>blocksSinceStart</code> = current block index - 326840</li>
+                    <li><code>year</code> = <code>blocksSinceStart</code> / (432 × 360)</li>
+                    <li><code>difficultyV2</code> = max(complexity - 22, 0)</li>
+                    <li><strong>Result</strong> = (3 + (coefficient / 4) + (difficultyV2 / 4)) × (1.005) ^ <code>year</code></li>
+                    <li><strong>Reward</strong> = <code>Result</code> × <code>Multiplier</code> (where multiplier ≥ 1)</li>
+                </ul>
+            </li>
+            <li><strong>Coefficient:</strong>
+                <ul>
+                    <li>Possible values: 3 or 0, encourages transactional activity.</li>
+                </ul>
+            </li>
+            <li><strong>Multiplier:</strong>
+                <ul>
+                    <li>Initial value: 65, linearly decreases every 4 months.</li>
+                </ul>
+            </li>
+        </ol>
 
-        <h2>Reward Calculation Mechanism</h2>
+        <hr>
 
-        <h3>Stage 1: Base Reward</h3>
-        <p class="formula">Reward = (5 + coefficient + (difficulty × 0.2) + additional) × multiplier</p>
-        <p>Where:</p>
-        <ul>
-            <li><strong>Coefficient</strong> (3 or 0): Stimulates increased transactional activity</li>
-            <li><strong>Difficulty</strong> (17-100): Ensures self-regulation of issuance</li>
-            <li><strong>Multiplier</strong>: Starts at 29, decreases linearly every 1.5 years</li>
-        </ul>
+        <h2>Hybrid Consensus System</h2>
+        <p>The system uses a combination of PoW and PoS to ensure security.</p>
 
-        <h3>Stage 2: Compensation Mechanism</h3>
-        <p>if "Additional" is negative, the value becomes 0, that is, "Additional" cannot be below 0.</p>
-        <p class="formula">Additional = (difficulty - 22) / 2</p>
-        <p class="formula">Reward_2 = Reward + (additional × (coefficient + 6))</p>
+        <h3>Player Points Formation:</h3>
+        <p><strong>Points</strong> = complexity points + random number + staking points + transaction points</p>
+        <ol>
+            <li><strong>Staking Points:</strong>
+                <ul>
+                    <li>Exponential scale:</li>
+                    <li>1st point: 1.1 coins</li>
+                    <li>2nd point: 2.1 coins</li>
+                    <li>3rd point: 4.1 coins</li>
+                    <li>Maximum: 30 points.</li>
+                </ul>
+            </li>
+            <li><strong>Transaction Points:</strong>
+                <ul>
+                    <li>Calculated based on the transaction amounts from unique senders:</li>
+                    <li>1st point: 0.11 coins</li>
+                    <li>2nd point: 0.21 coins</li>
+                    <li>3rd point: 0.41 coins</li>
+                    <li>Maximum: points cannot exceed staking points.</li>
+                </ul>
+            </li>
+            <li><strong>Complexity and Groups:</strong>
+                <ul>
+                    <li>Every 100-230 seconds, 1 block is selected by nodes with the highest points.</li>
+                </ul>
+            </li>
+        </ol>
 
-        <h3>Stage 3: Friedman Model</h3>
-        <p class="formula">blocksSinceStart = current index - 326840</p>
-        <p class="formula">year = blocksSinceStart / (432 × 360)</p>
-        <p class="formula">difficultyV2 = max(difficulty - 22, 0)</p>
-        <p class="formula">Result = (24 + (coefficient / 4) + (difficultyV2 / 4)) × (1.02)<sup>year</sup></p>
-        <p class="formula">Reward_3 = Reward_2 + Result</p>
+        <hr>
 
-        <h2>Innovative Mining Model</h2>
+        <h2>Complexity and Parameter Table</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Group</th>
+                <th>Complexity</th>
+                <th>X</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>M+1</td><td>25</td><td>131</td></tr>
+            <tr><td>M</td><td>20</td><td>126</td></tr>
+            <tr><td>M-1</td><td>20</td><td>120</td></tr>
+            <tr><td>M+2</td><td>15</td><td>115</td></tr>
+            <tr><td>M-2</td><td>15</td><td>97</td></tr>
+            <tr><td>M+3</td><td>10</td><td>110</td></tr>
+            <tr><td>M-3</td><td>10</td><td>84</td></tr>
+            <tr><td>M+4</td><td>5</td><td>100</td></tr>
+            <tr><td>M-4</td><td>5</td><td>72</td></tr>
+            <tr><td>M+5</td><td>0</td><td>64</td></tr>
+            <tr><td>M>5</td><td>0</td><td>62</td></tr>
+            <tr><td>M-5</td><td>0</td><td>64</td></tr>
+            <tr><td>M<-5</td><td>0</td><td>62</td></tr>
+            </tbody>
+        </table>
 
-        <h3>Hybrid Consensus System</h3>
-        <p>The combination of PoW and PoS creates a unique security model, ideal for a reserve currency:</p>
-        <p class="formula">Points = (difficulty × 25) + a random number is generated from the hash block in the range from 0 to 150 + staking_points + transaction_points</p>
+        <h3>Player Total Points Calculation</h3>
+        <ol>
+            <li>Determine <strong>Difficulty Point</strong> and <strong>X</strong> from the table.</li>
+            <li>Calculate:
+                <ul>
+                    <li><strong>Result</strong> = <code>X</code> - (staking points + transaction points).</li>
+                    <li><strong>Random Point</strong> = random number from 0 to <code>Result</code>.</li>
+                </ul>
+            </li>
+            <li>Total Points:
+                <ul>
+                    <li><strong>Total Point</strong> = Difficulty Point + Random Point + staking points + transaction points.</li>
+                </ul>
+            </li>
+        </ol>
 
-        <h3>Staking Mechanism</h3>
-        <p>Exponential staking scale:</p>
-        <ul>
-            <li>1st point: 1.1 coins</li>
-            <li>2nd point: 2.1 coins</li>
-            <li>3rd point: 4.1 coins</li>
-            <li>(and so on)</li>
-        </ul>
+        <hr>
 
-        <h3>Transaction Points System</h3>
-        <p>Transaction points are calculated based on the sum of transactions from unique senders:</p>
-        <p><strong>Point values:</strong></p>
-        <ul>
-            <li>1st point: 0.11 coins</li>
-            <li>2nd point: 0.21 coins</li>
-            <li>3rd point: 0.41 coins</li>
-            <li>(and so on in a geometric progression)</li>
-        </ul>
-        <p class="formula">Max_points = staking_points_sum + (difficulty - 19) × 3</p>
+        <h2>Determining Mode M</h2>
+        <p><strong>M</strong> is calculated based on the mode of block complexity values:</p>
+        <ol>
+            <li>Take the current block index. For example, 260.</li>
+            <li>Roll back 30 blocks (to 230) and select blocks from 200 to 230.</li>
+            <li>Calculate the mode (most frequent complexity value).</li>
+            <li>If there are multiple modes with equal frequency, choose the smallest.</li>
+        </ol>
 
-        <h2>Divisibility Features</h2>
-        <p>An important characteristic of this cryptocurrency is the limitation of divisibility to two decimal places. This property is of particular importance for a reserve currency:</p>
-
-        <h3>1. Predictability of Calculations</h3>
-        <ul>
-            <li>Simplifies financial planning</li>
-            <li>Reduces computational burden</li>
-            <li>Decreases the likelihood of calculation errors</li>
-        </ul>
-
-        <h3>2. Value Stability</h3>
-        <ul>
-            <li>The smallest unit has significant value</li>
-            <li>Prevents excessive speculation with small amounts</li>
-            <li>Promotes perception as a serious financial instrument</li>
-        </ul>
-
-        <h3>3. Practicality of Use</h3>
-        <ul>
-            <li>Consistent with financial accounting traditions</li>
-            <li>Simplifies integration with existing financial systems</li>
-            <li>Facilitates mass adoption</li>
-        </ul>
+        <hr>
 
         <h2>Conclusion</h2>
-        <p>The presented cryptocurrency demonstrates unique advantages that make it an ideal candidate for the role of a global reserve currency:</p>
-
-        <h3>Fundamental Advantages</h3>
-
-        <h4>1. Optimal Divisibility</h4>
-        <ul>
-            <li>Limitation to two decimal places reflects the practice of traditional reserve currencies</li>
-            <li>Promotes price stability and prevents micro-speculation</li>
-            <li>Simplifies integration with existing financial systems</li>
-            <li>Facilitates accounting and auditing</li>
-            <li>Increases confidence among institutional investors</li>
-        </ul>
-
-        <h4>2. Economic Stability</h4>
-        <ul>
-            <li>Mathematically guaranteed issuance prevents manipulation</li>
-            <li>The Friedman model ensures predictable growth of the money supply</li>
-            <li>Hybrid consensus system enhances security and stability</li>
-            <li>Self-regulating difficulty mechanism adapts to market conditions</li>
-        </ul>
-
-        <h3>Institutional Attractiveness</h3>
-        <ul>
-            <li>Transparent and immutable monetary policy</li>
-            <li>Absence of political influence on issuance</li>
-            <li>Predictable inflation model</li>
-            <li>High liquidity due to the incentive system</li>
-        </ul>
-
-        <h3>Technological Superiority</h3>
-        <ul>
-            <li>Innovative consensus mechanism</li>
-            <li>High degree of security</li>
-            <li>Efficient transaction processing</li>
-            <li>Resistance to various types of attacks</li>
-        </ul>
-
-        <h2>Advantages over Existing Reserve Currencies</h2>
-
-        <h3>Over Fiat Currencies:</h3>
-        <ul>
-            <li>Independence from political decisions of individual countries</li>
-            <li>Protection from unjustified issuance</li>
-            <li>Global accessibility without geographical restrictions</li>
-            <li>Transparent and immutable monetary policy</li>
-        </ul>
-
-        <h3>Over Gold:</h3>
-        <ul>
-            <li>Instant transfer of any volumes</li>
-            <li>No storage and transportation costs</li>
-            <li>Simple verification of authenticity</li>
-            <li>Divisibility without loss of value</li>
-        </ul>
-
-        <h3>Over Other Cryptocurrencies:</h3>
-        <ul>
-            <li>Optimal divisibility for practical application</li>
-            <li>Hybrid consensus system</li>
-            <li>Built-in stabilization mechanisms</li>
-            <li>Effective incentives for long-term holding</li>
-        </ul>
-
-        <p>In the context of growing instability in the traditional financial system and increasing geopolitical risks, this cryptocurrency offers a unique solution for a global reserve currency. The combination of mathematically sound issuance, optimal divisibility, transparent monetary policy, and technological reliability creates a financial instrument capable of meeting the needs of both private users and institutional investors. It is especially important to note that the limitation of divisibility to two decimal places not only simplifies calculations and accounting but also increases trust in the currency from traditional financial institutions, which is critically important for adoption as a global reserve currency.</p>
+        <p>Each coin has only 2 decimal places.</p>
+        <p>The lower boundary of the cryptocurrency price is determined by the electricity costs for its mining, reflecting the labor theory of value. The upper boundary is governed by the subjective theory of value, representing the value users attribute to the cryptocurrency. The average price will grow in accordance with the marginal utility theory since mining is inelastic, gradually decreasing, but never reaching zero. The annual coin supply increase is significantly less than 0.005% relative to the total issuance, offsetting lost coins and supporting miner expenses.</p>
+        <p>The system dynamically adapts: when demand decreases, mining complexity decreases, reducing emissions, and during a sharp price increase, complexity grows, stimulating coin issuance. This allows the system to regulate the exchange rate using market tools. Excess emissions are directed to staking, promoting long-term stability.</p>
+        <p>This cryptocurrency is especially suitable as a reserve currency. Its limited supply makes it attractive due to its scarcity, enhancing its market value.</p>
+        </body>
+        </html>
     </div>
 </div>
 

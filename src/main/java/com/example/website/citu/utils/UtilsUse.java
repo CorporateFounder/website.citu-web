@@ -104,7 +104,7 @@ public class UtilsUse {
         }
         BigDecimal log2 = new BigDecimal(Math.log(2));
         BigDecimal score = BigDecimal.valueOf(Math.ceil(Math.log(x.divide(x0, RoundingMode.HALF_UP).doubleValue()) / log2.doubleValue()));
-        return Math.min(400, score.longValue());
+        return Math.min(30, score.longValue());
     }
 
 
@@ -126,16 +126,29 @@ public class UtilsUse {
     static int MILTON_MONEY_DAY = 432;
     static double MONEY_MILTON_FRIDMAN = 24;
     static double PERCENT_MONEY_MILTON_FRIMDAN = 1.02;
+    static int OPTIMAL_SCORE_INDEX = 342201;
+    static int MULTIPLIER2 = 65;
+    static double PERCENT_MONEY_MILTON_FRIMDAN2 = 1.005;
+    static double MONEY_MILTON_FRIDMAN2 = 3;
     public static double rewardCalculatorreward(double G, int difficulty, int MULTIPLIER, int index) {
 
         double minerRewards = 0;
 
 
         if (index >= V34_NEW_ALGO) {
+            int day = 576;
+            int period = YEAR;
+            int mulptipleperiod = MULTIPLIER;
+            if(index > OPTIMAL_SCORE_INDEX){
+                day = 432;
+                period = 120;
+                mulptipleperiod = MULTIPLIER2;
+            }
             long money = (index - V28_CHANGE_ALGORITH_DIFF_INDEX)
-                    / (576 * YEAR);
-            money = (long) (MULTIPLIER );
+                    / (day *period);
+            money = (long) (mulptipleperiod - money);
             money = money < 1 ? 1 : money;
+
             double moneyFromDif = 0;
 
             if (index > ALGORITM_MINING) {
@@ -180,9 +193,20 @@ public class UtilsUse {
         if (index < MONEY_MILTON_FRIDMAN_INDEX) {
             return currentReward;
         }
-        diffMoney = (diffMoney - 22) / 4;
+
+        double percentMoneyMiltonFrimdan = PERCENT_MONEY_MILTON_FRIMDAN;
+        double moneyFridman = MONEY_MILTON_FRIDMAN;
+        int divider = 4;
+        if(index > OPTIMAL_SCORE_INDEX){
+            percentMoneyMiltonFrimdan = PERCENT_MONEY_MILTON_FRIMDAN2;
+            moneyFridman = MONEY_MILTON_FRIDMAN2;
+
+        }
+
+
+        diffMoney = (diffMoney - 22) / divider;
         if (diffMoney < 0) diffMoney = 0;
-        double result = (G / 4) + diffMoney;
+        double result = (G / divider) + diffMoney;
 
         // Рассчитываем количество блоков в году
         long blocksPerYear = (long) MILTON_MONEY_DAY * YEAR;
@@ -193,8 +217,10 @@ public class UtilsUse {
         // Определяем количество полных лет, прошедших с начала отсчета
         int yearsPassed = (int) (blocksSinceStart / blocksPerYear);
 
+
+
         // Рассчитываем награду за блок с учетом ежегодного увеличения
-        double newBlockReward = (MONEY_MILTON_FRIDMAN + result) * Math.pow(PERCENT_MONEY_MILTON_FRIMDAN, yearsPassed);
+        double newBlockReward = (moneyFridman + result) * Math.pow(percentMoneyMiltonFrimdan, yearsPassed);
 
         // Округляем новую награду до двух знаков после запятой
         newBlockReward = round(newBlockReward, 2);
@@ -206,6 +232,69 @@ public class UtilsUse {
         updatedReward = round(updatedReward, 2);
 
         return updatedReward;
+    }
+
+
+    //балы от сложности
+    public static int getPoints(int M, int difficulty) {
+        int difference = difficulty - M;
+
+        switch (difference) {
+            case 0:
+                return 20; // M
+            case 1:
+                return 25; // M+1
+            case -1:
+                return 20; // M-1
+            case 2:
+                return 15; // M+2
+            case -2:
+                return 15; // M-2
+            case 3:
+                return 10; // M+3
+            case -3:
+                return 10; // M-3
+            case 4:
+                return 5;  // M+4
+            case -4:
+                return 5;  // M-4
+            case 5:
+            case -5:
+                return 0;  // M+5 или M-5
+            default:
+                return 0;  // За пределами диапазона
+        }
+    }
+
+    //возвращает X диапазон
+    public static int getX(int M, int difficulty) {
+        int difference = difficulty - M;
+
+        switch (difference) {
+            case 0:
+                return 126; // M
+            case 1:
+                return 131; // M+1
+            case -1:
+                return 120; // M-1
+            case 2:
+                return 115; // M+2
+            case -2:
+                return 97;  // M-2
+            case 3:
+                return 110; // M+3
+            case -3:
+                return 84;  // M-3
+            case 4:
+                return 100; // M+4
+            case -4:
+                return 72;  // M-4
+            case 5:
+            case -5:
+                return 64;   // M+5 или M-5
+            default:
+                return 62;   // За пределами диапазона
+        }
     }
 
     public static double round(double value, int places) {

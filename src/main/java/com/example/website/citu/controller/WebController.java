@@ -88,7 +88,9 @@ public class WebController {
         long size = Long.valueOf(sizeStr);
 
         String urlPrev = address + "/conductorBlock?index=" + (size - 1);
+        String urlMode = address + "/mode?index=" + (size-1);
         String prevJson = UtilUrl.getObject(urlPrev);
+        String M = UtilUrl.getObject(urlMode);
         Block prev = (Block) UtilsJson.jsonToClass(prevJson, Block.class);
 
         int prevBlockTotalTransaction = prev.getDtoTransactions().size();
@@ -134,6 +136,9 @@ public class WebController {
         model.addAttribute("prevBlockTotalSum", prevBlockTotalSum);
         model.addAttribute("totalTransactionsDay", totalTransactionsDay);
         model.addAttribute("totalTransactionsDaySum", totalTransactionsDaySum);
+        if(M.equals("0"))
+            M = "";
+        model.addAttribute("M", M);
 
 
 
@@ -382,7 +387,8 @@ public class WebController {
                 "if the problem is with the server, all the owners are exceptional professionals and know their stuff.\n" +
                 "P.S. (At the moment, in addition to the founder, you can also contact @suprtrupr and @caspar2114 on discord, since they are one of the best in\n" +
                 "these matters and can help you when I don’t have time.)");
-        model.addAttribute("importantInfoText", "In this system, the block with the most big random wins. Big random is a number that is formed from three components.\n" +
+        model.addAttribute("importantInfoText", "(important information, the text below will be out of date after reaching index 342201)" +
+                " In this system, the block with the most big random wins. Big random is a number that is formed from three components.\n" +
                 "1. Difficulty\n" +
                 "2. Random number\n" +
                 "3. staking\n" +
