@@ -16,7 +16,7 @@
 
 
     <h6 th:text="'blockchain size: '+${size}"/>
-    <h6 th:text="'mode '+${M}"/>
+    <h6 th:text="'mode M: '+${M}"/>
     <h6 th:text="'difficulty one block: '+${difficulty}"/>
     <h6 th:text="'difficulty all blockchain: '+${difficultyAll}"/>
     <h6 th:text="'multiplier: '+${multiplier}"/>
@@ -25,7 +25,6 @@
 
     <h6 th:text="'total dollars: '+${#numbers.formatDecimal(totalDollars, 1, 'COMMA', 16, 'POINT')}"/>
     <h6 th:text="'total accounts: '+${totalAccounts}"/>
-    <h6 th:text="'reward miners its (5 + coefficient + (difficulty * 0.2)) * multiplier: '"/>
     <h6 th:text="'previous block total transaction: ' +${prevBlockTotalTransaction}"/>
     <h6 th:text="'previous block total dollar sum: '+${#numbers.formatDecimal(prevBlockTotalSum, 1, 'COMMA', 16, 'POINT')}"/>
 
@@ -34,8 +33,8 @@
     <h6 th:text="'total dollar sum transactions in day: ' + ${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'COMMA', 2, 'POINT')}"/>
 
 
-    <h6 th:text="'Every year the multiplier decreases by one, starting from this block ' +${startReduce}"/>
-    <h6 th:text="'A day in this system is 576 blocks, a year is 207,360 blocks.  '"/>
+    <h6 th:text="'Every 4 month the multiplier decreases by one, starting from this block ' +${startReduce}"/>
+    <h6 th:text="'A day in this system is 432 blocks, a month is 51,840 blocks.  '"/>
     <h6 th:text="'How many blocks are left until the decline is shown here ' +${daysReduce}"/>
 
 

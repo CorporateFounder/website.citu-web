@@ -159,88 +159,13 @@ public class WebController {
 
         model.addAttribute("text",
                 "Preamble:\n" +
-                        "This cryptocurrency aims to create a single international currency that is resistant to high volatility.\n" +
-                        "Our coin was initially designed in such a way that the value of the coin increased, but decreased slightly over time.\n" +
-                        "I crisis situations.\n" +
+                        "Each coin has only 2 decimal places.\n" +
                         "\n" +
-                        "The organizational structure of this coin functions as an independent corporation, where solutions to improve the cryptocurrency\n" +
-                        "divided between several positions.\n" +
-                        "1. The charter is mainly approved by the founder of this cryptocurrency\n" +
-                        "2. Code improvements, within the framework of the charter and financing of other related projects,\n" +
-                        "is carried out by a board of directors of 7 elected by the network participants.\n" +
-                        "3. Implements decisions made by the board of directors, the general director elected by the board of directors.\n" +
-                        "4. Controversial decisions, or the ability to veto decisions of the board of directors, are dealt with\n" +
-                        "Council of Corporate Judges of 7 members.\n" +
-                        "5. The Council of Corporate Judges is also elected by the network.\n" +
-                        "6. Every approximately 100 seconds, a block is approved in the network.\n" +
-                        "7. The reward for each block is calculated using this formula: (5+ coefficient + (difficulty * 0.2)) * multiplier.\n" +
-                        " multiplier: initially in the first year it has a value of 29, but each year it decreases by one until it reaches one.\n" +
-                        " coefficient: can be 3 or 0, if your block that you are trying to add has a sum of transactions and the number of transactions is greater than in the previous block, then 3, otherwise 0.\n" +
-                        " coefficient: But transactions rewarding the founder and rewarding the miner are not taken into account.\n" +
-                        " difficulty: difficulty can be from 17 to 100, each participant sets the difficulty himself before mining.\n" +
-                        " complexity: we take the hash of the block, and count the number of ones in the hash bits, the hash must be lower than or equal to the target\n" +
-                        " goal: the goal is 100 minus the difficulty set by the miner.\n" +
-                        " mining: uses sha256 for hashing\n" +
+                        "The lower boundary of the cryptocurrency price is determined by the electricity costs for its mining, reflecting the labor theory of value. The upper boundary is governed by the subjective theory of value, representing the value users attribute to the cryptocurrency. The average price will grow in accordance with the marginal utility theory since mining is inelastic, gradually decreasing, but never reaching zero. The annual coin supply increase is significantly less than 0.005% relative to the total issuance, offsetting lost coins and supporting miner expenses.\n" +
                         "\n" +
-                        "Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE.\n" +
-                        "The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for\n" +
-                        "several candidates, and if you vote AGAINST (NO), then the candidate receives minus 100, if FOR (YES) plus 100.\n" +
-                        "As a result, for each candidate his YES-NO rating is calculated, Thus, seven candidates for the Board of Directors,\n" +
-                        "and the 7 highest ranked candidates for the Council of Corporate Judges are in office.\n" +
-                        "Each network participant can change their vote at any time.\n" +
-                        "Only votes cast in the last two years are counted.\n" +
+                        "The system dynamically adapts: when demand decreases, mining complexity decreases, reducing emissions, and during a sharp price increase, complexity grows, stimulating coin issuance. This allows the system to regulate the exchange rate using market tools. Excess emissions are directed to staking, promoting long-term stability.\n" +
                         "\n" +
-                        "Board of Directors:\n" +
-                        "Can approve network decisions, for example, can create a project by approving a decision where participants will voluntarily send money to an approved address.\n" +
-                        "Example: Let's imagine that the board of directors has created a package, where the first line is the address and the amount separated by a space. The second line is a description, and the third is contact information.\n" +
-                        "Moreover, the amount and address do not necessarily have to be in this coin, the board of directors can approve the decision in other currencies, then after the amount, separated by a space\n" +
-                        "you need to register the type of usdt coin or other currency.\n" +
-                        "1. rDqx8hhZRzNm6xxvL1GL5aWyYoQRKVdjEHqDo5PY2nbM 10000\n" +
-                        "2. For the development of the project and the acquisition of new servers, you need to collect ten thousand coins\n" +
-                        "3. citucorp.com\n" +
-                        "According to the decision of the Board of Directors:\n" +
-                        "Each director has a vote equal to his rating share relative to the other directors. Let's imagine that we have 7 directors,\n" +
-                        "1. First, we will sum up the ratings of all these 7 directors. For example, it turned out to be 200. But director A has a rating of 40, that is, his share is 20%\n" +
-                        "Therefore, for a resolution to be adopted, the resolution must receive a vote of 57% or more from the Directors.\n" +
-                        "If the director has a very high rating, then he can make decisions alone; if he has a low rating, then he will have to get the support of other directors.\n" +
-                        "Similarly, the Board of Directors elects the General Director.\n" +
-                        "\n" +
-                        "Council of Corporate Judges:\n" +
-                        "The Board of Corporate Judges is elected in the same way as the Board of Directors, but it performs several functions\n" +
-                        "1. Resolves disputes that arise between network participants, creating a precedent.\n" +
-                        "2. May veto a decision of the Board of Directors if this decision contradicts the Charter or other current decisions.\n" +
-                        "Each Judge has one vote, each Judge can vote YES, NO or abstain, as well as remove their previous vote.\n" +
-                        "For each decision, the votes of the judges are calculated using the following formula: YES - NO. If the number falls below 0, then the decision is VETOed.\n" +
-                        "\n" +
-                        "Powers of the founder; only the founder can approve the new charter. also the property of a corporation belongs to the corporation, but to manage this property\n" +
-                        "Board of Directors (Member accounts are not the property of the corporation). The Board of Directors can finance new projects by collecting money from voluntary contributions,\n" +
-                        "or from sales of goods and services of the corporation, as well as from voluntary membership fees. The merger of this corporation with other corporations can only be carried out\n" +
-                        "after approval by the Founder. Board of Directors, the board of directors is appointed " +
-                        "for the management of this corporation within the framework of the charter.\n" +
-                        "\n" +
-                        "\n" +
-                        "General Director:\n" +
-                        "General Director, implements decisions made by the Board of Directors.\n" +
-                        "\n" +
-                        "\n" +
-                        "1. Board of Directors (7 participants):\n" +
-                        "Can approve decisions for the network, such as creating projects and raising funds for their implementation.\n" +
-                        "Approves decisions by a majority vote, where the weight of the director's vote depends on his rating relative to other directors.\n" +
-                        "Elects the General Director.\n" +
-                        "May not act contrary to the Charter or decisions imposed by the Council of Corporate Judges.\n" +
-                        "\n" +
-                        "2. Council of Corporate Judges (7 participants):\n" +
-                        "Resolves disputes between network participants by creating precedents.\n" +
-                        "Can veto decisions of the Board of Directors if they contradict the Charter or other current decisions.\n" +
-                        "Each judge has one vote, decisions are made by majority vote (YES - NO > 0).\n" +
-                        "Cannot make decisions that contradict the Charter approved by the Founder.\n" +
-                        "\n" +
-                        "3. General Director:\n" +
-                        "Implements decisions made by the Board of Directors.\n" +
-                        "Does not have the authority to make independent decisions, except for the execution of decisions of the Board of Directors.\n" +
-                        "It should be noted that one person can hold several elected positions at the same time, for example, be a member of the Board of Directors and the Council of Corporate Judges. However," +
-                        " in this case, when voting on decisions, his votes will be counted separately for each position" +
-                        " in accordance with the established rules.");
+                        "This cryptocurrency is especially suitable as a reserve currency. Its limited supply makes it attractive due to its scarcity, enhancing its market value.");
         return "main";
     }
 

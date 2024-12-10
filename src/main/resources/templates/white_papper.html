@@ -102,12 +102,17 @@
             </li>
             <li><strong>Coefficient:</strong>
                 <ul>
-                    <li>Possible values: 3 or 0, encourages transactional activity.</li>
+                    <li>Possible values: 3 or 0</li>
+                    <li>Encourages transactional activity</li>
+                    <li>3 if unique transactions and volume increase over the previous block</li>
+                    <li>0 if they remain the same or decrease</li>
+                    <li>Excludes BASE ADDRESS and duplicate addresses</li>
                 </ul>
             </li>
+
             <li><strong>Multiplier:</strong>
                 <ul>
-                    <li>Initial value: 65, linearly decreases every 4 months.</li>
+                    <li>Initial value: 35, linearly decreases every 4 months.</li>
                 </ul>
             </li>
         </ol>
