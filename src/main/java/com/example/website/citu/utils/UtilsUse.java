@@ -127,7 +127,7 @@ public class UtilsUse {
     static double MONEY_MILTON_FRIDMAN = 24;
     static double PERCENT_MONEY_MILTON_FRIMDAN = 1.02;
     static int OPTIMAL_SCORE_INDEX = 342201;
-    static int MULTIPLIER2 = 65;
+    static int MULTIPLIER2 = 35;
     static double PERCENT_MONEY_MILTON_FRIMDAN2 = 1.005;
     static double MONEY_MILTON_FRIDMAN2 = 3;
     public static double rewardCalculatorreward(double G, int difficulty, int MULTIPLIER, int index) {
