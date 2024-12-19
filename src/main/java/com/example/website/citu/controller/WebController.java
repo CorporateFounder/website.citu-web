@@ -88,9 +88,9 @@ public class WebController {
         long size = Long.valueOf(sizeStr);
 
         String urlPrev = address + "/conductorBlock?index=" + (size - 1);
-        String urlMode = address + "/mode?index=" + (size-1);
+
         String prevJson = UtilUrl.getObject(urlPrev);
-        String M = UtilUrl.getObject(urlMode);
+
         Block prev = (Block) UtilsJson.jsonToClass(prevJson, Block.class);
 
         int prevBlockTotalTransaction = prev.getDtoTransactions().size();
@@ -136,9 +136,6 @@ public class WebController {
         model.addAttribute("prevBlockTotalSum", prevBlockTotalSum);
         model.addAttribute("totalTransactionsDay", totalTransactionsDay);
         model.addAttribute("totalTransactionsDaySum", totalTransactionsDaySum);
-        if(M.equals("0"))
-            M = "";
-        model.addAttribute("M", M);
 
 
 
@@ -146,7 +143,7 @@ public class WebController {
 
         model.addAttribute("title", "Main page");
         model.addAttribute("Summary", "Summary and Benefits");
-        model.addAttribute("discord", "https://discord.gg/MqkvC3SGHH");
+        model.addAttribute("discord", "https://discord.gg/Szbs8G4Q8c");
         model.addAttribute("telegram", "https://t.me/citu_coin");
         model.addAttribute("telegramUsername", "Negmat_Tuychiev"); // замените пробелы на подчеркивания
         model.addAttribute("github", "https://github.com/CorporateFounder/unitedStates_final");
@@ -267,7 +264,15 @@ public class WebController {
                 "7. host address files /poolAddress\n" +
                 "8. files sent by transaction /sentTransaction\n" +
                 "9. transaction list files to send /transactions");
+
         return "how_to_install";
+    }
+
+    @GetMapping("/mining-app-guide-win")
+    public String install_supr_trupr(Model model){
+        model.addAttribute("application", "https://github.com/SuprTrupr/CITU_app_miner/tree/main");
+
+        return "mining-app-guide-win";
     }
 
     @GetMapping("how_to_install_server")
