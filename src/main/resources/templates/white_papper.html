@@ -157,7 +157,7 @@
         </ul>
 
         <h3>Randomness Generation:</h3>
-        <p>The random number is generated based on the block hash, where the hash serves as the seed for deterministic randomness.</p>
+        <p>The random number is generated based on the block hash, where the hash serves as the seed for deterministic randomness. The range for the random number is fixed from <code>0</code> to <code>170</code>.</p>
 
         <h2>New Scoring Model</h2>
         <p>The scoring model calculates points for players based on the following:</p>
@@ -166,7 +166,7 @@
             <li>
                 <strong>Difficulty Points:</strong>
                 <ul>
-                    <li>Calculated as: <code>difficulty * 25</code>.</li>
+                    <li>Calculated as: <code>difficulty * 15</code>.</li>
                 </ul>
             </li>
             <li>
@@ -179,13 +179,13 @@
             <li>
                 <strong>Hash Complexity Value (X):</strong>
                 <ul>
-                    <li>Determined by the formula: <code>170 + (complexity - 17) * 15</code>.</li>
+                    <li>Determined by the formula: <code>170</code>.</li>
                 </ul>
             </li>
             <li>
                 <strong>Random Range:</strong>
                 <ul>
-                    <li>Calculated as: <code>range = X + mineScore</code>.</li>
+                    <li>Fixed range: <code>0 to 170</code>.</li>
                     <li>A random number is selected within this range.</li>
                 </ul>
             </li>
@@ -200,17 +200,16 @@
         <h3>Example Workflow</h3>
         <ol>
             <li>Retrieve the current hash complexity.</li>
-            <li>Calculate <strong>Difficulty Points</strong>: Multiply hash complexity by 25.</li>
-            <li>Calculate <strong>X</strong>: Use the formula <code>170 + (complexity - 17) * 15</code>.</li>
-            <li>Determine the <strong>range</strong>: Add <code>X</code> to <code>mineScore</code>.</li>
-            <li>Select a random number within the range.</li>
+            <li>Calculate <strong>Difficulty Points</strong>: Multiply hash complexity by 15.</li>
+            <li>Use a fixed range of <code>0 to 170</code> for random number generation.</li>
+            <li>Select a random number within the fixed range.</li>
             <li>Combine all components to determine the total points.</li>
         </ol>
 
         <h3>Key Notes</h3>
         <ul>
             <li>Transaction Points are pre-calculated and capped by <code>mineScore</code>.</li>
-            <li>The formula for <code>X</code> ensures a dynamic adjustment based on hash complexity.</li>
+            <li>The randomness range is always fixed between <code>0</code> and <code>170</code>, regardless of complexity.</li>
             <li>All calculations must use deterministic randomness for consistency.</li>
         </ul>
 
