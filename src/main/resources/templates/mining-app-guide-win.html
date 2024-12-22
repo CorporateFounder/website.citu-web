@@ -43,7 +43,9 @@ td, th {
 
 	<p style="line-height:108%; font-size:24pt">
 
-	<header th:insert="blocks/header :: header "></header>
+	<header th:insert="blocks/header :: header ">
+		<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+	</header>
 
 	<strong>GUIDE for CITU mining application</strong>
 			</p>
