@@ -114,11 +114,13 @@
 </tr>
 
 <form th:if="${blocks != null}" th:action="@{/conductor}" method="post" class="alert alert-info mt-2">
-    <div  th:if="${blocks[0].index != size}">
-        <button type="submit" name="page" th:value="'next:' + ${blocks[0].index}">Next Page</button>
+    <div th:if="${blocks[0].index != size}">
+        <!-- Передаём индекс последнего блока текущей страницы для перелистывания "Next" -->
+        <button type="submit" name="page" th:value="'next:' + ${blocks[blocks.size() - 1].index}">Next Page</button>
     </div>
-    <div  th:if="${blocks[blocks.size - 1].index != 1}">
-        <button type="submit" name="page" th:value="'prev:'+ ${blocks[blocks.size - 1].index}" >Prev Page</button>
+    <div th:if="${blocks[blocks.size() - 1].index != 1}">
+        <!-- Передаём индекс первого блока текущей страницы для перелистывания "Prev" -->
+        <button type="submit" name="page" th:value="'prev:' + ${blocks[0].index}">Prev Page</button>
     </div>
 </form>
 

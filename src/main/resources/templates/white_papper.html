@@ -10,9 +10,9 @@
         }
     </style>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-    <link rel="stylesheet" href="type/css" th:href="style.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header">
@@ -21,14 +21,7 @@
 
 <div class="container">
     <div class="content">
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Crypto Reward Mechanism</title>
-        </head>
-        <body>
+
         <h1>Instructions for Working with the Points System and Block Complexity</h1>
 
 
@@ -283,9 +276,6 @@
         <p>The system dynamically adapts: when demand decreases, mining complexity decreases, reducing emissions, and during a sharp price increase, complexity grows, stimulating coin issuance. This allows the system to regulate the exchange rate using market tools. Excess emissions are directed to staking, promoting long-term stability.</p>
         <p>This cryptocurrency is especially suitable as a reserve currency. Its limited supply makes it attractive due to its scarcity, enhancing its market value.</p>
 
-
-        </body>
-        </html>
     </div>
 </div>
 

@@ -31,15 +31,15 @@
     <h6 th:text="'difficulty all blockchain: '+${difficultyAll}"></h6>
     <h6 th:text="'multiplier: '+${multiplier}"></h6>
     <h6 th:text="'target uniq sender in prev block: '+${targetTotalUniqAddress}"></h6>
-    <h6 th:text="'target sum sender transaction in prev block: '+${#numbers.formatDecimal(targetTotalSum, 1, 'COMMA', 16, 'POINT')}"></h6>
+    <h6 th:text="'target sum sender transaction in prev block: '+${#numbers.formatDecimal(targetTotalSum, 1, 'NONE', 2, 'POINT')}"></h6>
 
-    <h6 th:text="'total dollars: '+${#numbers.formatDecimal(totalDollars, 1, 'COMMA', 16, 'POINT')}"></h6>
+    <h6 th:text="'total dollars: '+${#numbers.formatDecimal(totalDollars, 1, 'NONE', 2, 'POINT')}"></h6>
     <h6 th:text="'total accounts: '+${totalAccounts}"></h6>
     <h6 th:text="'previous block total transaction: ' +${prevBlockTotalTransaction}"></h6>
-    <h6 th:text="'previous block total dollar sum: '+${#numbers.formatDecimal(prevBlockTotalSum, 1, 'COMMA', 16, 'POINT')}"></h6>
+    <h6 th:text="'previous block total dollar sum: '+${#numbers.formatDecimal(prevBlockTotalSum, 1, 'NONE', 2, 'POINT')}"></h6>
 
     <h6 th:text="'total transactions in day: ' +${totalTransactionsDay}"></h6>
-    <h6 th:text="'total dollar sum transactions in day: ' + ${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'COMMA', 2, 'POINT')}"></h6>
+    <h6 th:text="'total dollar sum transactions in day: ' + ${#numbers.formatDecimal(totalTransactionsDaySum, 1, 'NONE', 2, 'POINT')}"></h6>
 
     <h6 th:text="'Every 4 month the multiplier decreases by one, starting from this block ' +${startReduce}"></h6>
     <h6 th:text="'A day in this system is 432 blocks, a month is 51,840 blocks.  '"></h6>

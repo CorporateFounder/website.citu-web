@@ -92,7 +92,7 @@ public class ExplorerController {
             RedirectAttributes redirectAttrs,
             HttpSession session) throws IOException {
         String info = signRequest.getSign();
-        if (info.isEmpty()) {
+        if (info == null || info.isEmpty()) {
             info = "0";
         }
         int different = 10;
@@ -100,33 +100,28 @@ public class ExplorerController {
         String sizeStr = UtilUrl.readJsonFromUrl(address + "/size");
         Integer size = Integer.valueOf(sizeStr);
 
-        int start = size - different, end = size - 1;
+        int start = size - different;
+        int end = size - 1;
         if (page != null) {
-
             String[] str = page.split(":");
-            System.out.println("button push: " + str[0]);
+            String direction = str[0];
             int index = Integer.valueOf(str[1]);
-            if (str[0].equals("next")) {
+
+            if (direction.equals("next")) {
                 start = index - different;
                 end = index - 1;
-
-                System.out.println("start: next: " + start);
-                System.out.println("end: next: " + end);
-            } else {
+            } else if (direction.equals("prev")) {
                 start = index + 1;
                 end = index + different;
-
-                System.out.println("start: prev: " + start);
-                System.out.println("end: prev: " + end);
-
             }
 
-        }
-        if (start >= size) {
-            start = size - different;
-        }
-        if (end >= size) {
-            end = size - 1;
+            // Корректировка границ
+            if (start < 0) {
+                start = 0;
+            }
+            if (end >= size) {
+                end = size - 1;
+            }
         }
 
         System.out.println("start: " + start);
