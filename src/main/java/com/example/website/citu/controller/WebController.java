@@ -564,69 +564,7 @@ public class WebController {
 
     @GetMapping("/how_to_vote_and_what_voting_types_are_there")
     public String howToVoteAndWhatVotingTypesAreThere(Model model) {
-        model.addAttribute("text1", "If you want to become a member of the board of directors or a member of the Council of Corporate Judges or a General Director, then you need to go to apply for a position,\n" +
-                "select a position, fill out all fields, then click submit. When this transaction is accepted online, find in the all laws tab the identification number of your\n" +
-                "positions, there the name of the package will correspond to your position, go to each position, and see that the first line inside is your pubkey, as soon as you\n" +
-                "found, copy the identification number of your position, it always starts with LIBER, then send it to all network participants so that they go to the tab, vote and vote for\n" +
-                "you. You can also vote for other network members, both FOR and AGAINST. You can also remove your voice.\n" +
-                "\n" +
-                "Elections: Each network member can vote for a candidate. Each participant has three ways to vote FOR, AGAINST or WITHDRAW VOTE.\n" +
-                "The vote of a network participant is equal to the amount of staking on his account. That is, if you have 100 coins reserved, you can vote for\n" +
-                "several candidates, and if you vote AGAINST (NO), then the candidate receives minus 100, if FOR (YES) plus 100.\n" +
-                "As a result, for each candidate his YES-NO rating is calculated, Thus, seven candidates for the Board of Directors,\n" +
-                "and the 7 highest ranked candidates for the Council of Corporate Judges are in office.\n" +
-                "Each network participant can change their vote at any time.\n" +
-                "Only votes cast in the last two years are counted.\n" +
-                "\n" +
-                "Board of Directors:\n" +
-                "Can approve network decisions, for example, can create a project by approving a decision where participants will voluntarily send money to an approved address.\n" +
-                "Example: Let's imagine that the board of directors has created a package, where the first line is the address and the amount separated by a space. The second line is a description, and the third is contact information.\n" +
-                "Moreover, the amount and address do not necessarily have to be in this coin, the board of directors can approve the decision in other currencies, then after the amount, separated by a space\n" +
-                "you need to register the type of usdt coin or other currency.\n" +
-                "1. rDqx8hhZRzNm6xxvL1GL5aWyYoQRKVdjEHqDo5PY2nbM 10000\n" +
-                "2. For the development of the project and the acquisition of new servers, you need to collect ten thousand coins\n" +
-                "3. citucorp.com\n" +
-                "According to the decision of the Board of Directors:\n" +
-                "Each director has a vote equal to his rating share relative to the other directors. Let's imagine that we have 7 directors,\n" +
-                "1. First, we will sum up the ratings of all these 7 directors. For example, it turned out to be 200. But director A has a rating of 40, that is, his share is 20%\n" +
-                "Therefore, for a resolution to be adopted, the resolution must receive a vote of 57% or more from the Directors.\n" +
-                "If the director has a very high rating, then he can make decisions alone; if he has a low rating, then he will have to get the support of other directors.\n" +
-                "Similarly, the Board of Directors elects the General Director.\n" +
-                "\n" +
-                "Council of Corporate Judges:\n" +
-                "The Board of Corporate Judges is elected in the same way as the Board of Directors, but it performs several functions\n" +
-                "1. Resolves disputes that arise between network participants, creating a precedent.\n" +
-                "2. May veto a decision of the Board of Directors if this decision contradicts the Charter or other current decisions.\n" +
-                "Each Judge has one vote, each Judge can vote YES, NO or abstain, as well as remove their previous vote.\n" +
-                "For each decision, the votes of the judges are calculated using the following formula: YES - NO. If the number falls below 0, then the decision is VETOed.\n" +
-                "\n" +
-                "Powers of the founder; only the founder can approve the new charter. also the property of a corporation belongs to the corporation, but to manage this property\n" +
-                "Board of Directors (Member accounts are not the property of the corporation). The Board of Directors can finance new projects by collecting money from voluntary contributions,\n" +
-                "or from sales of goods and services of the corporation, as well as from voluntary membership fees. The merger of this corporation with other corporations can only be carried out\n" +
-                "after approval by the Founder. Board of Directors A board of directors is appointed to govern a given corporation within the scope of its bylaws.\n" +
-                "\n" +
-                "\n" +
-                "General Director:\n" +
-                "General Director, implements decisions made by the Board of Directors.\n" +
-                "\n" +
-                "\n" +
-                "1. Board of Directors (7 participants):\n" +
-                "Can approve decisions for the network, such as creating projects and raising funds for their implementation.\n" +
-                "Approves decisions by a majority vote, where the weight of the director's vote depends on his rating relative to other directors.\n" +
-                "Elects the General Director.\n" +
-                "May not act contrary to the Charter or decisions imposed by the Council of Corporate Judges.\n" +
-                "\n" +
-                "2. Council of Corporate Judges (7 participants):\n" +
-                "Resolves disputes between network participants by creating precedents.\n" +
-                "Can veto decisions of the Board of Directors if they contradict the Charter or other current decisions.\n" +
-                "Each judge has one vote, decisions are made by majority vote (YES - NO > 0).\n" +
-                "Cannot make decisions that contradict the Charter approved by the Founder.\n" +
-                "\n" +
-                "3. General Director:\n" +
-                "Implements decisions made by the Board of Directors.\n" +
-                "Has no authority have independent decisions, except for the execution of decisions of the Board of Directors.\n" +
-                "It should be noted that one person can hold several elected positions at the same time, for example, be a member of the Board of Directors and the Council of Corporate Judges. However, in this case, when voting on decisions, his votes will be counted separately for each position in accordance with the established rules.");
-        return "how_to_vote_and_what_voting_types_are_there";
+      return "how_to_vote_and_what_voting_types_are_there";
     }
 
     @GetMapping("/solving_common_problems")
@@ -673,6 +611,15 @@ public class WebController {
     public String charter(Model model){
         model.addAttribute("title", "charter");
         return "charter";
+    }
+    @GetMapping("charter_rus")
+    public String charter_rus(){
+        return "charter_rus";
+    }
+
+    @GetMapping("charter_eng")
+    public String charter_eng(){
+        return "charter_eng";
     }
     @GetMapping("/vision")
     public String vision_of_the_future(Model model){

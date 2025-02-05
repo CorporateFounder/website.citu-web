@@ -3,6 +3,7 @@ package com.example.website.citu.utils;
 import com.example.website.citu.entity.Account;
 import com.example.website.citu.entity.InfoDificultyBlockchain;
 import com.example.website.citu.model.Block;
+import com.example.website.citu.model.CurrentLawVotesEndBalance;
 import com.example.website.citu.model.DtoTransaction;
 import com.example.website.citu.model.LiteVersionWiner;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -36,6 +37,11 @@ public class UtilsJson {
         return mapper.readValue(json, new TypeReference<List<LiteVersionWiner>>(){});
     }
 
+
+    public static List<CurrentLawVotesEndBalance> jsonToCurrentVoting(String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, new TypeReference<List<CurrentLawVotesEndBalance>>(){});
+    }
     public static List<Block> jsonToListBlock(String json) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json, new TypeReference<List<Block>>(){});
